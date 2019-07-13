@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Brav</string>
+    <string name="com_auth0_client_id">kOeKAq6ue5IChNwFzJwzpwT7oGMzqHGd</string>
+    <string name="com_auth0_domain">brav.auth0.com</string>
 </resources>

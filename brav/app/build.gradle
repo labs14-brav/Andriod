@@ -12,6 +12,7 @@ android {
         applicationId "com.thadocizn.brav"
         minSdkVersion 25
         targetSdkVersion 28
+        manifestPlaceholders = [auth0Domain: "@string/com_auth0_domain", auth0Scheme: "https"]
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -35,4 +36,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation "org.jetbrains.anko:anko-commons:$anko_version"
     implementation "org.jetbrains.anko:anko-design:$anko_version"
+    implementation "com.auth0.android:auth0:1.17.0"
+    implementation "com.squareup.okhttp3:okhttp:4.0.1"
 }
