@@ -10,7 +10,6 @@ import com.auth0.android.authentication.AuthenticationException
 import com.auth0.android.provider.AuthCallback
 import com.auth0.android.provider.WebAuthProvider
 import com.auth0.android.result.Credentials
-import com.thadocizn.brav.Main2Activity
 import com.thadocizn.brav.R
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
