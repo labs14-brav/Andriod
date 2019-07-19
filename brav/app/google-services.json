@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "373999219897",
+    "firebase_url": "https://brav-3077e.firebaseio.com",
+    "project_id": "brav-3077e",
+    "storage_bucket": "brav-3077e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:373999219897:android:ffe37fd554d4f22b",
+        "android_client_info": {
+          "package_name": "com.thadocizn.brav"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "373999219897-s6dho6m9teb8855d3oe5crsk71s48hqg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrBT3m2FGbBolP4-wpboPhbJa1-hM5Cyc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "373999219897-s6dho6m9teb8855d3oe5crsk71s48hqg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
