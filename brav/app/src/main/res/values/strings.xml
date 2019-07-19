@@ -1,28 +1,16 @@
 <resources>
     <string name="app_name">Brav</string>
     <string name="desc_firebase_lockup">Firebase logo and name</string>
-
     <string name="email_password_title_text">Email and Password</string>
-
     <string name="signed_out">Signed Out</string>
-
     <string name="hint_email">Email</string>
-
     <string name="hint_password">Password</string>
-
     <string name="signed_in">Signed In</string>
-
     <string name="sign_in">Sign In</string>
-
     <string name="email_password_status_fmt">Email User: %1$s (verified: %2$b)</string>
-
     <string name="fire_base_status_fmt">Firebase User: %s</string>
-
     <string name="auth_failed">Authentication failed</string>
-
     <string name="create_account">Create Account</string>
-
     <string name="sign_out">Sign out</string>
-
     <string name="verify_email">Verify Email</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.thadocizn.brav.views
+package com.thadocizn.brav
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +9,6 @@ import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.thadocizn.brav.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -19,7 +18,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         this.auth = FirebaseAuth.getInstance()
 
         emailSignInButton.setOnClickListener(this)
@@ -27,7 +25,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         signOutButton.setOnClickListener(this)
         verifyEmailButton.setOnClickListener(this)
         enter_button.setOnClickListener(this)
-
     }
 
     override fun onClick(v: View) {
@@ -38,19 +35,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.signOutButton -> signOut()
             R.id.verifyEmailButton -> sendEmailVerification()
             R.id.enter_button -> loadIntent()
-        }
-    }
+        }    }
 
     public override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
-
         val currentUser = this.auth.currentUser
         updateUI(currentUser)
     }
 
     private fun createAccount(email: String, password: String) {
-
         Log.d("Create Account", "createAccount:$email")
         if (!validateForm()) {
             return
@@ -73,14 +67,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     ).show()
                     updateUI(null)
                 }
+
             }
     }
-
     private fun signIn(email: String, password: String) {
-
         if (!validateForm()) {
             return
         }
+
         // START sign_in_with_email
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
@@ -106,16 +100,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun signOut() {
-
         auth.signOut()
         updateUI(null)
     }
 
     private fun validateForm(): Boolean {
-
         var valid = true
-        val email = fieldEmail.text.toString()
 
+        val email = fieldEmail.text.toString()
         if (TextUtils.isEmpty(email)) {
             fieldEmail.error = "Required."
             valid = false
@@ -142,6 +134,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val user = auth.currentUser
         user?.sendEmailVerification()
             ?.addOnCompleteListener(this) { task ->
+
                 verifyEmailButton.isEnabled = true
 
                 if (task.isSuccessful) {
@@ -186,14 +179,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             enter_button.visibility = View.GONE
         }
     }
-
     private fun loadIntent(){
-
         val landingIntent = Intent(this@MainActivity, LandingActivity::class.java)
-
         //adding any credentials needed to the intent to pass, not sure if the authorization carries through the activities
 
         startActivity(landingIntent)
-    }
 
+    }
 }
