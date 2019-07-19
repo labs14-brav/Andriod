@@ -1,4 +1,4 @@
-package com.thadocizn.brav.views
+package com.thadocizn.brav
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
