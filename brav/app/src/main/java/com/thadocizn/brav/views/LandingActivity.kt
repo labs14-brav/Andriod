@@ -13,11 +13,8 @@ class LandingActivity : AppCompatActivity() {
         setContentView(R.layout.landing_activity)
 
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
-
         val user = auth.currentUser
-
         if (user != null) {
-
             textView.text = user.email
         }
     }
