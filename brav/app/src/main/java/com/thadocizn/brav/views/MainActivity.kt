@@ -2,7 +2,7 @@ package com.thadocizn.brav.views
 
 import android.app.Dialog
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.auth0.android.Auth0
