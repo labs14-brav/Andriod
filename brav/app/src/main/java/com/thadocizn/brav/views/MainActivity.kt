@@ -11,7 +11,6 @@ import com.auth0.android.provider.AuthCallback
 import com.auth0.android.provider.WebAuthProvider
 import com.auth0.android.result.Credentials
 import com.thadocizn.brav.R
-import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 
 class MainActivity : AppCompatActivity() {
@@ -47,12 +46,12 @@ class MainActivity : AppCompatActivity() {
                         //Navigate to main activity (logged in)
 
                         //not sure if this is the correct way to do it, but I don't have errors so far
-                        val mainPageIntent = Intent(context, Main2Activity::class.java)
+                        val mainPageIntent = Intent(context, LandingActivity::class.java)
 
                         val aToken = credentials.accessToken
 
                         mainPageIntent.putExtra("credentials", aToken)
-                        startActivity<Main2Activity>()
+                        startActivity<LandingActivity>()
                     }
                 })
         }
