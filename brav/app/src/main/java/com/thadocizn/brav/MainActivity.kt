@@ -10,6 +10,10 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -25,6 +29,25 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         signOutButton.setOnClickListener(this)
         verifyEmailButton.setOnClickListener(this)
         enter_button.setOnClickListener(this)
+
+    }
+
+    fun populateUsers(){
+
+        val service:BravApi = RetroInstance.service
+        val call = service.getUsers()
+
+        call.enqueue(object : Callback<User>{
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+        })
+
     }
 
     override fun onClick(v: View) {
@@ -35,6 +58,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.signOutButton -> signOut()
             R.id.verifyEmailButton -> sendEmailVerification()
             R.id.enter_button -> loadIntent()
+
+
         }    }
 
     public override fun onStart() {
