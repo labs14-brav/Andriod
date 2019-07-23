@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     fun populateUsers(){
 
-        val service:BravApi = RetroInstance.service
+        val service:BravApi = RetroInstance().service
         val call = service.getUsers()
 
         call.enqueue(object : Callback<User>{
