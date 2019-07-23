@@ -5,16 +5,30 @@ import android.os.Bundle
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_landing.*
 
+
+
 class LandingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing)
 
-        val auth: FirebaseAuth = FirebaseAuth.getInstance()
-        val user = auth.currentUser
-        if (user != null) {
-            textView.text = user.email
-        }
+        val mUser = FirebaseAuth.getInstance().currentUser
+        mUser!!.getIdToken(true)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val idToken = task.result!!.token
+                    textView.text = idToken
+                    // Send token to your backend via HTTPS
+                    // ...
+                } else {
+                    // Handle error -> task.getException();
+
+                }
+            }
+
+
     }
+
+
 }
