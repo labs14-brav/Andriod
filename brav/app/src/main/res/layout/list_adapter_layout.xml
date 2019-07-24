@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
+                                                   android:id="@+id/parent_layout"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="wrap_content">
+
+    <TextView android:id="@+id/case_title"
+              android:layout_width="wrap_content"
+              android:textStyle="bold"
+              android:textSize="30sp"
+              android:text="Placeholder Case Title"
+              android:layout_height="wrap_content"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintTop_toBottomOf="@+id/case_viewed_text"
+              app:layout_constraintHorizontal_bias="0.494"
+     />
+
+    <TextView android:id="@+id/case_description"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Placeholder Case Description"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintTop_toBottomOf="@+id/case_title"
+    />
+
+    <TextView android:id="@+id/case_viewed"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textStyle="italic"
+              android:text="False"
+              app:layout_constraintStart_toEndOf="@+id/case_viewed_text"
+              app:layout_constraintEnd_toEndOf="@+id/case_title"
+              app:layout_constraintTop_toTopOf="parent"
+     />
+
+    <TextView android:id="@+id/case_viewed_text"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textStyle="italic"
+              android:text="Viewed:"
+              app:layout_constraintTop_toTopOf="parent"
+              app:layout_constraintStart_toStartOf="@+id/case_title"
+     />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
