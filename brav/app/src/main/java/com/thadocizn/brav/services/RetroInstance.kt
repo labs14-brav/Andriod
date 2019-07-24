@@ -1,4 +1,4 @@
-package com.thadocizn.brav
+package com.thadocizn.brav.services
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

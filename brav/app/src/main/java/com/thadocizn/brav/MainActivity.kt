@@ -9,11 +9,12 @@ import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.thadocizn.brav.services.BravApi
+import com.thadocizn.brav.services.RetroInstance
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -30,19 +31,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         signOutButton.setOnClickListener(this)
         verifyEmailButton.setOnClickListener(this)
         enter_button.setOnClickListener(this)
-        populateUsers()
 
     }
 
-    fun populateUsers(){
+   /* fun populateUsers(){
 
-        val service:BravApi = RetroInstance().service
+        val service: BravApi = RetroInstance().service
         val call = service.getUsers()
 
         call.enqueue(object : Callback<List<User>>{
             override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
                 response.body()?.let { data.addAll(it) }
-                println(data.size)
+                println(response.isSuccessful)
             }
 
             override fun onFailure(call: Call<List<User>>, t: Throwable) {
@@ -52,6 +52,22 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         })
 
     }
+*/
+    /*fun registerUser(){
+        val service: BravApi = RetroInstance().service
+        val call = service.createUser()
+
+        call.enqueue(object : Callback<Unit>{
+            override fun onFailure(call: Call<Unit>, t: Throwable) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+        })
+    }*/
 
     override fun onClick(v: View) {
         val i = v.id
