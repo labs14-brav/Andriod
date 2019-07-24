@@ -41,7 +41,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         call.enqueue(object : Callback<List<User>>{
             override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
-               data.addAll(response.body()!!)
+                response.body()?.let { data.addAll(it) }
+                println(data.size)
             }
 
             override fun onFailure(call: Call<List<User>>, t: Throwable) {
