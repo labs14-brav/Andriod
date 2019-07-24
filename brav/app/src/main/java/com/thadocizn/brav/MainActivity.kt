@@ -18,6 +18,7 @@ import retrofit2.Retrofit
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var auth: FirebaseAuth
+    var data = ArrayList<User>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         signOutButton.setOnClickListener(this)
         verifyEmailButton.setOnClickListener(this)
         enter_button.setOnClickListener(this)
+        populateUsers()
 
     }
 
@@ -37,12 +39,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val service:BravApi = RetroInstance().service
         val call = service.getUsers()
 
-        call.enqueue(object : Callback<User>{
-            override fun onFailure(call: Call<User>, t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        call.enqueue(object : Callback<List<User>>{
+            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+               data.addAll(response.body()!!)
             }
 
-            override fun onResponse(call: Call<User>, response: Response<User>) {
+            override fun onFailure(call: Call<List<User>>, t: Throwable) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 

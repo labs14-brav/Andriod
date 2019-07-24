@@ -6,5 +6,5 @@ import retrofit2.http.GET
 interface BravApi {
 
 @GET("User")
-fun getUsers():Call<User>
+fun getUsers():Call<List<User>>
 }
