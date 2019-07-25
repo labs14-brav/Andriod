@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.squareup.moshi.Moshi
 import com.thadocizn.brav.services.BravApi
 import com.thadocizn.brav.services.RetroInstance
 import com.thadocizn.brav.viewModels.UserViewModel
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var auth: FirebaseAuth
     var data:ArrayList<User> = ArrayList()
-    lateinit var viewModel:UserViewModel
+    private lateinit var viewModel:UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,9 +42,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         populateUsers()
     }
 
-    fun populateUsers(){
+    private fun populateUsers(){
         viewModel.userList.observe(this, Observer { users ->
             data = users as ArrayList<User>
+
             println(data.size)
         })
 
