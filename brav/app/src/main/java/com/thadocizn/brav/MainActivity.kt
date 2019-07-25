@@ -7,10 +7,13 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.thadocizn.brav.services.BravApi
 import com.thadocizn.brav.services.RetroInstance
+import com.thadocizn.brav.viewModels.UserViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -19,12 +22,15 @@ import retrofit2.Response
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var auth: FirebaseAuth
-    var data = ArrayList<User>()
+    var data:ArrayList<User> = ArrayList()
+    lateinit var viewModel:UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         this.auth = FirebaseAuth.getInstance()
+
+        viewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
 
         emailSignInButton.setOnClickListener(this)
         emailCreateAccountButton.setOnClickListener(this)
@@ -32,27 +38,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         verifyEmailButton.setOnClickListener(this)
         enter_button.setOnClickListener(this)
 
+        populateUsers()
     }
 
-   /* fun populateUsers(){
-
-        val service: BravApi = RetroInstance().service
-        val call = service.getUsers()
-
-        call.enqueue(object : Callback<List<User>>{
-            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
-                response.body()?.let { data.addAll(it) }
-                println(response.isSuccessful)
-            }
-
-            override fun onFailure(call: Call<List<User>>, t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
+    fun populateUsers(){
+        viewModel.userList.observe(this, Observer { users ->
+            data = users as ArrayList<User>
+            println(data.size)
         })
 
     }
-*/
     /*fun registerUser(){
         val service: BravApi = RetroInstance().service
         val call = service.createUser()

@@ -7,33 +7,32 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
 
-class RetroInstance{
+class RetroInstance {
 
-    companion object{
+    companion object {
 
         const val BASE_URL = "https://bravproduction.herokuapp.com/"
     }
 
+
     val service: BravApi
-    get() {
+        get() {
 
-        var okHttpClient: OkHttpClient = OkHttpClient().newBuilder()
+            var okHttpClient: OkHttpClient = OkHttpClient().newBuilder()
 
-            .connectTimeout(120, TimeUnit.SECONDS)
-            .readTimeout(120, TimeUnit.SECONDS)
-            .writeTimeout(120, TimeUnit.SECONDS)
-            .build()
+                .connectTimeout(120, TimeUnit.SECONDS)
+                .readTimeout(120, TimeUnit.SECONDS)
+                .writeTimeout(120, TimeUnit.SECONDS)
+                .build()
 
-// Todo comeback when we complete the Response
+            var retroInstance = Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(okHttpClient)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(MoshiConverterFactory.create())
+                .build()
 
-        var retroInstance = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .client(okHttpClient)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(MoshiConverterFactory.create())
-            .build()
-
-        return retroInstance.create(BravApi::class.java)
-    }
+            return retroInstance.create(BravApi::class.java)
+        }
 
 }

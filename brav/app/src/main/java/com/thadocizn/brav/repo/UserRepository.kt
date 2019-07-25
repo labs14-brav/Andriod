@@ -13,7 +13,7 @@ import retrofit2.Response
  */
 class UserRepository {
 
-    private var users: ArrayList<User>? = null
+    private var users: ArrayList<User> = ArrayList()
     private val mutableLiveData = MutableLiveData<List<User>>()
 
     val userList:MutableLiveData<List<User>>
@@ -23,13 +23,14 @@ class UserRepository {
 
         call.enqueue(object : Callback<List<User>> {
             override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
-                response.body()?.let { users?.addAll(it) }
+                response.body()?.let { users.addAll(it) }
                 println(response.isSuccessful)
                 mutableLiveData.postValue(users)
             }
 
             override fun onFailure(call: Call<List<User>>, t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                println(t.message)
             }
 
         })
