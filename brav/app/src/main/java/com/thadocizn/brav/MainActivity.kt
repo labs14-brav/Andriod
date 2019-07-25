@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var auth: FirebaseAuth
     var data:ArrayList<User> = ArrayList()
     private lateinit var viewModel:UserViewModel
+    private var token:String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +40,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         verifyEmailButton.setOnClickListener(this)
         enter_button.setOnClickListener(this)
 
+
         populateUsers()
+        registerUser()
     }
 
     private fun populateUsers(){
@@ -50,21 +53,28 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         })
 
     }
-    /*fun registerUser(){
+    private fun registerUser(){
+        auth.currentUser?.getIdToken(true)!!.addOnSuccessListener{result ->
+            token = result.token
+            println(token.toString())
+        }
+
         val service: BravApi = RetroInstance().service
-        val call = service.createUser()
+        val call = service.createUser(token.toString())
 
         call.enqueue(object : Callback<Unit>{
             override fun onFailure(call: Call<Unit>, t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+               // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                println("Somethings wrong")
             }
 
             override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                println("Success")
             }
 
         })
-    }*/
+    }
 
     override fun onClick(v: View) {
         val i = v.id
