@@ -42,7 +42,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             signOutButton.setOnClickListener(this)
             verifyEmailButton.setOnClickListener(this)
             enter_button.setOnClickListener(this)
-            registerUser()
         }
     }
 
@@ -80,6 +79,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = this.auth.currentUser
+
         updateUI(currentUser)
     }
 
@@ -122,6 +122,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("Success", "signInWithEmail:success")
                     val user = auth.currentUser
+
                     updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
