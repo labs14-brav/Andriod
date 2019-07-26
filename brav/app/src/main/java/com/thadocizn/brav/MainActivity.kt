@@ -7,24 +7,61 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.thadocizn.brav.model.CustomViewModel
+import com.thadocizn.brav.services.BravApi
+import com.thadocizn.brav.services.RetroInstance
+import com.thadocizn.brav.viewModels.UserViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var auth: FirebaseAuth
+    var data: ArrayList<User> = ArrayList()
+    private lateinit var viewModel: UserViewModel
+    private var token: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         this.auth = FirebaseAuth.getInstance()
+        this.auth.signOut()
+        /*if(auth.currentUser != null){
+        auth.currentUser?.getIdToken(true)!!.addOnSuccessListener { result ->
+            token = result.token.toString()
+        }}*/
 
-        emailSignInButton.setOnClickListener(this)
-        emailCreateAccountButton.setOnClickListener(this)
-        signOutButton.setOnClickListener(this)
-        verifyEmailButton.setOnClickListener(this)
-        enter_button.setOnClickListener(this)
+            viewModel = ViewModelProviders.of(this, CustomViewModel(token)).get(UserViewModel::class.java)
+        registerUser()
+
+            emailSignInButton.setOnClickListener(this)
+            emailCreateAccountButton.setOnClickListener(this)
+            signOutButton.setOnClickListener(this)
+            verifyEmailButton.setOnClickListener(this)
+            enter_button.setOnClickListener(this)
+
+    }
+
+    private fun populateUsers() {
+        viewModel.userList.observe(this, Observer { users ->
+            data = users as ArrayList<User>
+            println(data.size)
+
+        })
+
+    }
+
+    private fun registerUser() {
+
+        viewModel.createUser.observe(this, Observer { user ->
+        })
+
     }
 
     override fun onClick(v: View) {
@@ -35,12 +72,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.signOutButton -> signOut()
             R.id.verifyEmailButton -> sendEmailVerification()
             R.id.enter_button -> loadIntent()
-        }    }
+
+
+        }
+    }
 
     public override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = this.auth.currentUser
+
         updateUI(currentUser)
     }
 
@@ -70,6 +111,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             }
     }
+
     private fun signIn(email: String, password: String) {
         if (!validateForm()) {
             return
@@ -82,6 +124,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("Success", "signInWithEmail:success")
                     val user = auth.currentUser
+
                     updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
@@ -179,7 +222,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             enter_button.visibility = View.GONE
         }
     }
-    private fun loadIntent(){
+
+    private fun loadIntent() {
         val landingIntent = Intent(this@MainActivity, LandingActivity::class.java)
         //adding any credentials needed to the intent to pass, not sure if the authorization carries through the activities
 
