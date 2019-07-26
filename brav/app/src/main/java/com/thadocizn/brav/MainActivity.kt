@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun registerUser() {
 
-        viewModel.createUser.observe(this, Observer {
+        viewModel.createUser.observe(this, Observer { user ->
         })
 
     }
