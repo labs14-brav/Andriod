@@ -89,9 +89,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         this.auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
+                    val user = auth.currentUser
+                    user!!.getIdToken(true).addOnSuccessListener { result ->
+                        val token = result.token.toString()
+                        viewModel = ViewModelProviders.of(this, CustomViewModel(token)).get(UserViewModel::class.java)
+                        registerUser()}
+
+                        // Sign in success, update UI with the signed-in user's information
                     Log.d("Success", "createUserWithEmail:success")
-                    val user = this.auth.currentUser
                     updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
