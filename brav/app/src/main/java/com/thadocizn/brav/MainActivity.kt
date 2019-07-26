@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.squareup.moshi.Moshi
+import com.thadocizn.brav.model.CustomViewModel
 import com.thadocizn.brav.services.BravApi
 import com.thadocizn.brav.services.RetroInstance
 import com.thadocizn.brav.viewModels.UserViewModel
@@ -23,57 +23,44 @@ import retrofit2.Response
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var auth: FirebaseAuth
-    var data:ArrayList<User> = ArrayList()
-    private lateinit var viewModel:UserViewModel
-    private var token:String? = null
+    var data: ArrayList<User> = ArrayList()
+    private lateinit var viewModel: UserViewModel
+    private var token: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         this.auth = FirebaseAuth.getInstance()
 
-        viewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
+        auth.currentUser?.getIdToken(true)!!.addOnSuccessListener { result ->
+            token = result.token.toString()
 
-        emailSignInButton.setOnClickListener(this)
-        emailCreateAccountButton.setOnClickListener(this)
-        signOutButton.setOnClickListener(this)
-        verifyEmailButton.setOnClickListener(this)
-        enter_button.setOnClickListener(this)
+            viewModel = ViewModelProviders.of(this, CustomViewModel(token)).get(UserViewModel::class.java)
 
-
-        populateUsers()
-        registerUser()
+            emailSignInButton.setOnClickListener(this)
+            emailCreateAccountButton.setOnClickListener(this)
+            signOutButton.setOnClickListener(this)
+            verifyEmailButton.setOnClickListener(this)
+            enter_button.setOnClickListener(this)
+            registerUser()
+        }
     }
 
-    private fun populateUsers(){
+    private fun populateUsers() {
         viewModel.userList.observe(this, Observer { users ->
             data = users as ArrayList<User>
-
             println(data.size)
+
         })
 
     }
-    private fun registerUser(){
-        auth.currentUser?.getIdToken(true)!!.addOnSuccessListener{result ->
-            token = result.token
-            println(token.toString())
-        }
 
-        val service: BravApi = RetroInstance().service
-        val call = service.createUser(token.toString())
+    private fun registerUser() {
 
-        call.enqueue(object : Callback<Unit>{
-            override fun onFailure(call: Call<Unit>, t: Throwable) {
-               // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                println("Somethings wrong")
-            }
-
-            override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
-                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                println("Success")
-            }
-
+        viewModel.createUser.observe(this, Observer { user ->
+            println(user.email)
         })
+
     }
 
     override fun onClick(v: View) {
@@ -86,7 +73,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.enter_button -> loadIntent()
 
 
-        }    }
+        }
+    }
 
     public override fun onStart() {
         super.onStart()
@@ -121,6 +109,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             }
     }
+
     private fun signIn(email: String, password: String) {
         if (!validateForm()) {
             return
@@ -230,7 +219,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             enter_button.visibility = View.GONE
         }
     }
-    private fun loadIntent(){
+
+    private fun loadIntent() {
         val landingIntent = Intent(this@MainActivity, LandingActivity::class.java)
         //adding any credentials needed to the intent to pass, not sure if the authorization carries through the activities
 

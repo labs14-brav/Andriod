@@ -11,7 +11,7 @@ class RetroInstance {
 
     companion object {
 
-        const val BASE_URL = "https://bravproduction.herokuapp.com/"
+        const val BASE_URL = "https://brav-staging.herokuapp.com/"
     }
 
 
