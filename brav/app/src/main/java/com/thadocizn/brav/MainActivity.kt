@@ -31,18 +31,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         this.auth = FirebaseAuth.getInstance()
-
+        this.auth.signOut()
+        /*if(auth.currentUser != null){
         auth.currentUser?.getIdToken(true)!!.addOnSuccessListener { result ->
             token = result.token.toString()
+        }}*/
 
             viewModel = ViewModelProviders.of(this, CustomViewModel(token)).get(UserViewModel::class.java)
+        registerUser()
 
             emailSignInButton.setOnClickListener(this)
             emailCreateAccountButton.setOnClickListener(this)
             signOutButton.setOnClickListener(this)
             verifyEmailButton.setOnClickListener(this)
             enter_button.setOnClickListener(this)
-        }
+
     }
 
     private fun populateUsers() {
@@ -56,8 +59,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun registerUser() {
 
-        viewModel.createUser.observe(this, Observer { user ->
-            println(user.email)
+        viewModel.createUser.observe(this, Observer {
         })
 
     }
