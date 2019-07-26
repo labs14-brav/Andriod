@@ -25,20 +25,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var auth: FirebaseAuth
     var data: ArrayList<User> = ArrayList()
     private lateinit var viewModel: UserViewModel
-    private var token: String? = null
+//    private var token: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         this.auth = FirebaseAuth.getInstance()
         this.auth.signOut()
-        /*if(auth.currentUser != null){
-        auth.currentUser?.getIdToken(true)!!.addOnSuccessListener { result ->
-            token = result.token.toString()
-        }}*/
 
-            viewModel = ViewModelProviders.of(this, CustomViewModel(token)).get(UserViewModel::class.java)
-        registerUser()
 
             emailSignInButton.setOnClickListener(this)
             emailCreateAccountButton.setOnClickListener(this)
@@ -59,7 +53,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun registerUser() {
 
-        viewModel.createUser.observe(this, Observer { user ->
+        viewModel.createUser.observe(this, Observer {
         })
 
     }
@@ -124,6 +118,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("Success", "signInWithEmail:success")
                     val user = auth.currentUser
+                    user!!.getIdToken(true).addOnSuccessListener { result ->
+                       val token = result.token.toString()
+                        viewModel = ViewModelProviders.of(this, CustomViewModel(token)).get(UserViewModel::class.java)
+                        registerUser()
+                    }
+
+
 
                     updateUI(user)
                 } else {
