@@ -10,16 +10,16 @@ import com.thadocizn.brav.repo.UserRepository
  */
 class UserViewModel(val token: String?) : ViewModel() {
 
-    private val repo:UserRepository
+    private val repo: UserRepository
 
     init {
         repo = UserRepository(token)
     }
 
-    val userList:LiveData<List<User>>
-    get() = repo.userList
+    val userList: LiveData<List<User>>
+        get() = repo.userList
 
-    val createUser:LiveData<User>
-    get() = repo.registerUser
+    val createUser: LiveData<User>
+        get() = repo.registerUser
 
 }

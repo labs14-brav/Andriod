@@ -39,26 +39,26 @@ class UserRepository(private val token: String?) {
             return mutableLiveData
         }
 
-val registerUser:MutableLiveData<User>
-    get() {
-        val service: BravApi = RetroInstance().service
-        val call = service.createUser(token)
+    val registerUser: MutableLiveData<User>
+        get() {
+            val service: BravApi = RetroInstance().service
+            val call = service.createUser(token)
 
 
-        call.enqueue(object : Callback<User> {
-            override fun onFailure(call: Call<User>, t: Throwable) {
-                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                println(t.message)
-            }
+            call.enqueue(object : Callback<User> {
+                override fun onFailure(call: Call<User>, t: Throwable) {
+                    //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    println(t.message)
+                }
 
-            override fun onResponse(call: Call<User>, response: Response<User>) {
-                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                val jsonResponse: User? = response.body()
-                //println(jsonResponse!!.email)
-                createUserMutableLiveData.postValue(jsonResponse)
-            }
+                override fun onResponse(call: Call<User>, response: Response<User>) {
+                    //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    val jsonResponse: User? = response.body()
+                    //println(jsonResponse!!.email)
+                    createUserMutableLiveData.postValue(jsonResponse)
+                }
 
-        })
-        return createUserMutableLiveData
-    }
+            })
+            return createUserMutableLiveData
+        }
 }
