@@ -1,4 +1,4 @@
-package com.thadocizn.brav.model
+package com.thadocizn.brav.models
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

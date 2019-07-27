@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.thadocizn.brav.model.CustomViewModel
+import com.thadocizn.brav.models.CustomViewModel
 import com.thadocizn.brav.models.User
 import com.thadocizn.brav.viewModels.UserViewModel
 import kotlinx.android.synthetic.main.activity_main.*
