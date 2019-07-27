@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var auth: FirebaseAuth
     var data: ArrayList<User> = ArrayList()
     private lateinit var viewModel: UserViewModel
-//    private var token: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

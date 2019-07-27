@@ -48,14 +48,11 @@ class UserRepository(private val token: String?) {
 
             call.enqueue(object : Callback<User> {
                 override fun onFailure(call: Call<User>, t: Throwable) {
-                    //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                     println(t.message)
                 }
 
                 override fun onResponse(call: Call<User>, response: Response<User>) {
-                    //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                     val jsonResponse: User? = response.body()
-                    //println(jsonResponse!!.email)
                     createUserMutableLiveData.postValue(jsonResponse)
                 }
 
