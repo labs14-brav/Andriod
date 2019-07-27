@@ -12,13 +12,9 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.thadocizn.brav.model.CustomViewModel
-import com.thadocizn.brav.services.BravApi
-import com.thadocizn.brav.services.RetroInstance
+import com.thadocizn.brav.models.User
 import com.thadocizn.brav.viewModels.UserViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 

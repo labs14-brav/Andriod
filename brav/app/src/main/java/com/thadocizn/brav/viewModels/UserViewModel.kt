@@ -2,7 +2,7 @@ package com.thadocizn.brav.viewModels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.thadocizn.brav.User
+import com.thadocizn.brav.models.User
 import com.thadocizn.brav.repo.UserRepository
 
 /**
