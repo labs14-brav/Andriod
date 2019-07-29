@@ -1,3 +1,8 @@
 package com.thadocizn.brav.models
 
-data class Case(val title:String, var info:String, var cat:String)
+data class Case(
+    val userEmail:String,
+    val userUid:String,
+    val description:String,
+    val dispute:String,
+    val parties:String)
