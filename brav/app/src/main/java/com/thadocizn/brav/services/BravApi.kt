@@ -1,5 +1,6 @@
 package com.thadocizn.brav.services
 
+import com.thadocizn.brav.models.Case
 import com.thadocizn.brav.models.User
 import retrofit2.Call
 import retrofit2.http.GET
@@ -10,6 +11,12 @@ interface BravApi {
 
     @GET("users")
     fun getUsers(): Call<List<User>>
+
+    @GET("cases")
+    fun getCases(): Call<List<Case>>
+
+    @POST("cases")
+    fun createCase(@Header("authorization")token: String?): Call<Case>
 
     @POST("users/auth")
     fun createUser(@Header("authorization") token: String?): Call<User>
