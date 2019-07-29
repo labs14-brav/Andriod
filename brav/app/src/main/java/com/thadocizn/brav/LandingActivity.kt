@@ -1,7 +1,9 @@
 package com.thadocizn.brav
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_landing.*
 
@@ -26,7 +28,10 @@ class LandingActivity : AppCompatActivity() {
 
                 }
             }
-
+            landing_page_create_case_button.setOnClickListener(View.OnClickListener {
+                val createCaseIntent = Intent(this, CreateCaseActivity::class.java)
+                startActivity(createCaseIntent)
+            })
 
     }
 

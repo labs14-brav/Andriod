@@ -9,6 +9,9 @@
         tools:context=".LandingActivity">
    <ScrollView android:layout_width="match_parent"
                app:layout_constraintTop_toTopOf="parent"
+               android:layout_marginBottom="50sp"
+               android:paddingBottom="20sp"
+               app:layout_constraintBottom_toTopOf="@id/landing_page_create_case_button"
                android:layout_height="wrap_content">
        <TextView
                android:text="test info"
@@ -25,6 +28,15 @@
 
 
    </ScrollView>
+    <Button android:layout_width="wrap_content"
+            android:id="@+id/landing_page_create_case_button"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/colorAccent"
+            android:text="Create Case"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
