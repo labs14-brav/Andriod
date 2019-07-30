@@ -17,8 +17,10 @@ import com.google.android.material.navigation.NavigationView
 import androidx.lifecycle.ViewModelProviders
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.thadocizn.brav.models.MediatorCustomViewModel
 import com.thadocizn.brav.models.UserCustomViewModel
 import com.thadocizn.brav.models.User
+import com.thadocizn.brav.viewModels.MediatorViewModel
 import com.thadocizn.brav.viewModels.UserViewModel
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -28,6 +30,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, NavigationView.O
     private lateinit var auth: FirebaseAuth
     var data: ArrayList<User> = ArrayList()
     private lateinit var viewModel: UserViewModel
+    private lateinit var mediatorViewModel: MediatorViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

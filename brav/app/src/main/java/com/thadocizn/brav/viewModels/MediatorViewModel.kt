@@ -18,7 +18,7 @@ class MediatorViewModel(val token: String?) : ViewModel() {
         repo = MediatorRepository(token)
     }
 
-    val userList: LiveData<List<Mediator>>
+    val getMediatorList: LiveData<List<Mediator>>
         get() = repo.mediatorList
 
 
