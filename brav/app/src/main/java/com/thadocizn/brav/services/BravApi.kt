@@ -3,20 +3,20 @@ package com.thadocizn.brav.services
 import com.thadocizn.brav.models.Case
 import com.thadocizn.brav.models.User
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface BravApi {
 
     @GET("users")
     fun getUsers(): Call<List<User>>
 
-    @GET("cases")
+    @GET("/cases/{id}")
+    fun getSpecificCase(@Path("id")id:String): Call<Case>
+
+    @GET("/cases")
     fun getCases(): Call<List<Case>>
 
-    @POST("cases")
+    @POST("/cases")
     fun createCase(@Body body:String): Call<Case>
 
     @POST("users/auth")
