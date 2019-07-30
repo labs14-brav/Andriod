@@ -26,7 +26,7 @@ class RetroInstance {
                 .connectTimeout(120, TimeUnit.SECONDS)
                 .readTimeout(120, TimeUnit.SECONDS)
                 .writeTimeout(120, TimeUnit.SECONDS)
-                .addInterceptor { chain ->
+                .addNetworkInterceptor { chain ->
                     val newRequest = chain.request().newBuilder()
                         .addHeader("Authorization", token.toString())
                         .build()
