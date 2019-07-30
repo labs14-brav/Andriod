@@ -16,17 +16,21 @@ class RetroInstance {
     }
 
 
-    val service: BravApi
-        get() {
+    fun service(token: String?): BravApi {
             val interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
 
             var okHttpClient: OkHttpClient = OkHttpClient().newBuilder()
 
+                .addInterceptor(interceptor)
                 .connectTimeout(120, TimeUnit.SECONDS)
                 .readTimeout(120, TimeUnit.SECONDS)
                 .writeTimeout(120, TimeUnit.SECONDS)
-                .addInterceptor(interceptor)
+                .addInterceptor { chain ->
+                    val newRequest = chain.request().newBuilder()
+                        .addHeader("Authorization", token.toString())
+                        .build()
+                    chain.proceed(newRequest) }
                 .build()
 
             var retroInstance = Retrofit.Builder()

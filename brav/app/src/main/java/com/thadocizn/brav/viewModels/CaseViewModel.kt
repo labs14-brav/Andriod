@@ -8,12 +8,12 @@ import com.thadocizn.brav.repo.CaseRepository
 /**
  * Created by charles on 24,July,2019
  */
-class CaseViewModel(val token: String?) : ViewModel() {
+class CaseViewModel(val token: String?, val case:String) : ViewModel() {
 
     private val repo: CaseRepository
 
     init {
-        repo = CaseRepository(token)
+        repo = CaseRepository(token, case)
     }
 
     val caseList: LiveData<List<Case>>
@@ -21,5 +21,4 @@ class CaseViewModel(val token: String?) : ViewModel() {
 
     val createCase: LiveData<Case>
         get() = repo.createCase
-
 }

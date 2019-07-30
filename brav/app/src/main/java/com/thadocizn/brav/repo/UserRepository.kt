@@ -20,7 +20,7 @@ class UserRepository(private val token: String?) {
 
     val userList: MutableLiveData<List<User>>
         get() {
-            val service: BravApi = RetroInstance().service
+            val service: BravApi = RetroInstance().service(token)
             val call = service.getUsers()
 
             call.enqueue(object : Callback<List<User>> {
@@ -42,8 +42,8 @@ class UserRepository(private val token: String?) {
 
     val registerUser: MutableLiveData<User>
         get() {
-            val service: BravApi = RetroInstance().service
-            val call = service.createUser(token)
+            val service: BravApi = RetroInstance().service(token)
+            val call = service.createUser()
 
 
             call.enqueue(object : Callback<User> {

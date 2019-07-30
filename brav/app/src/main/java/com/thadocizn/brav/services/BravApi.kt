@@ -17,9 +17,9 @@ interface BravApi {
     fun getCases(): Call<List<Case>>
 
     @POST("cases")
-    fun createCase(@Header("authorization")token: String?, @Body body:String): Call<Case>
+    fun createCase(@Body body:String): Call<Case>
 
     @POST("users/auth")
-    fun createUser(@Header("authorization") token: String?): Call<User>
+    fun createUser(): Call<User>
 
 }

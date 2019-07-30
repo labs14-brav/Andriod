@@ -12,7 +12,7 @@ import retrofit2.Response
 /**
  * Created by charles on 24,July,2019
  */
-class CaseRepository(private val token: String?) {
+class CaseRepository(private val token: String?, private val case:String) {
 
     private var cases: ArrayList<Case> = ArrayList()
     private val mutableLiveData = MutableLiveData<List<Case>>()
@@ -20,7 +20,7 @@ class CaseRepository(private val token: String?) {
 
     val caseList: MutableLiveData<List<Case>>
         get() {
-            val service: BravApi = RetroInstance().service
+            val service: BravApi = RetroInstance().service(token)
             val call = service.getCases()
 
             call.enqueue(object : Callback<List<Case>> {
@@ -42,8 +42,8 @@ class CaseRepository(private val token: String?) {
 
     val createCase: MutableLiveData<Case>
         get() {
-            val service: BravApi = RetroInstance().service
-            val call = service.createCase(token)
+            val service: BravApi = RetroInstance().service(token)
+            val call = service.createCase(case)
 
 
             call.enqueue(object : Callback<Case> {
