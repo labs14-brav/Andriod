@@ -5,9 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
+import com.google.android.material.navigation.NavigationView
 import androidx.lifecycle.ViewModelProviders
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -15,8 +21,10 @@ import com.thadocizn.brav.models.CustomViewModel
 import com.thadocizn.brav.models.User
 import com.thadocizn.brav.viewModels.UserViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity(), View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var auth: FirebaseAuth
     var data: ArrayList<User> = ArrayList()
@@ -28,7 +36,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         this.auth = FirebaseAuth.getInstance()
         this.auth.signOut()
 
+        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+        val navView: NavigationView = findViewById(R.id.nav_view)
+        val toggle = ActionBarDrawerToggle(
+            this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        )
 
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        navView.setNavigationItemSelectedListener(this)
             emailSignInButton.setOnClickListener(this)
             emailCreateAccountButton.setOnClickListener(this)
             signOutButton.setOnClickListener(this)
@@ -53,6 +70,25 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        return when (item.itemId) {
+            R.id.action_settings -> true
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+    override fun onNavigationItemSelected(p0: MenuItem): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun onClick(v: View) {
         val i = v.id
         when (i) {
@@ -63,6 +99,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.enter_button -> loadIntent()
 
 
+        }
+    }
+
+    override fun onBackPressed() {
+        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
         }
     }
 
