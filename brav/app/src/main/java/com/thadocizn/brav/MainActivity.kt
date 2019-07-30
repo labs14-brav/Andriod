@@ -17,10 +17,9 @@ import com.google.android.material.navigation.NavigationView
 import androidx.lifecycle.ViewModelProviders
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.thadocizn.brav.models.CustomViewModel
+import com.thadocizn.brav.models.UserCustomViewModel
 import com.thadocizn.brav.models.User
 import com.thadocizn.brav.viewModels.UserViewModel
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
@@ -132,7 +131,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, NavigationView.O
                     val user = auth.currentUser
                     user!!.getIdToken(true).addOnSuccessListener { result ->
                         val token = result.token.toString()
-                        viewModel = ViewModelProviders.of(this, CustomViewModel(token)).get(UserViewModel::class.java)
+                        viewModel = ViewModelProviders.of(this, UserCustomViewModel(token)).get(UserViewModel::class.java)
                         registerUser()}
 
                         // Sign in success, update UI with the signed-in user's information
@@ -165,7 +164,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, NavigationView.O
                     val user = auth.currentUser
                     user!!.getIdToken(true).addOnSuccessListener { result ->
                        val token = result.token.toString()
-                        viewModel = ViewModelProviders.of(this, CustomViewModel(token)).get(UserViewModel::class.java)
+                        viewModel = ViewModelProviders.of(this, UserCustomViewModel(token)).get(UserViewModel::class.java)
                         registerUser()
                     }
 

@@ -2,14 +2,14 @@ package com.thadocizn.brav.models
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.thadocizn.brav.viewModels.CaseViewModel
+import com.thadocizn.brav.viewModels.UserViewModel
 
 /**
  * Created by charles on 26,July,2019
  */
-class CustomCaseViewModel(private val token: String?, private val case:String) : ViewModelProvider.NewInstanceFactory() {
+class UserCustomViewModel(private val token: String?) : ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return CaseViewModel(token, case) as T
+        return UserViewModel(token) as T
     }
 }
