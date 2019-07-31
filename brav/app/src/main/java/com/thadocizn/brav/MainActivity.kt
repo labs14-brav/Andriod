@@ -17,7 +17,6 @@ import com.google.android.material.navigation.NavigationView
 import androidx.lifecycle.ViewModelProviders
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.thadocizn.brav.models.MediatorCustomViewModel
 import com.thadocizn.brav.models.UserCustomViewModel
 import com.thadocizn.brav.models.User
 import com.thadocizn.brav.viewModels.MediatorViewModel
@@ -38,22 +37,35 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, NavigationView.O
         this.auth = FirebaseAuth.getInstance()
         this.auth.signOut()
 
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        val navView: NavigationView = findViewById(R.id.nav_view)
+        val (drawerLayout: DrawerLayout, navView: NavigationView) = pairViews()
         val toggle = ActionBarDrawerToggle(
             this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
         )
 
-        drawerLayout.addDrawerListener(toggle)
+        setupListeners(drawerLayout, toggle, navView)
         toggle.syncState()
 
-        navView.setNavigationItemSelectedListener(this)
-            emailSignInButton.setOnClickListener(this)
-            emailCreateAccountButton.setOnClickListener(this)
-            signOutButton.setOnClickListener(this)
-            verifyEmailButton.setOnClickListener(this)
-            enter_button.setOnClickListener(this)
 
+    }
+
+    private fun pairViews(): Pair<DrawerLayout, NavigationView> {
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
+        val navView = findViewById<NavigationView>(R.id.nav_view)
+        return Pair(drawerLayout, navView)
+    }
+
+    private fun setupListeners(
+        drawerLayout: DrawerLayout,
+        toggle: ActionBarDrawerToggle,
+        navView: NavigationView
+    ) {
+        drawerLayout.addDrawerListener(toggle)
+        navView.setNavigationItemSelectedListener(this)
+        emailSignInButton.setOnClickListener(this)
+        emailCreateAccountButton.setOnClickListener(this)
+        signOutButton.setOnClickListener(this)
+        verifyEmailButton.setOnClickListener(this)
+        enter_button.setOnClickListener(this)
     }
 
     private fun populateUsers() {

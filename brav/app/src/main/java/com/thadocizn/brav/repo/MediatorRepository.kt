@@ -2,7 +2,6 @@ package com.thadocizn.brav.repo
 
 import androidx.lifecycle.MutableLiveData
 import com.thadocizn.brav.models.Mediator
-import com.thadocizn.brav.models.User
 import com.thadocizn.brav.services.BravApi
 import com.thadocizn.brav.services.RetroInstance
 import retrofit2.Call

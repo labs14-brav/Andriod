@@ -20,7 +20,7 @@ class RetroInstance {
             val interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
 
-            var okHttpClient: OkHttpClient = OkHttpClient().newBuilder()
+            val okHttpClient: OkHttpClient = OkHttpClient().newBuilder()
 
                 .addInterceptor(interceptor)
                 .connectTimeout(120, TimeUnit.SECONDS)
@@ -33,7 +33,7 @@ class RetroInstance {
                     chain.proceed(newRequest) }
                 .build()
 
-            var retroInstance = Retrofit.Builder()
+            val retroInstance = Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(okHttpClient)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

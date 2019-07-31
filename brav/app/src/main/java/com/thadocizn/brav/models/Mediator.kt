@@ -21,16 +21,3 @@ data class Mediator(
     val mediator_accepted_at:String? = null,
     val mediator_declined_at:String? = null)
 
-/*
-"id": 3,
-"type": "mediator",
-"email": "labs14brav-mediator@gmail.com",
-"uid": "3VhJYYOASWPcC499nsrjWM1SCxF3",
-"license": null,
-"experience": null,
-"specialization": null,
-"language": null,
-"professional_bio": null,
-"name": null,
-"mediator_accepted_at": null,
-"mediator_declined_at": null*/
