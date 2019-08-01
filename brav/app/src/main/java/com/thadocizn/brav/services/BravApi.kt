@@ -11,8 +11,10 @@ interface BravApi {
     @GET("users")
     fun getUsers(): Call<List<User>>
 
-    //Todo change value to match BE
     @POST("users/auth")
-    fun createUser(@Header("authorization") token: String?): Call<User>
+    fun createUser(): Call<User>
+
+    @POST("users/auth")
+    fun loginUser(): Call<User>
 
 }

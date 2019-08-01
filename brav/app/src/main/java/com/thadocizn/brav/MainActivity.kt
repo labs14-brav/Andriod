@@ -7,21 +7,20 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.thadocizn.brav.model.CustomViewModel
 import com.thadocizn.brav.models.User
-import com.thadocizn.brav.viewModels.UserViewModel
+import com.thadocizn.brav.services.BravApi
+import com.thadocizn.brav.services.RetroInstance
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var auth: FirebaseAuth
-    var data: ArrayList<User> = ArrayList()
-    private lateinit var viewModel: UserViewModel
-//    private var token: String? = null
+    lateinit var bravUser: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,26 +29,28 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         this.auth.signOut()
 
 
-            emailSignInButton.setOnClickListener(this)
-            emailCreateAccountButton.setOnClickListener(this)
-            signOutButton.setOnClickListener(this)
-            verifyEmailButton.setOnClickListener(this)
-            enter_button.setOnClickListener(this)
+        emailSignInButton.setOnClickListener(this)
+        emailCreateAccountButton.setOnClickListener(this)
+        signOutButton.setOnClickListener(this)
+        verifyEmailButton.setOnClickListener(this)
+        enter_button.setOnClickListener(this)
 
     }
 
-    private fun populateUsers() {
-        viewModel.userList.observe(this, Observer { users ->
-            data = users as ArrayList<User>
-            println(data.size)
+    private fun registerUser(token: String) {
+        val service: BravApi = RetroInstance().service(token)
+        val call = service.loginUser()
 
-        })
+        call.enqueue(object : Callback<User> {
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                println(t.message)
+            }
 
-    }
-
-    private fun registerUser() {
-
-        viewModel.createUser.observe(this, Observer {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                bravUser = response.body()!!
+                println(bravUser.email)
+            }
         })
 
     }
@@ -88,10 +89,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     val user = auth.currentUser
                     user!!.getIdToken(true).addOnSuccessListener { result ->
                         val token = result.token.toString()
-                        viewModel = ViewModelProviders.of(this, CustomViewModel(token)).get(UserViewModel::class.java)
-                        registerUser()}
+                        registerUser(token)
+                    }
 
-                        // Sign in success, update UI with the signed-in user's information
+                    // Sign in success, update UI with the signed-in user's information
                     Log.d("Success", "createUserWithEmail:success")
                     updateUI(user)
                 } else {
@@ -120,9 +121,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     Log.d("Success", "signInWithEmail:success")
                     val user = auth.currentUser
                     user!!.getIdToken(true).addOnSuccessListener { result ->
-                       val token = result.token.toString()
-                        viewModel = ViewModelProviders.of(this, CustomViewModel(token)).get(UserViewModel::class.java)
-                        registerUser()
+                        val token = result.token.toString()
+                        registerUser(token)
                     }
 
 
