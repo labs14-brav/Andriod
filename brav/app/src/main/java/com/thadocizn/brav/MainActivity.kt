@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.thadocizn.brav.models.Case
 import com.thadocizn.brav.models.Mediator
 import com.thadocizn.brav.models.User
 import com.thadocizn.brav.services.BravApi
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var auth: FirebaseAuth
     lateinit var bravUser: User
      var mediator: ArrayList<Mediator>? = null
+     var cases: ArrayList<Case>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +54,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 bravUser = response.body()!!
                 println(bravUser.email)
+                getCases(token)
+
             }
         })
 
@@ -72,6 +76,24 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
                 response.body()?.let { mediator?.addAll(it) }
                 println(mediator?.size)
+            }
+
+        })
+    }
+
+    private fun getCases(token: String){
+        val service:BravApi = RetroInstance().service(token)
+        val call = service.getCases(bravUser.id.toString())
+
+        call.enqueue(object : Callback<List<Case>>{
+            override fun onFailure(call: Call<List<Case>>, t: Throwable) {
+               // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onResponse(call: Call<List<Case>>, response: Response<List<Case>>) {
+               // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                response.body()?.let { cases?.addAll(it) }
+                println(cases?.size)
             }
 
         })
@@ -146,6 +168,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         val token = result.token.toString()
                         registerUser(token)
                         getMediators(token)
+
                     }
 
 
