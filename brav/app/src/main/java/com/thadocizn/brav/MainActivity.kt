@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, NavigationView.O
 
     private lateinit var auth: FirebaseAuth
     var data: ArrayList<User> = ArrayList()
+    var currentUser:User? = null
     private lateinit var viewModel: UserViewModel
     private lateinit var mediatorViewModel: MediatorViewModel
 
@@ -79,7 +80,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, NavigationView.O
 
     private fun registerUser() {
 
-        viewModel.createUser.observe(this, Observer {
+        viewModel.getUser?.observe(this, Observer { user ->
+            currentUser = user as User
         })
 
     }
@@ -146,7 +148,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, NavigationView.O
                     val user = auth.currentUser
                     user!!.getIdToken(true).addOnSuccessListener { result ->
                         val token = result.token.toString()
-                        viewModel = ViewModelProviders.of(this, UserCustomViewModel(token)).get(UserViewModel::class.java)
+                        viewModel = ViewModelProviders.of(this, UserCustomViewModel(token, this)).get(UserViewModel::class.java)
                         registerUser()}
 
                         // Sign in success, update UI with the signed-in user's information
@@ -179,8 +181,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, NavigationView.O
                     val user = auth.currentUser
                     user!!.getIdToken(true).addOnSuccessListener { result ->
                        val token = result.token.toString()
-                        viewModel = ViewModelProviders.of(this, UserCustomViewModel(token)).get(UserViewModel::class.java)
+                        viewModel = ViewModelProviders.of(this, UserCustomViewModel(token, this)).get(UserViewModel::class.java)
                         registerUser()
+
                     }
 
 

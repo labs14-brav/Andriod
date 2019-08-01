@@ -1,5 +1,6 @@
 package com.thadocizn.brav.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.thadocizn.brav.models.User
 
@@ -9,12 +10,15 @@ import com.thadocizn.brav.models.User
 @Dao
 interface UserDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertUser(user: User)
+    fun insertUser(user: User?)
 
     @Update
     fun updateUser(user: User)
 
     @Delete
     fun deleteUser(user: User)
+
+    @Query("Select * From User")
+    fun getUser():LiveData<User>
 
 }

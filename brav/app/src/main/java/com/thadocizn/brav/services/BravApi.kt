@@ -1,5 +1,6 @@
 package com.thadocizn.brav.services
 
+import androidx.lifecycle.LiveData
 import com.thadocizn.brav.models.Case
 import com.thadocizn.brav.models.Mediator
 import com.thadocizn.brav.models.User
@@ -24,6 +25,6 @@ interface BravApi {
     fun createCase(@Body body:String): Call<Case>
 
     @POST("users/auth")
-    fun createUser(): Call<User>
+    fun loginUser(): Call<User>
 
 }
