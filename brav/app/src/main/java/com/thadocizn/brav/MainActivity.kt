@@ -74,8 +74,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             override fun onResponse(call: Call<List<Mediator>>, response: Response<List<Mediator>>) {
                 //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 
-                response.body()?.let { mediator?.addAll(it) }
+                mediator = response.body() as ArrayList<Mediator>?
                 println(mediator?.size)
+
             }
 
         })
@@ -166,7 +167,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     val user = auth.currentUser
                     user!!.getIdToken(true).addOnSuccessListener { result ->
                         val token = result.token.toString()
-                        registerUser(token)
+                        //registerUser(token)
                         getMediators(token)
 
                     }
