@@ -1,18 +1,26 @@
 package com.thadocizn.brav.services
 
+import com.thadocizn.brav.models.Case
+import com.thadocizn.brav.models.Mediator
 import com.thadocizn.brav.models.User
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface BravApi {
 
     @GET("users")
     fun getUsers(): Call<List<User>>
 
-    //Todo change value to match BE
+    @GET("/cases/{id}")
+    fun getCases(@Path("id")id:String): Call<List<Case>>
+
+    @GET("/mediators")
+    fun getMediators(): Call<List<Mediator>>
+
     @POST("users/auth")
-    fun createUser(@Header("authorization") token: String?): Call<User>
+    fun loginUser(): Call<User>
 
 }

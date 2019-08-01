@@ -7,21 +7,24 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.thadocizn.brav.model.CustomViewModel
+import com.thadocizn.brav.models.Case
+import com.thadocizn.brav.models.Mediator
 import com.thadocizn.brav.models.User
-import com.thadocizn.brav.viewModels.UserViewModel
+import com.thadocizn.brav.services.BravApi
+import com.thadocizn.brav.services.RetroInstance
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var auth: FirebaseAuth
-    var data: ArrayList<User> = ArrayList()
-    private lateinit var viewModel: UserViewModel
-//    private var token: String? = null
+    lateinit var bravUser: User
+     var mediator: ArrayList<Mediator>? = null
+     var cases: ArrayList<Case>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,28 +33,71 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         this.auth.signOut()
 
 
-            emailSignInButton.setOnClickListener(this)
-            emailCreateAccountButton.setOnClickListener(this)
-            signOutButton.setOnClickListener(this)
-            verifyEmailButton.setOnClickListener(this)
-            enter_button.setOnClickListener(this)
+        emailSignInButton.setOnClickListener(this)
+        emailCreateAccountButton.setOnClickListener(this)
+        signOutButton.setOnClickListener(this)
+        verifyEmailButton.setOnClickListener(this)
+        enter_button.setOnClickListener(this)
 
     }
 
-    private fun populateUsers() {
-        viewModel.userList.observe(this, Observer { users ->
-            data = users as ArrayList<User>
-            println(data.size)
+    private fun registerUser(token: String) {
+        val service: BravApi = RetroInstance().service(token)
+        val call = service.loginUser()
 
+        call.enqueue(object : Callback<User> {
+            override fun onFailure(call: Call<User>, t: Throwable) {
+               // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                println(t.message)
+            }
+
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                bravUser = response.body()!!
+                println(bravUser.email)
+                getCases(token)
+
+            }
         })
 
     }
 
-    private fun registerUser() {
+    private fun getMediators(token: String){
+        val service: BravApi = RetroInstance().service(token)
+        val call = service.getMediators()
 
-        viewModel.createUser.observe(this, Observer {
+        call.enqueue(object : Callback<List<Mediator>> {
+            override fun onFailure(call: Call<List<Mediator>>, t: Throwable) {
+                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                println(t.message)
+            }
+
+            override fun onResponse(call: Call<List<Mediator>>, response: Response<List<Mediator>>) {
+                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+                mediator = response.body() as ArrayList<Mediator>?
+                println(mediator?.size)
+
+            }
+
         })
+    }
 
+    private fun getCases(token: String){
+        val service:BravApi = RetroInstance().service(token)
+        val call = service.getCases(bravUser.id.toString())
+
+        call.enqueue(object : Callback<List<Case>>{
+            override fun onFailure(call: Call<List<Case>>, t: Throwable) {
+               // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onResponse(call: Call<List<Case>>, response: Response<List<Case>>) {
+               // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                response.body()?.let { cases?.addAll(it) }
+                println(cases?.size)
+            }
+
+        })
     }
 
     override fun onClick(v: View) {
@@ -88,10 +134,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     val user = auth.currentUser
                     user!!.getIdToken(true).addOnSuccessListener { result ->
                         val token = result.token.toString()
-                        viewModel = ViewModelProviders.of(this, CustomViewModel(token)).get(UserViewModel::class.java)
-                        registerUser()}
+                        registerUser(token)
+                    }
 
-                        // Sign in success, update UI with the signed-in user's information
+                    // Sign in success, update UI with the signed-in user's information
                     Log.d("Success", "createUserWithEmail:success")
                     updateUI(user)
                 } else {
@@ -120,9 +166,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     Log.d("Success", "signInWithEmail:success")
                     val user = auth.currentUser
                     user!!.getIdToken(true).addOnSuccessListener { result ->
-                       val token = result.token.toString()
-                        viewModel = ViewModelProviders.of(this, CustomViewModel(token)).get(UserViewModel::class.java)
-                        registerUser()
+                        val token = result.token.toString()
+                        //registerUser(token)
+                        getMediators(token)
+
                     }
 
 
