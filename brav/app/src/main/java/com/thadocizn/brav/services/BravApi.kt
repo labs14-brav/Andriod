@@ -1,5 +1,6 @@
 package com.thadocizn.brav.services
 
+import com.thadocizn.brav.models.Mediator
 import com.thadocizn.brav.models.User
 import retrofit2.Call
 import retrofit2.http.GET
@@ -11,8 +12,8 @@ interface BravApi {
     @GET("users")
     fun getUsers(): Call<List<User>>
 
-    @POST("users/auth")
-    fun createUser(): Call<User>
+    @GET("/mediators")
+    fun getMediators(): Call<List<Mediator>>
 
     @POST("users/auth")
     fun loginUser(): Call<User>

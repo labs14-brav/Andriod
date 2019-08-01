@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.thadocizn.brav.models.Mediator
 import com.thadocizn.brav.models.User
 import com.thadocizn.brav.services.BravApi
 import com.thadocizn.brav.services.RetroInstance
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var auth: FirebaseAuth
     lateinit var bravUser: User
+     var mediator: ArrayList<Mediator>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +45,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         call.enqueue(object : Callback<User> {
             override fun onFailure(call: Call<User>, t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+               // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 println(t.message)
             }
 
@@ -53,6 +55,26 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         })
 
+    }
+
+    private fun getMediators(token: String){
+        val service: BravApi = RetroInstance().service(token)
+        val call = service.getMediators()
+
+        call.enqueue(object : Callback<List<Mediator>> {
+            override fun onFailure(call: Call<List<Mediator>>, t: Throwable) {
+                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                println(t.message)
+            }
+
+            override fun onResponse(call: Call<List<Mediator>>, response: Response<List<Mediator>>) {
+                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+                response.body()?.let { mediator?.addAll(it) }
+                println(mediator?.size)
+            }
+
+        })
     }
 
     override fun onClick(v: View) {
@@ -123,6 +145,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     user!!.getIdToken(true).addOnSuccessListener { result ->
                         val token = result.token.toString()
                         registerUser(token)
+                        getMediators(token)
                     }
 
 
