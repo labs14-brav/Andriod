@@ -111,7 +111,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun getCases(token: String){
         val service:BravApi = RetroInstance().service(token)
-        val call = service.getCases(bravUser.id.toString())
+        val call = service.getCases("1")
 
         call.enqueue(object : Callback<List<Case>>{
             override fun onFailure(call: Call<List<Case>>, t: Throwable) {
@@ -121,7 +121,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             override fun onResponse(call: Call<List<Case>>, response: Response<List<Case>>) {
                // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 response.body()?.let { cases?.addAll(it) }
-                println(cases?.size)
+                println(cases)
             }
 
         })
@@ -194,7 +194,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     val user = auth.currentUser
                     user!!.getIdToken(true).addOnSuccessListener { result ->
                         val token = result.token.toString()
-                        //registerUser(token)
+                        registerUser(token)
                         getMediators(token)
 
                     }

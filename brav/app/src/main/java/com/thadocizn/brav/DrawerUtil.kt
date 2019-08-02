@@ -56,7 +56,7 @@ object DrawerUtil {
                // drawerItemDonate
             )
             .withOnDrawerItemClickListener { view, position, drawerItem ->
-                if (drawerItem.identifier == 2L && activity !is MainActivity) {
+                if (drawerItem.identifier == 3L && activity !is LandingActivity) {
                     // load tournament screen
                     val intent = Intent(activity, MainActivity::class.java)
                     view.getContext().startActivity(intent)

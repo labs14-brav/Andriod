@@ -23,4 +23,8 @@ interface BravApi {
     @POST("users/auth")
     fun loginUser(): Call<User>
 
+    @POST("/cases/{id}")
+    fun postCase(@Path("id")id:String): Call<Case>
+
+
 }

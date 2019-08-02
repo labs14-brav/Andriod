@@ -1,3 +1,23 @@
 package com.thadocizn.brav.models
 
-data class Case(val title:String, var info:String, var cat:String)
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
+data class Case(
+    var caseAcceptedAt: String? = null,
+    var caseCompletedAt: String? = null,
+    var caseDeclinedAt: String? = null,
+    var caseNotes: String? = null,
+    var courtCase: String? = null,
+    var courtFilingDate: String? = null,
+    var courtJurisdiction: String? = null,
+    var courtNumber: String? = null,
+    var description: String,
+    var disputeAmount: String? = null,
+    var disputeCategory: String? = null,
+    var id: Int,
+    var partiesContactInfo: ArrayList<String>? = null,
+    var partiesInvolved: String? = null,
+    var userEmail: String? = null,
+    var userUid: String? = null
+)

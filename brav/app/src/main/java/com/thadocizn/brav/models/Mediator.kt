@@ -1,5 +1,8 @@
 package com.thadocizn.brav.models
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class Mediator(val id:Int,
                     val type:String? = null,
                     val email:String,
