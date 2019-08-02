@@ -27,7 +27,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var auth: FirebaseAuth
     lateinit var bravUser: User
@@ -41,16 +41,8 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         this.auth.signOut()
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+        DrawerUtil.getDrawer(this, toolbar)
 
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        val navView: NavigationView = findViewById(R.id.nav_view)
-        val toggle = ActionBarDrawerToggle(
-            this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
-        )
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
-
-        nav_view.setNavigationItemSelectedListener(this)
         emailSignInButton.setOnClickListener(this)
         emailCreateAccountButton.setOnClickListener(this)
         signOutButton.setOnClickListener(this)
@@ -59,14 +51,6 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
 
     }
 
-    override fun onBackPressed() {
-       // val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            drawer_layout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
-        }
-    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -82,32 +66,6 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
-        when (item.itemId) {
-            R.id.nav_home -> {
-                // Handle the camera action
-            }
-            R.id.nav_gallery -> {
-
-            }
-            R.id.nav_slideshow -> {
-
-            }
-            R.id.nav_tools -> {
-
-            }
-            R.id.nav_share -> {
-
-            }
-            R.id.nav_send -> {
-
-            }
-        }
-        drawer_layout.closeDrawer(GravityCompat.START)
-        return true
     }
 
     private fun registerUser(token: String) {
