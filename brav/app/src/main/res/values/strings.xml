@@ -27,5 +27,20 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+
     <string name="title_activity_case">CaseActivity</string>
+    <string name="case_number">Case Number:</string>
+    <string name="case_accepted_at">Case Accepted At</string>
+    <string name="completed_at">Completed At</string>
+    <string name="declined_at">Declined At</string>
+    <string name="case_notes">Case Notes</string>
+    <string name="court_case">Court Case</string>
+    <string name="court_filing_date">Court Filing Date</string>
+    <string name="court_jurisdiction">Court Jurisdiction</string>
+    <string name="dispute_Category">Dispute Category</string>
+    <string name="description">Description</string>
+    <string name="dispute_amount">Dispute Amount</string>
+    <string name="id">Id</string>
+    <string name="parties_contact_info">Parties Contact Info</string>
+    <string name="parties_involved">Parties Involved</string>
 </resources>

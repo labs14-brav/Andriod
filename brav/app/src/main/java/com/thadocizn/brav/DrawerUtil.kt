@@ -56,7 +56,7 @@ object DrawerUtil {
             .withOnDrawerItemClickListener { view, position, drawerItem ->
                 if (drawerItem.identifier == 3L && activity !is CaseActivity) {
                     // load tournament screen
-                    val intent = Intent(activity, CaseActivity::class.java)
+                    val intent = Intent(activity, CourtCaseFormActivity::class.java)
                     view.getContext().startActivity(intent)
                 }
                 true

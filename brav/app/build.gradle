@@ -64,5 +64,5 @@ dependencies {
         exclude group: 'com.android.support'
     }
 
-
+    implementation "org.jetbrains.anko:anko-commons:$anko_version"
 }
