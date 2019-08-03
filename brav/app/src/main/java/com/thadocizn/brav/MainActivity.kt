@@ -22,6 +22,7 @@ import com.thadocizn.brav.models.User
 import com.thadocizn.brav.services.BravApi
 import com.thadocizn.brav.services.RetroInstance
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -39,9 +40,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_main)
         this.auth = FirebaseAuth.getInstance()
         this.auth.signOut()
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
-        DrawerUtil.getDrawer(this, toolbar)
+
+        setSupportActionBar(tbMain)
+        DrawerUtil.getDrawer(this, tbMain)
 
         emailSignInButton.setOnClickListener(this)
         emailCreateAccountButton.setOnClickListener(this)
@@ -300,7 +301,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun loadIntent() {
-        val landingIntent = Intent(this@MainActivity, LandingActivity::class.java)
+        val landingIntent = Intent(this@MainActivity, CaseActivity::class.java)
         //adding any credentials needed to the intent to pass, not sure if the authorization carries through the activities
 
         startActivity(landingIntent)
