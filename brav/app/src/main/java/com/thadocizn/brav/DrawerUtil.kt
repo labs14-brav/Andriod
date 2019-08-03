@@ -2,8 +2,6 @@ package com.thadocizn.brav
 
 //import android.support.v4.content.ContextCompat.startActivity
 import android.content.Intent
-import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
-import com.mikepenz.materialdrawer.Drawer
 import com.mikepenz.materialdrawer.model.DividerDrawerItem
 import com.mikepenz.materialdrawer.DrawerBuilder
 import android.R
@@ -11,8 +9,8 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import android.app.Activity
 //import android.support.v7.widget.Toolbar
-import android.view.View
 import androidx.appcompat.widget.Toolbar
+import com.thadocizn.brav.views.CaseActivity
 
 
 /**
