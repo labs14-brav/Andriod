@@ -11,9 +11,11 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".OtherCaseActivity">
+        <activity android:name=".views.MediatorActivity">
         </activity>
-        <activity android:name=".CourtCaseFormActivity">
+        <activity android:name=".views.OtherCaseActivity">
+        </activity>
+        <activity android:name=".views.CourtCaseFormActivity">
         </activity>
         <activity
                 android:name=".views.CaseActivity"

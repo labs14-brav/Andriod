@@ -3,11 +3,8 @@ package com.thadocizn.brav.views
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
-import com.thadocizn.brav.CourtCaseFormActivity
 import com.thadocizn.brav.DrawerUtil
-import com.thadocizn.brav.OtherCaseActivity
 import com.thadocizn.brav.R
 
 import kotlinx.android.synthetic.main.activity_case.*

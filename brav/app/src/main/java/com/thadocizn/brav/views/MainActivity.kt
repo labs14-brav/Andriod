@@ -1,6 +1,5 @@
 package com.thadocizn.brav.views
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -11,7 +10,6 @@ import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.thadocizn.brav.CourtCaseFormActivity
 import com.thadocizn.brav.DrawerUtil
 import com.thadocizn.brav.R
 import com.thadocizn.brav.models.Case
@@ -30,7 +28,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var auth: FirebaseAuth
     lateinit var bravUser: User
-     var mediator: ArrayList<Mediator>? = null
      var cases: ArrayList<Case>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,26 +84,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    private fun getMediators(token: String){
-        val service: BravApi = RetroInstance().service(token)
-        val call = service.getMediators("","", "", "")
-
-        call.enqueue(object : Callback<List<Mediator>> {
-            override fun onFailure(call: Call<List<Mediator>>, t: Throwable) {
-                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                println(t.message)
-            }
-
-            override fun onResponse(call: Call<List<Mediator>>, response: Response<List<Mediator>>) {
-                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-
-                mediator = response.body() as ArrayList<Mediator>?
-                println(mediator?.size)
-
-            }
-
-        })
-    }
 
     private fun getCases(token: String){
         val service:BravApi = RetroInstance().service(token)
@@ -193,7 +170,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     user!!.getIdToken(true).addOnSuccessListener { result ->
                         val token = result.token.toString()
                         registerUser(token)
-                        getMediators(token)
 
                     }
 

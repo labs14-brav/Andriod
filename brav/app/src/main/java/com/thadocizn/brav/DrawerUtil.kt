@@ -11,6 +11,8 @@ import android.app.Activity
 //import android.support.v7.widget.Toolbar
 import androidx.appcompat.widget.Toolbar
 import com.thadocizn.brav.views.CaseActivity
+import com.thadocizn.brav.views.MainActivity
+import com.thadocizn.brav.views.MediatorActivity
 
 
 /**
@@ -54,9 +56,9 @@ object DrawerUtil {
                // drawerItemDonate
             )
             .withOnDrawerItemClickListener { view, position, drawerItem ->
-                if (drawerItem.identifier == 3L && activity !is CaseActivity) {
+                if (drawerItem.identifier == 4L ) {
                     // load tournament screen
-                    val intent = Intent(activity, CaseActivity::class.java)
+                    val intent = Intent(activity, MediatorActivity::class.java)
                     view.getContext().startActivity(intent)
                 }
                 true
