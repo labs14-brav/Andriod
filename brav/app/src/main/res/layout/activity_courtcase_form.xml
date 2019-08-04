@@ -37,6 +37,66 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <TextView
+                    android:text="@string/completed_at"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvCaseCompleted"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginBottom="8dp"/>
+            <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/etCaseComplete"
+                    android:hint="@string/completed_at" android:layout_marginStart="16dp"
+                    android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:text="@string/case_accepted_at"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvCaseAccept"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginBottom="8dp"/>
+            <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/etCaseAccept"
+                    android:hint="@string/case_accepted_at" android:layout_marginStart="16dp"
+                    android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:text="@string/declined_at"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvCaseDecline"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginBottom="8dp"/>
+            <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/etCaseDecline"
+                    android:hint="@string/declined_at" android:layout_marginStart="16dp"
+                    android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
                     android:text="@string/court_filing_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -192,5 +252,9 @@
                     android:id="@+id/etCaseNotes"
                     android:hint="@string/case_notes" android:layout_marginStart="16dp"/>
         </LinearLayout>
+        <Button
+                android:text="Create Case"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/btnCourtCase"/>
     </LinearLayout>
 </ScrollView>
