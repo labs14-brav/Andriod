@@ -32,20 +32,40 @@ class OtherCaseActivity : AppCompatActivity() {
             }
         btnSend.setOnClickListener {
 
+           /* var caseAcceptedAt: String? = null,
+            var caseCompletedAt: String? = null,
+            var caseDeclinedAt: String? = null,
+            var caseNotes: String? = null,
+            var courtCase: String? = null,
+            var courtFilingDate: String? = null,
+            var courtJurisdiction: String? = null,
+            var courtNumber: String? = null,
+            var description: String,
+            var disputeAmount: String? = null,
+            var disputeCategory: String? = null,
+            var partiesContactInfo: String? = null,
+            var partiesInvolved: String? = null*/
+
+
+            val caseAcceptedAt = ""
+            val caseCompletedAt = ""
+            val caseDeclinedAt = ""
             val notes = etCaseNotes.text.toString()
-            val courtCase = ""
+            val courtCase = "false"
             val courtFilingDate = ""
             val courtJurisdiction = ""
             val courtNumber = ""
             val description = etDescription.text.toString()
             val disputeAmount = etDescription.text.toString()
-            val disputeCategory = "Workplace"
+            val disputeCategory = etDisputeCategory.text.toString()
             val partiesContactInfo = etDescription.text.toString()
             val partiesInvolved = etDescription.text.toString()
 
             val case: Case = Case(
+                caseAcceptedAt,
+                caseCompletedAt,
+                caseDeclinedAt,
                 notes,
-                description,
                 courtCase,
                 courtFilingDate,
                 courtJurisdiction,
