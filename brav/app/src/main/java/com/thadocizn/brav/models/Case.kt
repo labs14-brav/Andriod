@@ -15,9 +15,7 @@ data class Case(
     var description: String,
     var disputeAmount: String? = null,
     var disputeCategory: String? = null,
-    var id: Int,
     var partiesContactInfo: String? = null,
-    var partiesInvolved: String? = null,
-    var userEmail: String? = null,
-    var userUid: String? = null
+    var partiesInvolved: String? = null
+
 )

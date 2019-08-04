@@ -5,10 +5,16 @@ import android.view.Menu
 import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
+import com.thadocizn.brav.CourtCaseFormActivity
 import com.thadocizn.brav.DrawerUtil
+import com.thadocizn.brav.OtherCaseActivity
 import com.thadocizn.brav.R
 
 import kotlinx.android.synthetic.main.activity_case.*
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.noButton
+import org.jetbrains.anko.yesButton
+import org.jetbrains.anko.startActivity
 
 class CaseActivity : AppCompatActivity() {
 
@@ -19,8 +25,12 @@ class CaseActivity : AppCompatActivity() {
 
         DrawerUtil.getDrawer(this, tbCase)
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+           alert("Creating a court case. Press ok, otherwise press cancel") {
+               yesButton {
+                   startActivity<CourtCaseFormActivity>()
+               }
+               noButton {startActivity<OtherCaseActivity>()  }
+           }.show()
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }

@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.thadocizn.brav.CourtCaseFormActivity
 import com.thadocizn.brav.DrawerUtil
 import com.thadocizn.brav.R
 import com.thadocizn.brav.models.Case
@@ -20,6 +21,7 @@ import com.thadocizn.brav.services.BravApi
 import com.thadocizn.brav.services.RetroInstance
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -78,7 +80,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 bravUser = response.body()!!
                 println(bravUser.email)
-                getCases(token)
+                //getCases(token)
 
             }
         })
@@ -87,7 +89,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun getMediators(token: String){
         val service: BravApi = RetroInstance().service(token)
-        val call = service.getMediators()
+        val call = service.getMediators("","", "", "")
 
         call.enqueue(object : Callback<List<Mediator>> {
             override fun onFailure(call: Call<List<Mediator>>, t: Throwable) {
@@ -108,7 +110,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun getCases(token: String){
         val service:BravApi = RetroInstance().service(token)
-        val call = service.getCases("1")
+        val call = service.getCases("5")
 
         call.enqueue(object : Callback<List<Case>>{
             override fun onFailure(call: Call<List<Case>>, t: Throwable) {
@@ -125,8 +127,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        val i = v.id
-        when (i) {
+        when (v.id) {
             R.id.emailCreateAccountButton -> createAccount(fieldEmail.text.toString(), fieldPassword.text.toString())
             R.id.emailSignInButton -> signIn(fieldEmail.text.toString(), fieldPassword.text.toString())
             R.id.signOutButton -> signOut()
@@ -297,10 +298,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun loadIntent() {
-        val landingIntent = Intent(this@MainActivity, CaseActivity::class.java)
+        //val landingIntent = Intent(this@MainActivity, CaseActivity::class.java)
         //adding any credentials needed to the intent to pass, not sure if the authorization carries through the activities
 
-        startActivity(landingIntent)
+        //startActivity(landingIntent)
+        startActivity<CaseActivity>()
 
     }
 }
