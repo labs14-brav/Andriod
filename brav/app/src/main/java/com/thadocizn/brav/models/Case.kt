@@ -4,18 +4,19 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class Case(
-    var caseAcceptedAt: String? = null,
-    var caseCompletedAt: String? = null,
-    var caseDeclinedAt: String? = null,
-    var caseNotes: String? = null,
-    var courtCase: String? = null,
-    var courtFilingDate: String? = null,
-    var courtJurisdiction: String? = null,
-    var courtNumber: String? = null,
+
+    var case_completed_at: String? = null,
     var description: String,
-    var disputeAmount: String? = null,
     var dispute_category: String? = null,
-    var partiesContactInfo: String? = null,
-    var partiesInvolved: String? = null
+    var dispute_amount: String? = null,
+    var parties_involved: String? = null,
+    var parties_contact_info: String? = null,
+    var court_case: Boolean? = null,
+    var court_jurisdiction: String? = null,
+    var court_number: String? = null,
+    var court_filing_date: String? = null,
+    var case_notes: String? = null,
+    var case_accepted_at: String? = null,
+    var case_declined_at: String? = null
 
 )
