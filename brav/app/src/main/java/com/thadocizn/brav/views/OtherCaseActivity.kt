@@ -13,63 +13,56 @@ import retrofit2.Response
 
 class OtherCaseActivity : AppCompatActivity() {
 
-    private lateinit var idToken: String
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_other_case)
-        val mUser = FirebaseAuth.getInstance().currentUser
-        mUser!!.getIdToken(true)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    idToken = task.result!!.token.toString()
 
-                } else {
 
-                    // Handle error -> task.getException();
-
-                }
-
-            }
         btnSend.setOnClickListener {
 
-            val caseAcceptedAt = ""
-            val caseCompletedAt = ""
-            val caseDeclinedAt = ""
-            val notes = etCaseNotes.text.toString()
-            val courtCase = false
-            val courtFilingDate = ""
-            val courtJurisdiction = ""
-            val courtNumber = ""
-            val description = etDescription.text.toString()
-            val disputeAmount = etDisputeAmount.text.toString()
-            val disputeCategory = etDisputeCategory.text.toString()
-            val partiesContactInfo = etPartiesContactInfo.text.toString()
-            val partiesInvolved = etPartiesInvolved.text.toString()
-
-            val case: Case = Case(
-                caseCompletedAt,
-                description,
-                disputeCategory,
-                disputeAmount,
-                partiesInvolved,
-                partiesContactInfo,
-                courtCase,
-                courtJurisdiction,
-                courtNumber,
-                courtFilingDate,
-                notes,
-                caseAcceptedAt,
-                caseDeclinedAt
-            )
+            val case: Case = case()
 
             createCase(case)
 
         }
     }
 
+    private fun case(): Case {
+        val caseAcceptedAt = ""
+        val caseCompletedAt = ""
+        val caseDeclinedAt = ""
+        val notes = etCaseNotes.text.toString()
+        val courtCase = false
+        val courtFilingDate = ""
+        val courtJurisdiction = ""
+        val courtNumber = ""
+        val description = etDescription.text.toString()
+        val disputeAmount = etDisputeAmount.text.toString()
+        val disputeCategory = etDisputeCategory.text.toString()
+        val partiesContactInfo = etPartiesContactInfo.text.toString()
+        val partiesInvolved = etPartiesInvolved.text.toString()
+
+        val case: Case = Case(
+            caseCompletedAt,
+            description,
+            disputeCategory,
+            disputeAmount,
+            partiesInvolved,
+            partiesContactInfo,
+            courtCase,
+            courtJurisdiction,
+            courtNumber,
+            courtFilingDate,
+            notes,
+            caseAcceptedAt,
+            caseDeclinedAt
+        )
+        return case
+    }
+
     //TOdo fix bug when I get in touch with a BE person
     private fun createCase(case: Case) {
+        val idToken = intent.extras.toString()
         val service = RetroInstance().service(idToken)
         val call = service.postCase(case)
 

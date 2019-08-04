@@ -28,7 +28,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var auth: FirebaseAuth
     lateinit var bravUser: User
+    lateinit var token: String
      var cases: ArrayList<Case>? = null
+
+    companion object{
+
+        const val TOKEN = "token"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +70,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun registerUser(token: String) {
+    private fun registerUser() {
         val service: BravApi = RetroInstance().service(token)
         val call = service.loginUser()
 
@@ -135,8 +141,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 if (task.isSuccessful) {
                     val user = auth.currentUser
                     user!!.getIdToken(true).addOnSuccessListener { result ->
-                        val token = result.token.toString()
-                        registerUser(token)
+                        token = result.token.toString()
+                        registerUser()
                     }
 
                     // Sign in success, update UI with the signed-in user's information
@@ -168,8 +174,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     Log.d("Success", "signInWithEmail:success")
                     val user = auth.currentUser
                     user!!.getIdToken(true).addOnSuccessListener { result ->
-                        val token = result.token.toString()
-                        registerUser(token)
+                        token = result.token.toString()
+                        registerUser()
 
                     }
 
@@ -278,7 +284,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         //adding any credentials needed to the intent to pass, not sure if the authorization carries through the activities
 
         //startActivity(landingIntent)
-        startActivity<CaseActivity>()
+        startActivity<CaseActivity>(TOKEN to token)
 
     }
 }

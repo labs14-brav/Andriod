@@ -19,14 +19,16 @@ class CaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_case)
         setSupportActionBar(tbCase)
+        
+        val token = intent.extras
 
         DrawerUtil.getDrawer(this, tbCase)
         fab.setOnClickListener { view ->
            alert("Creating a court case. Press ok, otherwise press cancel") {
                yesButton {
-                   startActivity<CourtCaseFormActivity>()
+                   startActivity<CourtCaseFormActivity>("token" to token)
                }
-               noButton {startActivity<OtherCaseActivity>()  }
+               noButton {startActivity<OtherCaseActivity>("token" to token)  }
            }.show()
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

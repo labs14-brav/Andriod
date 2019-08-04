@@ -12,62 +12,55 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class CourtCaseFormActivity : AppCompatActivity() {
-    private lateinit var idToken: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_courtcase_form)
 
-        val mUser = FirebaseAuth.getInstance().currentUser
-        mUser!!.getIdToken(true)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    idToken = task.result!!.token.toString()
-
-                } else {
-
-                    // Handle error -> task.getException();
-
-                }
-            }
         btnCourtCase.setOnClickListener {
 
-            val caseAcceptedAt = etCaseAccept.text.toString()
-            val caseCompletedAt = etCaseComplete.text.toString()
-            val caseDeclinedAt = etCaseDecline.text.toString()
-            val notes = etCaseNotes.text.toString()
-            val courtCase = true
-            val courtFilingDate = etCourtFilingDate.text.toString()
-            val courtJurisdiction = etCourtJurisdiction.text.toString()
-            val courtNumber = etCaseNum.text.toString()
-            val description = etDescription.text.toString()
-            val disputeAmount = etDisputeAmount.text.toString()
-            val disputeCategory = etDisputeCategory.text.toString()
-            val partiesContactInfo = etPartiesContactInfo.text.toString()
-            val partiesInvolved = etPartiesInvolved.text.toString()
-
-            val case: Case = Case(
-                caseCompletedAt,
-                description,
-                disputeCategory,
-                disputeAmount,
-                partiesInvolved,
-                partiesContactInfo,
-                courtCase,
-                courtJurisdiction,
-                courtNumber,
-                courtFilingDate,
-                notes,
-                caseAcceptedAt,
-                caseDeclinedAt
-            )
+            val case: Case = case()
 
             createCase(case)
 
         }
     }
 
+    private fun case(): Case {
+        val caseAcceptedAt = etCaseAccept.text.toString()
+        val caseCompletedAt = etCaseComplete.text.toString()
+        val caseDeclinedAt = etCaseDecline.text.toString()
+        val notes = etCaseNotes.text.toString()
+        val courtCase = true
+        val courtFilingDate = etCourtFilingDate.text.toString()
+        val courtJurisdiction = etCourtJurisdiction.text.toString()
+        val courtNumber = etCaseNum.text.toString()
+        val description = etDescription.text.toString()
+        val disputeAmount = etDisputeAmount.text.toString()
+        val disputeCategory = etDisputeCategory.text.toString()
+        val partiesContactInfo = etPartiesContactInfo.text.toString()
+        val partiesInvolved = etPartiesInvolved.text.toString()
+
+        val case: Case = Case(
+            caseCompletedAt,
+            description,
+            disputeCategory,
+            disputeAmount,
+            partiesInvolved,
+            partiesContactInfo,
+            courtCase,
+            courtJurisdiction,
+            courtNumber,
+            courtFilingDate,
+            notes,
+            caseAcceptedAt,
+            caseDeclinedAt
+        )
+        return case
+    }
+
     private fun createCase(case: Case) {
+        val idToken:String = intent.extras.toString()
         val service = RetroInstance().service(idToken)
         val call = service.postCase(case)
 
