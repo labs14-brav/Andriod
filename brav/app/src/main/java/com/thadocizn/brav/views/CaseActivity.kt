@@ -40,9 +40,9 @@ class CaseActivity : AppCompatActivity() {
         fab.setOnClickListener { view ->
            alert("Creating a court case. Press ok, otherwise press cancel") {
                yesButton {
-                   startActivity<CourtCaseFormActivity>("token" to token)
+                   startActivity<CourtCaseFormActivity>(getString(R.string.token) to token)
                }
-               noButton {startActivity<OtherCaseActivity>("token" to token)  }
+               noButton {startActivity<OtherCaseActivity>(getString(R.string.token) to token)  }
            }.show()
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
