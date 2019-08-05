@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".views.MediatorActivity">
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/price"/>
+    <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/spPrice" />
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/language"/>
+    <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/spLanguage" />
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/experience"/>
+    <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/spExperience" />
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/specialty"/>
+    <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/spSpecialty" />
+    <Button
+            android:text="@string/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/btnSearch"/>
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" android:id="@+id/rvMediator"
+    />
+</LinearLayout>
