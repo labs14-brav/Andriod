@@ -44,4 +44,9 @@
     <string name="parties_contact_info">Parties Contact Info</string>
     <string name="parties_involved">Parties Involved</string>
     <string name="token">token</string>
+    <string name="price">Price</string>
+    <string name="language">Language</string>
+    <string name="experience">Experience</string>
+    <string name="specialty">Specialty</string>
+    <string name="search">Search</string>
 </resources>
