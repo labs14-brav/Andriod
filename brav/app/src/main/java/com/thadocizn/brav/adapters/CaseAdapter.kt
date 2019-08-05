@@ -29,6 +29,7 @@ class CaseAdapter(private val list: ArrayList<Case>?) : RecyclerView.Adapter<Cas
 
     override fun getItemCount(): Int = list?.size!!
 
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindCase(list?.get(position)!!)
     }

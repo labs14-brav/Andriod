@@ -263,7 +263,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         //adding any credentials needed to the intent to pass, not sure if the authorization carries through the activities
 
         //startActivity(landingIntent)
-        startActivity<CaseActivity>(TOKEN to token)
+        startActivity<CaseActivity>()
 
     }
 }

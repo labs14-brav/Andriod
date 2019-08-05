@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import com.thadocizn.brav.DrawerUtil
 import com.thadocizn.brav.R
 import com.thadocizn.brav.adapters.CaseAdapter
@@ -27,22 +28,36 @@ import retrofit2.Response
 
 class CaseActivity : AppCompatActivity() {
     var cases: ArrayList<Case>? = null
+    private lateinit var idToken: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_case)
         setSupportActionBar(tbCase)
 
-        val token = intent.extras.toString()
+        val mUser = FirebaseAuth.getInstance().currentUser
+        mUser!!.getIdToken(true)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    idToken = task.result!!.token.toString()
+                    getCases(idToken)
 
-        getCases(token)
+
+                } else {
+
+                    // Handle error -> task.getException();
+
+                }
+            }
+
+
         DrawerUtil.getDrawer(this, tbCase)
         fab.setOnClickListener { view ->
            alert("Creating a court case. Press ok, otherwise press cancel") {
                yesButton {
-                   startActivity<CourtCaseFormActivity>(getString(R.string.token) to token)
+                   startActivity<CourtCaseFormActivity>(getString(R.string.token) to idToken)
                }
-               noButton {startActivity<OtherCaseActivity>(getString(R.string.token) to token)  }
+               noButton {startActivity<OtherCaseActivity>(getString(R.string.token) to idToken)  }
            }.show()
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -65,7 +80,7 @@ class CaseActivity : AppCompatActivity() {
 
     private fun getCases(token: String){
         val service: BravApi = RetroInstance().service(token)
-        val call = service.getCases("5")
+        val call = service.getCases()
 
         call.enqueue(object : Callback<List<Case>> {
             override fun onFailure(call: Call<List<Case>>, t: Throwable) {

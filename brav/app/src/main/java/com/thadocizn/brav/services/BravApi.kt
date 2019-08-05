@@ -11,8 +11,8 @@ interface BravApi {
     @GET("users")
     fun getUsers(): Call<List<User>>
 
-    @GET("/cases/{id}")
-    fun getCases(@Path("id")id:String): Call<List<Case>>
+    @GET("/cases")
+    fun getCases(): Call<List<Case>>
 
     @GET("/mediators")
     fun getMediators(@Query("price") price:String,
