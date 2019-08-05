@@ -44,15 +44,6 @@ class MediatorActivity : AppCompatActivity() {
     }
 
     private fun setupSpinners() {
-    val price = resources.getStringArray(R.array.price)
-    val language = resources.getStringArray(R.array.language)
-    val specialization = resources.getStringArray(R.array.specialization)
-    val experience = resources.getStringArray(R.array.experience)
-
-        val spPrice:Spinner = findViewById(R.id.spPrice)
-        val spLanguage:Spinner = findViewById(R.id.spLanguage)
-        val spSpecialization:Spinner = findViewById(R.id.spSpecialty)
-        val spExperience:Spinner = findViewById(R.id.spExperience)
 
         ArrayAdapter.createFromResource(
             this,
@@ -78,7 +69,7 @@ class MediatorActivity : AppCompatActivity() {
             android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spSpecialization.adapter = adapter
+            spSpecialty.adapter = adapter
         }
 
         ArrayAdapter.createFromResource(
@@ -106,7 +97,7 @@ class MediatorActivity : AppCompatActivity() {
                 //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 
                 mediator = response.body() as ArrayList<Mediator>?
-                println(mediator?.size)
+                println(mediator?.toArray().toString())
 
                 getRecycleView(mediator)
 

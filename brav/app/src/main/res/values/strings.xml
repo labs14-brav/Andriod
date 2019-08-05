@@ -51,21 +51,25 @@
     <string name="search">Search</string>
 
     <string-array name="price">
+        <item>""</item>
         <item>less than 25</item>
         <item> 25 to 75</item>
         <item>75 or more</item>
     </string-array>
     <string-array name="language">
+        <item>""</item>
         <item>English</item>
         <item>Spanish</item>
         <item>Chinese</item>
     </string-array>
     <string-array name="experience">
+        <item>""</item>
         <item>less than 2 years</item>
         <item>2 to 5 years</item>
         <item>greater than 5</item>
     </string-array>
     <string-array name="specialization">
+        <item>""</item>
         <item>Landlord/Tenant</item>
         <item>Eldercare</item>
         <item>Commercial</item>
