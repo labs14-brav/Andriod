@@ -4,24 +4,38 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.thadocizn.brav.DrawerUtil
 import com.thadocizn.brav.R
+import com.thadocizn.brav.adapters.CaseAdapter
+import com.thadocizn.brav.adapters.MediatorAdapter
+import com.thadocizn.brav.models.Case
+import com.thadocizn.brav.models.Mediator
+import com.thadocizn.brav.services.BravApi
+import com.thadocizn.brav.services.RetroInstance
 
 import kotlinx.android.synthetic.main.activity_case.*
+import kotlinx.android.synthetic.main.activity_mediator.*
+import kotlinx.android.synthetic.main.content_case.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.yesButton
 import org.jetbrains.anko.startActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class CaseActivity : AppCompatActivity() {
+    var cases: ArrayList<Case>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_case)
         setSupportActionBar(tbCase)
-        
-        val token = intent.extras
 
+        val token = intent.extras.toString()
+
+        getCases(token)
         DrawerUtil.getDrawer(this, tbCase)
         fab.setOnClickListener { view ->
            alert("Creating a court case. Press ok, otherwise press cancel") {
@@ -49,4 +63,27 @@ class CaseActivity : AppCompatActivity() {
         }
     }
 
+    private fun getCases(token: String){
+        val service: BravApi = RetroInstance().service(token)
+        val call = service.getCases("5")
+
+        call.enqueue(object : Callback<List<Case>> {
+            override fun onFailure(call: Call<List<Case>>, t: Throwable) {
+                // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onResponse(call: Call<List<Case>>, response: Response<List<Case>>) {
+                // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                cases = response.body() as ArrayList<Case>?
+                println(cases)
+                getRecycleView(cases)
+            }
+
+        })
+    }
+    private fun getRecycleView(list: ArrayList<Case>?) {
+        val adapter = CaseAdapter(list)
+        rvCase.adapter = adapter
+        rvCase.layoutManager = LinearLayoutManager(this)
+    }
 }

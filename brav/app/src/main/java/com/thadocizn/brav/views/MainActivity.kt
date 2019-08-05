@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var auth: FirebaseAuth
     lateinit var bravUser: User
     lateinit var token: String
-     var cases: ArrayList<Case>? = null
 
     companion object{
 
@@ -83,30 +82,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 bravUser = response.body()!!
                 println(bravUser.email)
-                //getCases(token)
 
             }
         })
 
-    }
-
-
-    private fun getCases(token: String){
-        val service:BravApi = RetroInstance().service(token)
-        val call = service.getCases("5")
-
-        call.enqueue(object : Callback<List<Case>>{
-            override fun onFailure(call: Call<List<Case>>, t: Throwable) {
-               // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-            override fun onResponse(call: Call<List<Case>>, response: Response<List<Case>>) {
-               // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                response.body()?.let { cases?.addAll(it) }
-                println(cases)
-            }
-
-        })
     }
 
     override fun onClick(v: View) {
