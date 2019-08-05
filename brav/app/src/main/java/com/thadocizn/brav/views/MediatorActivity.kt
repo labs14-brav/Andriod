@@ -2,6 +2,8 @@ package com.thadocizn.brav.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.thadocizn.brav.R
@@ -13,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_mediator.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 //todo data isnt being displayed
 class MediatorActivity : AppCompatActivity() {
     var mediator: ArrayList<Mediator>? = null
@@ -36,6 +39,56 @@ class MediatorActivity : AppCompatActivity() {
 
                 }
             }
+        setupSpinners()
+
+    }
+
+    private fun setupSpinners() {
+    val price = resources.getStringArray(R.array.price)
+    val language = resources.getStringArray(R.array.language)
+    val specialization = resources.getStringArray(R.array.specialization)
+    val experience = resources.getStringArray(R.array.experience)
+
+        val spPrice:Spinner = findViewById(R.id.spPrice)
+        val spLanguage:Spinner = findViewById(R.id.spLanguage)
+        val spSpecialization:Spinner = findViewById(R.id.spSpecialty)
+        val spExperience:Spinner = findViewById(R.id.spExperience)
+
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.price,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spPrice.adapter = adapter
+        }
+
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.language,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spLanguage.adapter = adapter
+        }
+
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.specialization,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spSpecialization.adapter = adapter
+        }
+
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.experience,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spExperience.adapter = adapter
+        }
 
     }
 
