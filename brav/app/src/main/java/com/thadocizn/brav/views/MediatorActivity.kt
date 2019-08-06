@@ -16,7 +16,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-//todo data isnt being displayed
+
 class MediatorActivity : AppCompatActivity() {
     var mediator: ArrayList<Mediator>? = null
     private lateinit var idToken: String
@@ -40,6 +40,11 @@ class MediatorActivity : AppCompatActivity() {
                 }
             }
         setupSpinners()
+        btnSearch.setOnClickListener {
+
+           getMediators(idToken)
+
+        }
 
     }
 
@@ -84,8 +89,13 @@ class MediatorActivity : AppCompatActivity() {
     }
 
     private fun getMediators(token: String) {
+        val price: String = spPrice.selectedItem.toString()
+        val language = spLanguage.selectedItem.toString()
+        val specialty = spSpecialty.selectedItem.toString()
+        val experience = spExperience.selectedItem.toString()
+
         val service: BravApi = RetroInstance().service(token)
-        val call = service.getMediators("", "", "", "")
+        val call = service.getMediators(price, experience, specialty, language)
 
         call.enqueue(object : Callback<List<Mediator>> {
             override fun onFailure(call: Call<List<Mediator>>, t: Throwable) {
@@ -97,7 +107,7 @@ class MediatorActivity : AppCompatActivity() {
                 //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 
                 mediator = response.body() as ArrayList<Mediator>?
-                println(mediator?.toArray().toString())
+                println(mediator?.size)
 
                 getRecycleView(mediator)
 

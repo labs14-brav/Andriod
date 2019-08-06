@@ -16,9 +16,9 @@ interface BravApi {
 
     @GET("/mediators")
     fun getMediators(@Query("price") price:String,
-                     @Query("language")language:String,
-                     @Query("experience")experience:String,
-                     @Query("specialty")specialty:String): Call<List<Mediator>>
+                     @Query("experience")language:String,
+                     @Query("specialization")experience:String,
+                     @Query("language")specialty:String): Call<List<Mediator>>
 
     @POST("users/auth")
     fun loginUser(): Call<User>
