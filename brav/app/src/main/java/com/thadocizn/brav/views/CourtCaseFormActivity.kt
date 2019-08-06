@@ -12,11 +12,24 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class CourtCaseFormActivity : AppCompatActivity() {
+    private lateinit var idToken: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_courtcase_form)
+        val mUser = FirebaseAuth.getInstance().currentUser
+        mUser!!.getIdToken(true)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    idToken = task.result!!.token.toString()
 
+
+                } else {
+
+                    // Handle error -> task.getException();
+
+                }
+            }
         btnCourtCase.setOnClickListener {
 
             val case: Case = case()
@@ -60,7 +73,6 @@ class CourtCaseFormActivity : AppCompatActivity() {
     }
 
     private fun createCase(case: Case) {
-        val idToken:String = intent.extras.toString()
         val service = RetroInstance().service(idToken)
         val call = service.postCase(case)
 

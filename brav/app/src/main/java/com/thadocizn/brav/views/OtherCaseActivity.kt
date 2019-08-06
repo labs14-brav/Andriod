@@ -12,12 +12,26 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class OtherCaseActivity : AppCompatActivity() {
+    private lateinit var idToken: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_other_case)
 
+        val mUser = FirebaseAuth.getInstance().currentUser
+        mUser!!.getIdToken(true)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    idToken = task.result!!.token.toString()
+                    println(idToken.toString())
 
+
+                } else {
+
+                    // Handle error -> task.getException();
+
+                }
+            }
         btnSend.setOnClickListener {
 
             val case: Case = case()
@@ -62,7 +76,6 @@ class OtherCaseActivity : AppCompatActivity() {
 
     //TOdo fix bug when I get in touch with a BE person
     private fun createCase(case: Case) {
-        val idToken = intent.extras.toString()
         val service = RetroInstance().service(idToken)
         val call = service.postCase(case)
 

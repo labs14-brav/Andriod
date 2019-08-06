@@ -40,6 +40,7 @@ class CaseActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     idToken = task.result!!.token.toString()
+                    println(idToken.toString())
                     getCases(idToken)
 
 

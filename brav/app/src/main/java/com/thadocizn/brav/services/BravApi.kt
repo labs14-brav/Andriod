@@ -26,6 +26,6 @@ interface BravApi {
     @POST("/cases")
     fun postCase(@Body case: Case): Call<Case>
 
-    @PUT("users/id/deactivate")
+    @PUT("users/deactivate")
     fun deactivate():Call<User>
 }
