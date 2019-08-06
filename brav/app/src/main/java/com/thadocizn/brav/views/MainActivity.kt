@@ -33,11 +33,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var bravUser: User
     lateinit var token: String
 
-    companion object {
-
-        const val TOKEN = "token"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -45,7 +40,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         this.auth.signOut()
 
         setSupportActionBar(tbMain)
-        DrawerUtil.getDrawer(this, tbMain)
 
         emailSignInButton.setOnClickListener(this)
         emailCreateAccountButton.setOnClickListener(this)
@@ -189,6 +183,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     }
 
 
+                    DrawerUtil.getDrawer(this, tbMain)
 
                     updateUI(user)
                 } else {
@@ -202,7 +197,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 }
 
                 if (!task.isSuccessful) {
-                    status.setText(R.string.auth_failed)
+                    //status.setText(R.string.auth_failed)
                 }
             }
     }
@@ -264,11 +259,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
-            status.text = getString(
+           /* status.text = getString(
                 R.string.email_password_status_fmt,
                 user.email, user.isEmailVerified
-            )
-            detail.text = getString(R.string.fire_base_status_fmt, user.uid)
+            )*/
+            //detail.text = getString(R.string.fire_base_status_fmt, user.uid)
             emailPasswordButtons.visibility = View.GONE
             emailPasswordFields.visibility = View.GONE
             signedInButtons.visibility = View.VISIBLE
@@ -277,8 +272,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             verifyEmailButton.isEnabled = !user.isEmailVerified
         } else {
-            status.setText(R.string.signed_out)
-            detail.text = null
+            //status.setText(R.string.signed_out)
+           // detail.text = null
 
             emailPasswordButtons.visibility = View.VISIBLE
             emailPasswordFields.visibility = View.VISIBLE
