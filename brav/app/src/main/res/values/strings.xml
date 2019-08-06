@@ -49,6 +49,7 @@
     <string name="experience">Experience</string>
     <string name="specialty">Specialty</string>
     <string name="search">Search</string>
+    <string name="deactivate_account">Deactivate Account</string>
 
     <string-array name="price">
         <item>""</item>
