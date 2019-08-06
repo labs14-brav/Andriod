@@ -17,7 +17,7 @@ class CaseAdapter(private val list: ArrayList<Case>?) : RecyclerView.Adapter<Cas
         fun bindCase(case: Case) {
 
             with(container) {
-                tvCaseDesc.text = case.description
+                tvCaseDesc.text = case.dispute_category
             }
         }
     }
