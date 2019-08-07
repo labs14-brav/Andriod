@@ -28,7 +28,7 @@
                 android:contentDescription="@string/desc_firebase_lockup"
         />
 
-        <TextView
+      <!--  <TextView
                 android:id="@+id/titleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
                 android:id="@+id/detail"
                 tools:text="Firebase User ID: 123456789abc"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"/>
+                android:layout_width="wrap_content"/>-->
 
         <Button android:layout_width="wrap_content"
                 android:id="@+id/enter_button"

@@ -183,14 +183,12 @@
                     android:id="@+id/tvDisputeCategory"
                     android:layout_marginStart="32dp"
                     android:layout_marginBottom="8dp"/>
-            <EditText
+            <Spinner
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/etDisputeCategory"
-                    android:hint="@string/dispute_Category" android:layout_marginStart="16dp"/>
+                    android:id="@+id/spDisputeCategory"
+                    android:layout_marginStart="16dp"/>
         </LinearLayout>
         <LinearLayout
                 android:orientation="horizontal"

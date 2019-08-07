@@ -2,20 +2,44 @@ package com.thadocizn.brav.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.thadocizn.brav.R
 import com.thadocizn.brav.models.Case
 import com.thadocizn.brav.services.RetroInstance
 import kotlinx.android.synthetic.main.activity_courtcase_form.*
+import kotlinx.android.synthetic.main.activity_courtcase_form.etCaseNotes
+import kotlinx.android.synthetic.main.activity_courtcase_form.etDescription
+import kotlinx.android.synthetic.main.activity_courtcase_form.etDisputeAmount
+import kotlinx.android.synthetic.main.activity_courtcase_form.etPartiesContactInfo
+import kotlinx.android.synthetic.main.activity_courtcase_form.etPartiesInvolved
+import kotlinx.android.synthetic.main.activity_courtcase_form.spDisputeCategory
+import kotlinx.android.synthetic.main.activity_other_case.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class CourtCaseFormActivity : AppCompatActivity() {
+    private lateinit var idToken: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_courtcase_form)
+        val mUser = FirebaseAuth.getInstance().currentUser
+        mUser!!.getIdToken(true)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    idToken = task.result!!.token.toString()
+
+
+                } else {
+
+                    // Handle error -> task.getException();
+
+                }
+            }
+
+        setupSpinner()
 
         btnCourtCase.setOnClickListener {
 
@@ -27,6 +51,7 @@ class CourtCaseFormActivity : AppCompatActivity() {
     }
 
     private fun case(): Case {
+        var caseId:Int? = null
         val caseAcceptedAt = etCaseAccept.text.toString()
         val caseCompletedAt = etCaseComplete.text.toString()
         val caseDeclinedAt = etCaseDecline.text.toString()
@@ -37,11 +62,12 @@ class CourtCaseFormActivity : AppCompatActivity() {
         val courtNumber = etCaseNum.text.toString()
         val description = etDescription.text.toString()
         val disputeAmount = etDisputeAmount.text.toString()
-        val disputeCategory = etDisputeCategory.text.toString()
+        val disputeCategory = spDisputeCategory.selectedItem.toString()
         val partiesContactInfo = etPartiesContactInfo.text.toString()
         val partiesInvolved = etPartiesInvolved.text.toString()
 
         val case: Case = Case(
+            caseId,
             caseCompletedAt,
             description,
             disputeCategory,
@@ -59,8 +85,18 @@ class CourtCaseFormActivity : AppCompatActivity() {
         return case
     }
 
+    private fun setupSpinner() {
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.specialization,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spDisputeCategory.adapter = adapter
+        }
+    }
+
     private fun createCase(case: Case) {
-        val idToken:String = intent.extras.toString()
         val service = RetroInstance().service(idToken)
         val call = service.postCase(case)
 

@@ -49,4 +49,35 @@
     <string name="experience">Experience</string>
     <string name="specialty">Specialty</string>
     <string name="search">Search</string>
+    <string name="deactivate_account">Deactivate Account</string>
+
+    <string-array name="price">
+        <item>""</item>
+        <item>&lt;25</item>
+        <item> 25-75</item>
+        <item>&gt;75</item>
+    </string-array>
+    <string-array name="language">
+        <item>""</item>
+        <item>English</item>
+        <item>Spanish</item>
+        <item>Chinese</item>
+    </string-array>
+    <string-array name="experience">
+        <item>""</item>
+        <item>less than 2 years</item>
+        <item>2 to 5 years</item>
+        <item>greater than 5</item>
+    </string-array>
+    <string-array name="specialization">
+        <item>""</item>
+        <item>Landlord/Tenant</item>
+        <item>Eldercare</item>
+        <item>Commercial</item>
+        <item>Domestic</item>
+        <item>Workplace</item>
+        <item>Penal</item>
+        <item>Other</item>
+    </string-array>
+
 </resources>

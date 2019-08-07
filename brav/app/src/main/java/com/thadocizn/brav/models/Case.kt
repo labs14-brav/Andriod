@@ -5,6 +5,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Case(
 
+    var id:Int? = null,
     var case_completed_at: String? = null,
     var description: String,
     var dispute_category: String? = null,

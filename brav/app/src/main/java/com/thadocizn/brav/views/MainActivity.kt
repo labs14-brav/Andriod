@@ -19,7 +19,10 @@ import com.thadocizn.brav.services.BravApi
 import com.thadocizn.brav.services.RetroInstance
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.noButton
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.yesButton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,11 +33,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var bravUser: User
     lateinit var token: String
 
-    companion object{
-
-        const val TOKEN = "token"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -42,7 +40,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         this.auth.signOut()
 
         setSupportActionBar(tbMain)
-        DrawerUtil.getDrawer(this, tbMain)
 
         emailSignInButton.setOnClickListener(this)
         emailCreateAccountButton.setOnClickListener(this)
@@ -64,9 +61,36 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.deactivate_account -> {
+                deactivateUser()
+                alert("Deactivate Account?") {
+                    yesButton {
+                        deactivateUser()
+                    }
+                    noButton { }
+                }.show()
+                return true
+            }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun deactivateUser() {
+        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val service:BravApi = RetroInstance().service(token)
+        val call = service.deactivate()
+
+        call.enqueue(object :Callback<User>{
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                auth.signOut()
+                startActivity<MainActivity>()
+            }
+        })
     }
 
     private fun registerUser() {
@@ -75,7 +99,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         call.enqueue(object : Callback<User> {
             override fun onFailure(call: Call<User>, t: Throwable) {
-               // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 println(t.message)
             }
 
@@ -159,6 +183,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     }
 
 
+                    DrawerUtil.getDrawer(this, tbMain)
 
                     updateUI(user)
                 } else {
@@ -172,7 +197,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 }
 
                 if (!task.isSuccessful) {
-                    status.setText(R.string.auth_failed)
+                    //status.setText(R.string.auth_failed)
                 }
             }
     }
@@ -234,11 +259,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
-            status.text = getString(
+           /* status.text = getString(
                 R.string.email_password_status_fmt,
                 user.email, user.isEmailVerified
-            )
-            detail.text = getString(R.string.fire_base_status_fmt, user.uid)
+            )*/
+            //detail.text = getString(R.string.fire_base_status_fmt, user.uid)
             emailPasswordButtons.visibility = View.GONE
             emailPasswordFields.visibility = View.GONE
             signedInButtons.visibility = View.VISIBLE
@@ -247,8 +272,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             verifyEmailButton.isEnabled = !user.isEmailVerified
         } else {
-            status.setText(R.string.signed_out)
-            detail.text = null
+            //status.setText(R.string.signed_out)
+           // detail.text = null
 
             emailPasswordButtons.visibility = View.VISIBLE
             emailPasswordFields.visibility = View.VISIBLE

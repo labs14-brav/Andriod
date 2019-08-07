@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.thadocizn.brav.DrawerUtil
@@ -40,6 +41,7 @@ class CaseActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     idToken = task.result!!.token.toString()
+                    println(idToken.toString())
                     getCases(idToken)
 
 
@@ -73,7 +75,7 @@ class CaseActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.deactivate_account -> true
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -99,6 +101,6 @@ class CaseActivity : AppCompatActivity() {
     private fun getRecycleView(list: ArrayList<Case>?) {
         val adapter = CaseAdapter(list)
         rvCase.adapter = adapter
-        rvCase.layoutManager = LinearLayoutManager(this)
+        rvCase.layoutManager = GridLayoutManager(this,4)
     }
 }
