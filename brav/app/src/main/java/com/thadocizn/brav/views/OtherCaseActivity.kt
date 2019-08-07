@@ -2,10 +2,12 @@ package com.thadocizn.brav.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.thadocizn.brav.R
 import com.thadocizn.brav.models.Case
 import com.thadocizn.brav.services.RetroInstance
+import kotlinx.android.synthetic.main.activity_mediator.*
 import kotlinx.android.synthetic.main.activity_other_case.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,20 +26,26 @@ class OtherCaseActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     idToken = task.result!!.token.toString()
                     println(idToken.toString())
-
-
                 } else {
-
                     // Handle error -> task.getException();
-
                 }
             }
+        setupSpinner()
+
         btnSend.setOnClickListener {
-
             val case: Case = case()
-
             createCase(case)
+        }
+    }
 
+    private fun setupSpinner() {
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.specialization,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spDisputeCategory.adapter = adapter
         }
     }
 
@@ -52,7 +60,7 @@ class OtherCaseActivity : AppCompatActivity() {
         val courtNumber = ""
         val description = etDescription.text.toString()
         val disputeAmount = etDisputeAmount.text.toString()
-        val disputeCategory = etDisputeCategory.text.toString()
+        val disputeCategory = spDisputeCategory.selectedItem.toString()
         val partiesContactInfo = etPartiesContactInfo.text.toString()
         val partiesInvolved = etPartiesInvolved.text.toString()
 
