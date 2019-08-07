@@ -50,6 +50,7 @@ class OtherCaseActivity : AppCompatActivity() {
     }
 
     private fun case(): Case {
+        var caseId:Int? = null
         val caseAcceptedAt = ""
         val caseCompletedAt = ""
         val caseDeclinedAt = ""
@@ -65,6 +66,7 @@ class OtherCaseActivity : AppCompatActivity() {
         val partiesInvolved = etPartiesInvolved.text.toString()
 
         val case: Case = Case(
+            caseId,
             caseCompletedAt,
             description,
             disputeCategory,

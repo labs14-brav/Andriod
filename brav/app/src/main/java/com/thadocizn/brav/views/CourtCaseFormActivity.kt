@@ -51,6 +51,7 @@ class CourtCaseFormActivity : AppCompatActivity() {
     }
 
     private fun case(): Case {
+        var caseId:Int? = null
         val caseAcceptedAt = etCaseAccept.text.toString()
         val caseCompletedAt = etCaseComplete.text.toString()
         val caseDeclinedAt = etCaseDecline.text.toString()
@@ -66,6 +67,7 @@ class CourtCaseFormActivity : AppCompatActivity() {
         val partiesInvolved = etPartiesInvolved.text.toString()
 
         val case: Case = Case(
+            caseId,
             caseCompletedAt,
             description,
             disputeCategory,
