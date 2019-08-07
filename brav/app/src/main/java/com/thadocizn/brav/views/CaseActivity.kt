@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.thadocizn.brav.DrawerUtil
@@ -100,6 +101,6 @@ class CaseActivity : AppCompatActivity() {
     private fun getRecycleView(list: ArrayList<Case>?) {
         val adapter = CaseAdapter(list)
         rvCase.adapter = adapter
-        rvCase.layoutManager = LinearLayoutManager(this)
+        rvCase.layoutManager = GridLayoutManager(this,4)
     }
 }
