@@ -17,7 +17,10 @@ class MediatorAdapter(private val list: ArrayList<Mediator>?) : RecyclerView.Ada
         fun bindMediator(mediator: Mediator) {
 
             with(container) {
-                tvMediator.text = mediator.type
+                tvMediatorName.text = mediator.name
+                tvMediatorSpec.text = mediator.specialization
+                tvMediatorExperience.text = mediator.experience
+                tvMediatorLang.text = mediator.language
             }
         }
     }
