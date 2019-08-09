@@ -24,7 +24,6 @@ import retrofit2.Response
  * Created by charles on 04,August,2019
  */
 class MediatorAdapter(private val list: ArrayList<Mediator>?) : RecyclerView.Adapter<MediatorAdapter.ViewHolder>() {
-   var mediatorId:Int? = null
 
     class ViewHolder(private val container: View) : RecyclerView.ViewHolder(container) {
 
@@ -34,38 +33,7 @@ class MediatorAdapter(private val list: ArrayList<Mediator>?) : RecyclerView.Ada
         val tvMediatorExperience: TextView = container.tvMediatorExperience
         val tvMediatorLang: TextView = container.tvMediatorLang
         val btnConnect:Button = container.btnConnect
-        /*fun bindMediator(mediator: Mediator) {
 
-            with(container) {
-                tvMediatorName.text = mediator.name
-                tvMediatorSpec.text = mediator.specialization
-                tvMediatorExperience.text = mediator.experience
-                tvMediatorLang.text = mediator.language
-
-                btnConnect.setOnClickListener {
-                   container.context.alert {
-                       customView{
-                           verticalLayout{
-                               val label = textView{
-                                   text = " Enter case Id"
-                               }
-
-                               val caseID = editText{
-                                   hint = "CaseID"
-                               }
-
-                               positiveButton("Connect"){
-
-                                   container.context.startActivity<Main2Activity>("mediator" to mediatorId, "caseId" to caseID.text.toString().toInt())
-                               }
-                           }
-                   }
-
-                   }.show()
-                }
-            }
-        }
-*/
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -96,7 +64,7 @@ class MediatorAdapter(private val list: ArrayList<Mediator>?) : RecyclerView.Ada
 
                         positiveButton("Connect"){
 
-                            context.startActivity<Main2Activity>("mediator" to mediatorId, "caseId" to caseID.text.toString().toInt())
+                            context.startActivity<Main2Activity>("mediatorId" to mediator!!.id, "caseId" to caseID.text.toString().toInt())
                         }
                     }
                 }
@@ -105,7 +73,4 @@ class MediatorAdapter(private val list: ArrayList<Mediator>?) : RecyclerView.Ada
         }
     }
 
-    private fun getCaseId() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 }
