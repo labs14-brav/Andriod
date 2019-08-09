@@ -4,6 +4,7 @@ import com.thadocizn.brav.models.Case
 import com.thadocizn.brav.models.Mediator
 import com.thadocizn.brav.models.User
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 interface BravApi {
@@ -15,10 +16,15 @@ interface BravApi {
     fun getCases(): Call<List<Case>>
 
     @GET("/mediators")
-    fun getMediators(@Query("price") price:String,
-                     @Query("experience")language:String,
-                     @Query("specialization")experience:String,
-                     @Query("language")specialty:String): Call<List<Mediator>>
+    fun getMediators(
+        @Query("price") price: String,
+        @Query("experience") language: String,
+        @Query("specialization") experience: String,
+        @Query("language") specialty: String
+    ): Call<List<Mediator>>
+
+    @POST("/mediators/{id}/cases")
+    fun connect(@Path("id") mediatorId: Int, @Body case_id: Case): Call<Case>
 
     @POST("users/auth")
     fun loginUser(): Call<User>
@@ -27,5 +33,5 @@ interface BravApi {
     fun postCase(@Body case: Case): Call<Case>
 
     @PUT("users/deactivate")
-    fun deactivate():Call<User>
+    fun deactivate(): Call<User>
 }
