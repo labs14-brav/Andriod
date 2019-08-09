@@ -54,7 +54,7 @@
     <string-array name="price">
         <item>""</item>
         <item>&lt;25</item>
-        <item> 25-75</item>
+        <item>25-75</item>
         <item>&gt;75</item>
     </string-array>
     <string-array name="language">
