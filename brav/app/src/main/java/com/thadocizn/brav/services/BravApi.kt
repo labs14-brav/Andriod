@@ -9,8 +9,8 @@ import retrofit2.http.*
 
 interface BravApi {
 
-    @GET("users")
-    fun getUsers(): Call<List<User>>
+    @GET("users/auth")
+    fun getUser(): Call<User>
 
     @GET("/cases")
     fun getCases(): Call<List<Case>>

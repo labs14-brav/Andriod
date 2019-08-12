@@ -6,19 +6,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.auth.FirebaseAuth
-import com.thadocizn.brav.Main2Activity
+import com.thadocizn.brav.UserAccountActivity
 import com.thadocizn.brav.R
 import com.thadocizn.brav.models.Mediator
-import com.thadocizn.brav.services.RetroInstance
-import com.thadocizn.brav.views.CaseActivity
-import com.thadocizn.brav.views.MediatorActivity
 import kotlinx.android.synthetic.main.list_item_mediator.view.*
-import kotlinx.android.synthetic.main.nav_header_main.view.*
 import org.jetbrains.anko.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 /**
  * Created by charles on 04,August,2019
@@ -64,7 +56,7 @@ class MediatorAdapter(private val list: ArrayList<Mediator>?) : RecyclerView.Ada
 
                         positiveButton("Connect"){
 
-                            context.startActivity<Main2Activity>("mediatorId" to mediator!!.id, "caseId" to caseID.text.toString().toInt())
+                            context.startActivity<UserAccountActivity>("mediatorId" to mediator!!.id, "caseId" to caseID.text.toString().toInt())
                         }
                     }
                 }
