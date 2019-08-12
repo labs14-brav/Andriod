@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.thadocizn.brav.UserAccountActivity
+import com.thadocizn.brav.views.UserAccountActivity
 import com.thadocizn.brav.R
 import com.thadocizn.brav.models.Mediator
 import kotlinx.android.synthetic.main.list_item_mediator.view.*
