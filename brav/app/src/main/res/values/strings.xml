@@ -37,7 +37,7 @@
     <string name="court_case">Court Case</string>
     <string name="court_filing_date">Court Filing Date</string>
     <string name="court_jurisdiction">Court Jurisdiction</string>
-    <string name="dispute_Category">Dispute Category</string>
+    <string name="dispute_Category">Category</string>
     <string name="description">Description</string>
     <string name="dispute_amount">Dispute Amount</string>
     <string name="id">Id</string>
