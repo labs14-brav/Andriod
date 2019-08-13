@@ -10,8 +10,6 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import android.app.Activity
 //import android.support.v7.widget.Toolbar
 import androidx.appcompat.widget.Toolbar
-import com.thadocizn.brav.views.CaseActivity
-import com.thadocizn.brav.views.MainActivity
 import com.thadocizn.brav.views.MediatorActivity
 
 
@@ -24,10 +22,10 @@ object DrawerUtil {
         val drawerEmptyItem = PrimaryDrawerItem().withIdentifier(0).withName("")
         drawerEmptyItem.withEnabled(false)
 
-        val drawerItemManagePlayers = PrimaryDrawerItem().withIdentifier(1)
+        val drawerItemManageUser = PrimaryDrawerItem().withIdentifier(1)
             .withName("Charles").withIcon(R.drawable.sym_def_app_icon
             )
-        val drawerItemManagePlayersTournaments = PrimaryDrawerItem()
+        val drawerItemManageUserEmail = PrimaryDrawerItem()
             .withIdentifier(2).withName("charles.tha.doc@gmail.com").withIcon(R.drawable.alert_dark_frame)
 
 
@@ -47,8 +45,8 @@ object DrawerUtil {
             .withSelectedItem(-1)
             .addDrawerItems(
                 drawerEmptyItem, drawerEmptyItem, drawerEmptyItem,
-                drawerItemManagePlayers,
-                drawerItemManagePlayersTournaments,
+                drawerItemManageUser,
+                drawerItemManageUserEmail,
                 DividerDrawerItem(),
                 drawerItemAbout,
                 drawerItemSettings

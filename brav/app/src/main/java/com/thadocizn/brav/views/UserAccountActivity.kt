@@ -1,20 +1,20 @@
-package com.thadocizn.brav
+package com.thadocizn.brav.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.firebase.auth.FirebaseAuth
+import com.thadocizn.brav.R
 import com.thadocizn.brav.models.Case
-import com.thadocizn.brav.models.Mediator
 import com.thadocizn.brav.services.RetroInstance
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class Main2Activity : AppCompatActivity() {
+class UserAccountActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main2)
+        setContentView(R.layout.activity_user_account)
         val mediator:Int = intent.getIntExtra("mediatorId",0)
         val caseId:Int = intent.getIntExtra("caseId", 0)
 

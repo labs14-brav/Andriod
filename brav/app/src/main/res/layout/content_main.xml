@@ -28,35 +28,16 @@
                 android:contentDescription="@string/desc_firebase_lockup"
         />
 
-      <!--  <TextView
-                android:id="@+id/titleText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/email_password_title_text"
-        />
-
-        <TextView
-                android:id="@+id/status"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="@string/signed_out"/>
-
-        <TextView
-                android:id="@+id/detail"
-                tools:text="Firebase User ID: 123456789abc"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"/>-->
-
         <Button android:layout_width="wrap_content"
                 android:id="@+id/enter_button"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="75sp"
                 android:text="Enter"
                 android:backgroundTint="@color/colorAccent"
-                android:textColor="@android:color/white"
+                android:textColor="@color/primary"
                 android:visibility="gone"
                 android:clickable="false"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center" android:background="@android:color/white"/>
 
     </LinearLayout>
 
@@ -109,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/sign_in"
-            />
+                    android:background="@android:color/white" android:textColor="@color/colorPrimary"/>
 
             <Button
                     android:id="@+id/emailCreateAccountButton"
@@ -118,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/create_account"
-            />
+                    android:textColor="@color/colorPrimary" android:background="@android:color/white"/>
         </LinearLayout>
 
         <LinearLayout
@@ -139,7 +120,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.0"
                     android:text="@string/sign_out"
-            />
+                    android:background="@android:color/white" android:textColor="@color/colorPrimary"/>
 
             <Button
                     android:id="@+id/verifyEmailButton"
