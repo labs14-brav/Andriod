@@ -1,9 +1,9 @@
-package com.thadocizn.brav
+package com.thadocizn.brav.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.thadocizn.brav.R
 import kotlinx.android.synthetic.main.activity_case_details.*
-import kotlinx.android.synthetic.main.activity_courtcase_form.*
 
 class CaseDetailsActivity : AppCompatActivity() {
 

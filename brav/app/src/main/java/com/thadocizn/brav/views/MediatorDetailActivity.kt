@@ -1,7 +1,8 @@
-package com.thadocizn.brav
+package com.thadocizn.brav.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.thadocizn.brav.R
 import kotlinx.android.synthetic.main.activity_mediator_detail.*
 
 class MediatorDetailActivity : AppCompatActivity() {
