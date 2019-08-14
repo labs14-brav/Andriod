@@ -39,7 +39,6 @@ class CaseActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     idToken = task.result!!.token.toString()
-                    println(idToken.toString())
                     getCases(idToken)
 
 
@@ -96,7 +95,6 @@ class CaseActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<Case>>, response: Response<List<Case>>) {
                 // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 cases = response.body() as ArrayList<Case>?
-                println(token)
                 getRecycleView(cases)
             }
 

@@ -107,7 +107,6 @@ class MediatorActivity : AppCompatActivity() {
                 //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 
                 mediator = response.body() as ArrayList<Mediator>?
-                println(token)
 
                 getRecycleView(mediator)
 
