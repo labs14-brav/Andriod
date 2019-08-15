@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_courtcase_form.etPartiesContactIn
 import kotlinx.android.synthetic.main.activity_courtcase_form.etPartiesInvolved
 import kotlinx.android.synthetic.main.activity_courtcase_form.spDisputeCategory
 import kotlinx.android.synthetic.main.activity_other_case.*
+import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -46,7 +47,7 @@ class CourtCaseFormActivity : AppCompatActivity() {
             val case: Case = case()
 
             createCase(case)
-
+            startActivity<CaseActivity>()
         }
     }
 

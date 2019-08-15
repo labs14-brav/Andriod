@@ -9,6 +9,7 @@ import com.thadocizn.brav.models.Case
 import com.thadocizn.brav.services.RetroInstance
 import kotlinx.android.synthetic.main.activity_mediator.*
 import kotlinx.android.synthetic.main.activity_other_case.*
+import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,6 +36,7 @@ class OtherCaseActivity : AppCompatActivity() {
         btnSend.setOnClickListener {
             val case: Case = case()
             createCase(case)
+            startActivity<CaseActivity>()
         }
     }
 
