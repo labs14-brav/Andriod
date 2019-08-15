@@ -84,19 +84,16 @@ class OtherCaseActivity : AppCompatActivity() {
         return case
     }
 
-    //TOdo fix bug when I get in touch with a BE person
     private fun createCase(case: Case) {
         val service = RetroInstance().service(idToken)
         val call = service.postCase(case)
 
         call.enqueue(object : Callback<Case> {
             override fun onFailure(call: Call<Case>, t: Throwable) {
-                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 println(t.message)
             }
 
             override fun onResponse(call: Call<Case>, response: Response<Case>) {
-                //  TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 println(response.body().toString())
             }
         })

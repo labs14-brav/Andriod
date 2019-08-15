@@ -5,7 +5,9 @@ import android.os.Bundle
 import com.google.firebase.auth.FirebaseAuth
 import com.thadocizn.brav.R
 import com.thadocizn.brav.models.Case
+import com.thadocizn.brav.models.CaseOut
 import com.thadocizn.brav.services.RetroInstance
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,16 +38,15 @@ class UserAccountActivity : AppCompatActivity() {
 
     private fun connect(token: String, mediatorId:Int, caseId:Int) {
         val service = RetroInstance().service(token)
-        val call = service.connect(mediatorId, Case(id = caseId))
+        val call = service.connect(mediatorId, CaseOut(caseId))
         call.enqueue(object : Callback<Case> {
             override fun onFailure(call: Call<Case>, t: Throwable) {
-                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 println(t.message)
             }
 
             override fun onResponse(call: Call<Case>, response: Response<Case>) {
-                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                println(response.body())
+
+                toast("Email sent")
             }
 
         })

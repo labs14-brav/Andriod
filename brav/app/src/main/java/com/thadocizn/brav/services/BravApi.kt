@@ -1,6 +1,7 @@
 package com.thadocizn.brav.services
 
 import com.thadocizn.brav.models.Case
+import com.thadocizn.brav.models.CaseOut
 import com.thadocizn.brav.models.Mediator
 import com.thadocizn.brav.models.User
 import retrofit2.Call
@@ -24,7 +25,7 @@ interface BravApi {
     ): Call<List<Mediator>>
 
     @POST("/mediators/{id}/cases")
-    fun connect(@Path("id") mediatorId: Int, @Body case_id: Case): Call<Case>
+    fun connect(@Path("id") mediatorId: Int, @Body case_id: CaseOut): Call<Case>
 
     @POST("users/auth")
     fun loginUser(): Call<User>

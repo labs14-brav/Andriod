@@ -21,7 +21,8 @@ class CaseAdapter(private val list: ArrayList<Case>?) : RecyclerView.Adapter<Cas
             with(container) {
                 tvCaseId.text = case.id.toString()
                 tvCaseType.text = case.dispute_category
-                tvCaseDesc.text = case.description
+                tvCaseAmount.text = case.dispute_amount
+                tvCaseNote.text = case.case_notes
                 container.setOnClickListener {
                     context.startActivity<CaseDetailsActivity>(
                         CaseDetailsActivity.CASE_ACCEPTED to case.case_accepted_at,

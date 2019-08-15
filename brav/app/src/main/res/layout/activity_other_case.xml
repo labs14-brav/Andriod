@@ -11,10 +11,6 @@
             tools:context=".views.CourtCaseFormActivity" android:orientation="vertical">
 
 
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
             <TextView
                     android:text="@string/description"
                     android:layout_width="wrap_content"
@@ -23,18 +19,13 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginBottom="8dp"/>
             <EditText
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:ems="10"
                     android:id="@+id/etDescription"
                     android:hint="@string/description" android:layout_marginStart="16dp"/>
-        </LinearLayout>
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+
             <TextView
                     android:text="@string/dispute_amount"
                     android:layout_width="wrap_content"
@@ -43,18 +34,13 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginBottom="8dp"/>
             <EditText
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:ems="10"
                     android:id="@+id/etDisputeAmount"
                     android:hint="@string/dispute_amount" android:layout_marginStart="16dp"/>
-        </LinearLayout>
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+
             <TextView
                     android:text="@string/dispute_Category"
                     android:layout_width="wrap_content"
@@ -63,17 +49,11 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginBottom="8dp"/>
             <Spinner
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/spDisputeCategory"
                     android:layout_marginStart="16dp"/>
-        </LinearLayout>
 
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
             <TextView
                     android:text="@string/parties_contact_info"
                     android:layout_width="wrap_content"
@@ -82,18 +62,13 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginBottom="8dp"/>
             <EditText
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:ems="10"
                     android:id="@+id/etPartiesContactInfo"
                     android:hint="@string/parties_contact_info" android:layout_marginStart="16dp"/>
-        </LinearLayout>
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+
             <TextView
                     android:text="@string/parties_involved"
                     android:layout_width="wrap_content"
@@ -102,18 +77,13 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginBottom="8dp"/>
             <EditText
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:ems="10"
                     android:id="@+id/etPartiesInvolved"
                     android:hint="@string/parties_involved" android:layout_marginStart="16dp"/>
-        </LinearLayout>
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+
             <TextView
                     android:text="@string/case_notes"
                     android:layout_width="wrap_content"
@@ -122,14 +92,13 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginBottom="8dp"/>
             <EditText
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:ems="10"
                     android:id="@+id/etCaseNotes"
                     android:hint="@string/case_notes" android:layout_marginStart="16dp"/>
-        </LinearLayout>
+
         <Button
                 android:text="Create Case"
                 android:layout_width="match_parent"

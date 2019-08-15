@@ -63,6 +63,11 @@ class CaseActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        getCases(idToken)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
@@ -91,7 +96,7 @@ class CaseActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<Case>>, response: Response<List<Case>>) {
                 // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 cases = response.body() as ArrayList<Case>?
-                println(token)
+                println(cases.toString())
                 getRecycleView(cases)
             }
 

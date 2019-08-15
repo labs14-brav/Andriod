@@ -82,7 +82,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         call.enqueue(object :Callback<User>{
             override fun onFailure(call: Call<User>, t: Throwable) {
-                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
             override fun onResponse(call: Call<User>, response: Response<User>) {
@@ -99,13 +98,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         call.enqueue(object : Callback<User> {
             override fun onFailure(call: Call<User>, t: Throwable) {
-                // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 println(t.message)
             }
 
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 bravUser = response.body()!!
-                println(bravUser.email)
 
             }
         })
@@ -133,7 +130,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun createAccount(email: String, password: String) {
-        Log.d("Create Account", "createAccount:$email")
         if (!validateForm()) {
             return
         }
@@ -153,7 +149,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
-                    Log.w("Failure", "createUserWithEmail:failure", task.exception)
                     Toast.makeText(
                         baseContext, "Authentication failed.",
                         Toast.LENGTH_SHORT
@@ -174,7 +169,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    Log.d("Success", "signInWithEmail:success")
                     val user = auth.currentUser
                     user!!.getIdToken(true).addOnSuccessListener { result ->
                         token = result.token.toString()
@@ -188,7 +182,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
-                    Log.w("Fail", "signInWithEmail:failure", task.exception)
                     Toast.makeText(
                         baseContext, "Authentication failed.",
                         Toast.LENGTH_SHORT

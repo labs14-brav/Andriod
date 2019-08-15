@@ -26,7 +26,12 @@
 
                     android:text="TextView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/tvCaseDesc"/>
+                    android:layout_height="wrap_content" android:id="@+id/tvCaseAmount"/>
+            <TextView
+
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/tvCaseNote"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

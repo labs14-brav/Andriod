@@ -102,13 +102,11 @@ class CourtCaseFormActivity : AppCompatActivity() {
 
         call.enqueue(object : Callback<Case> {
             override fun onFailure(call: Call<Case>, t: Throwable) {
-                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                println(t.message)
+
             }
 
             override fun onResponse(call: Call<Case>, response: Response<Case>) {
-                //  TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                println(response.body().toString())
+
             }
         })
     }

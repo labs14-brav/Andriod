@@ -50,6 +50,14 @@
     <string name="specialty">Specialty</string>
     <string name="search">Search</string>
     <string name="deactivate_account">Deactivate Account</string>
+    <string name="place_holder">Name</string>
+    <string name="type">Type</string>
+    <string name="license">License</string>
+    <string name="specialization">Specialization</string>
+    <string name="professional_bio">Professional BIO</string>
+    <string name="name">Name</string>
+
+
 
     <string-array name="price">
         <item>""</item>
