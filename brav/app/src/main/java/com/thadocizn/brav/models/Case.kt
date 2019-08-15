@@ -6,7 +6,6 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Case(
 
-    @Json(name = "case_id")
     var id:Int? = null,
     var case_completed_at: String? = null,
     var description: String? = null,
