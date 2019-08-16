@@ -30,32 +30,32 @@
 
     <string name="title_activity_case">CaseActivity</string>
     <string name="case_number">Case Number:</string>
-    <string name="case_accepted_at">Case Accepted At</string>
-    <string name="completed_at">Completed At</string>
-    <string name="declined_at">Declined At</string>
-    <string name="case_notes">Case Notes</string>
-    <string name="court_case">Court Case</string>
-    <string name="court_filing_date">Court Filing Date</string>
-    <string name="court_jurisdiction">Court Jurisdiction</string>
-    <string name="dispute_Category">Category</string>
-    <string name="description">Description</string>
-    <string name="dispute_amount">Dispute Amount</string>
-    <string name="id">Id</string>
-    <string name="parties_contact_info">Parties Contact Info</string>
-    <string name="parties_involved">Parties Involved</string>
+    <string name="case_accepted_at">Case Accepted At:</string>
+    <string name="completed_at">Completed At:</string>
+    <string name="declined_at">Declined At:</string>
+    <string name="case_notes">Case Notes:</string>
+    <string name="court_case">Court Case:</string>
+    <string name="court_filing_date">Court Filing Date:</string>
+    <string name="court_jurisdiction">Court Jurisdiction:</string>
+    <string name="dispute_Category">Category:</string>
+    <string name="description">Description:</string>
+    <string name="dispute_amount">Dispute Amount:</string>
+    <string name="id">Id:</string>
+    <string name="parties_contact_info">Parties Contact Info:</string>
+    <string name="parties_involved">Parties Involved:</string>
     <string name="token">token</string>
-    <string name="price">Price</string>
-    <string name="language">Language</string>
-    <string name="experience">Experience</string>
-    <string name="specialty">Specialty</string>
+    <string name="price">Price:</string>
+    <string name="language">Language:</string>
+    <string name="experience">Experience:</string>
+    <string name="specialty">Specialty:</string>
     <string name="search">Search</string>
     <string name="deactivate_account">Deactivate Account</string>
     <string name="place_holder">Name</string>
-    <string name="type">Type</string>
-    <string name="license">License</string>
-    <string name="specialization">Specialization</string>
-    <string name="professional_bio">Professional BIO</string>
-    <string name="name">Name</string>
+    <string name="type">Type:</string>
+    <string name="license">License:</string>
+    <string name="specialization">Specialization:</string>
+    <string name="professional_bio">Professional BIO:</string>
+    <string name="name">Name:</string>
 
 
 
