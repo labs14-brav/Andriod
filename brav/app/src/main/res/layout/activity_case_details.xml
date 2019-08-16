@@ -1,86 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".views.CaseDetailsActivity" android:orientation="vertical">
-
-    <TextView
-            android:text="@string/id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView5" android:layout_weight="1"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/place_holder"
-            android:ems="10"
-            android:id="@+id/tvCaseDetailId" android:layout_weight="1"/>
-
-    <TextView
-            android:text="@string/completed_at"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView6" android:layout_weight="1"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/place_holder"
-            android:ems="10"
-            android:id="@+id/tvCaseDetailCompleted" android:layout_weight="1"/>
-
-    <TextView
-            android:text="@string/dispute_Category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView8" android:layout_weight="1"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/place_holder"
-            android:ems="10"
-            android:id="@+id/tvCaseDetailCategory" android:layout_weight="1"/>
-
-    <TextView
-            android:text="@string/dispute_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView9" android:layout_weight="1"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/place_holder"
-            android:ems="10"
-            android:id="@+id/tvCaseDetailAmount" android:layout_weight="1"/>
-
-    <TextView
-            android:text="@string/parties_involved"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView10" android:layout_weight="1"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/place_holder"
-            android:ems="10"
-            android:id="@+id/tvCaseDetailPartiesInvolved" android:layout_weight="1"/>
-
-    <TextView
-            android:text="@string/parties_contact_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView11" android:layout_weight="1"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/place_holder"
-            android:ems="10"
-            android:id="@+id/tvCaseDetailPartiesInfo" android:layout_weight="1"/>
-
-    <TextView
-            android:text="@string/description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView7" />
-    <TextView
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/place_holder"
-            android:ems="10"
-            android:id="@+id/tvCaseDetailDesc" android:lines="10"/>
-</LinearLayout>
+            android:layout_height="match_parent"
+            tools:context=".views.CaseDetailsActivity">
+    <LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:orientation="vertical" android:visibility="gone" android:id="@+id/llcourtCase">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/textView12" android:text="@string/court_case"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/tvCaseDetailCourtCase"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/textView13" android:text="@string/court_jurisdiction"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/tvCaseDetailCourtJurisdiction"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/textView14" android:text="@string/case_number"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/tvCaseDetailCourtNumber"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/textView15" android:text="@string/court_filing_date"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/tvCaseDetailCourtFilingDate"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/textView16" android:text="@string/case_accepted_at"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/tvCaseDetailCaseAcceptedAt"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/textView17" android:text="@string/declined_at"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/tvCaseDetailCaseDeclinedAt"/>
+
+            <TextView
+                    android:text="@string/completed_at"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView6" android:layout_weight="1"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/place_holder"
+                    android:ems="10"
+                    android:id="@+id/tvCaseDetailCompleted" android:layout_weight="1"/>
+
+        </LinearLayout>
+
+
+        <TextView
+                android:text="@string/dispute_Category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/textView8" android:layout_weight="1"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/place_holder"
+                android:ems="10"
+                android:id="@+id/tvCaseDetailCategory" android:layout_weight="1"/>
+
+        <TextView
+                android:text="@string/dispute_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/textView9" android:layout_weight="1"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/place_holder"
+                android:ems="10"
+                android:id="@+id/tvCaseDetailAmount" android:layout_weight="1"/>
+
+        <TextView
+                android:text="@string/parties_involved"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/textView10" android:layout_weight="1"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/place_holder"
+                android:ems="10"
+                android:id="@+id/tvCaseDetailPartiesInvolved" android:layout_weight="1"/>
+
+        <TextView
+                android:text="@string/parties_contact_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/textView11" android:layout_weight="1"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/place_holder"
+                android:ems="10"
+                android:id="@+id/tvCaseDetailPartiesInfo" android:layout_weight="1"/>
+
+        <TextView
+                android:text="@string/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/textView7" />
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/place_holder"
+                android:ems="10"
+                android:id="@+id/tvCaseDetailDesc" android:lines="10"/>
+    </LinearLayout>
+</ScrollView>

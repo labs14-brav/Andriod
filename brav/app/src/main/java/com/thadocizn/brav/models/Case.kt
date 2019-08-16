@@ -13,7 +13,7 @@ data class Case(
     var dispute_amount: String? = null,
     var parties_involved: String? = null,
     var parties_contact_info: String? = null,
-    var court_case: Boolean? = null,
+    var court_case: Boolean? = false,
     var court_jurisdiction: String? = null,
     var court_number: String? = null,
     var court_filing_date: String? = null,

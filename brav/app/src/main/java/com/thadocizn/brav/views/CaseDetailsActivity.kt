@@ -2,6 +2,7 @@ package com.thadocizn.brav.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.thadocizn.brav.R
 import kotlinx.android.synthetic.main.activity_case_details.*
 
@@ -36,7 +37,7 @@ class CaseDetailsActivity : AppCompatActivity() {
             val amount = getCase.getString(CASE_AMOUNT)
             val involved = getCase.getString(CASE_PARTIES_INVOLVED)
             val info = getCase.getString(CASE_PARTIES_INFO)
-            val caseCourt = getCase.getString(CASE_COURT)
+            val caseCourt = getCase.getBoolean(CASE_COURT)
             val jurisdiction = getCase.getString(CASE_COURT_JURIS)
             val courtNumber = getCase.getString(CASE_COURT_NUMBER)
             val filing = getCase.getString(CASE_COURT_FILING)
@@ -50,9 +51,17 @@ class CaseDetailsActivity : AppCompatActivity() {
             tvCaseDetailDesc.text = description
             tvCaseDetailPartiesInvolved.text = involved
             tvCaseDetailPartiesInfo.text = info
-            //tvCourtJurisdiction.text = jurisdiction
-            //tvCaseNum.text = courtNumber
-            //tvCourtFilingDate.text = filing
+
+            if (caseCourt){
+                llcourtCase.visibility = View.VISIBLE
+                tvCaseDetailCourtJurisdiction.text = jurisdiction
+                tvCaseDetailCourtNumber.text = courtNumber
+                tvCaseDetailCourtFilingDate.text = filing
+                tvCaseDetailCaseAcceptedAt.text = accepted
+                tvCaseDetailCaseDeclinedAt.text = declined
+            }else{
+                llcourtCase.visibility = View.GONE
+            }
 
         }
     }

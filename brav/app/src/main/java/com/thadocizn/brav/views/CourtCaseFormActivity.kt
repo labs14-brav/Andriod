@@ -53,9 +53,9 @@ class CourtCaseFormActivity : AppCompatActivity() {
 
     private fun case(): Case {
         var caseId:Int? = null
-        val caseAcceptedAt = etCaseAccept.text.toString()
-        val caseCompletedAt = etCaseComplete.text.toString()
-        val caseDeclinedAt = etCaseDecline.text.toString()
+        val caseAcceptedAt = null
+        val caseCompletedAt = null
+        val caseDeclinedAt = null
         val notes = etCaseNotes.text.toString()
         val courtCase = true
         val courtFilingDate = etCourtFilingDate.text.toString()
