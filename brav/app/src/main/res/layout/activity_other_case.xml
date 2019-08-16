@@ -8,100 +8,90 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".views.CourtCaseFormActivity" android:orientation="vertical">
+            tools:context=".views.CourtCaseFormActivity" android:orientation="vertical" android:layout_margin="8dp">
 
 
-            <TextView
-                    android:text="@string/description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tvdescription"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginBottom="8dp"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/etDescription"
-                    android:hint="@string/description" android:layout_marginStart="16dp"/>
+        <TextView
+                android:text="@string/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvdescription"
 
-            <TextView
-                    android:text="@string/dispute_amount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tvDisputeAmount"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginBottom="8dp"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/etDisputeAmount"
-                    android:hint="@string/dispute_amount" android:layout_marginStart="16dp"/>
+                android:layout_marginBottom="8dp" android:textSize="18sp" android:layout_margin="8dp"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/etDescription"
+                android:hint="@string/description" android:layout_margin="8dp"/>
 
-            <TextView
-                    android:text="@string/dispute_Category"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tvDisputeCategory"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginBottom="8dp"/>
-            <Spinner
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/spDisputeCategory"
-                    android:layout_marginStart="16dp"/>
+        <TextView
+                android:text="@string/dispute_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvDisputeAmount" android:textSize="18sp" android:layout_margin="8dp"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/etDisputeAmount"
+                android:hint="@string/dispute_amount" android:layout_margin="8dp"/>
 
-            <TextView
-                    android:text="@string/parties_contact_info"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tvPartiesContactInfo"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginBottom="8dp"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/etPartiesContactInfo"
-                    android:hint="@string/parties_contact_info" android:layout_marginStart="16dp"/>
+        <TextView
+                android:text="@string/dispute_Category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvDisputeCategory" android:textSize="18sp"/>
+        <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spDisputeCategory"
+                android:layout_margin="8dp"/>
 
-            <TextView
-                    android:text="@string/parties_involved"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tvPartiesInvolved"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginBottom="8dp"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/etPartiesInvolved"
-                    android:hint="@string/parties_involved" android:layout_marginStart="16dp"/>
+        <TextView
+                android:text="@string/parties_contact_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvPartiesContactInfo" android:textSize="18sp" android:layout_margin="8dp"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/etPartiesContactInfo"
+                android:hint="@string/parties_contact_info" android:layout_margin="8dp"/>
 
-            <TextView
-                    android:text="@string/case_notes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tvCaseNotes"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginBottom="8dp"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/etCaseNotes"
-                    android:hint="@string/case_notes" android:layout_marginStart="16dp"/>
+        <TextView
+                android:text="@string/parties_involved"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvPartiesInvolved" android:textSize="18sp" android:layout_margin="8dp"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/etPartiesInvolved"
+                android:hint="@string/parties_involved" android:layout_margin="8dp"/>
+
+        <TextView
+                android:text="@string/case_notes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvCaseNotes" android:textSize="18sp" android:layout_margin="8dp"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/etCaseNotes"
+                android:hint="@string/case_notes" android:layout_margin="8dp"/>
 
         <Button
                 android:text="Create Case"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/btnSend"/>
+                android:layout_height="wrap_content" android:id="@+id/btnSend" android:layout_margin="8dp"/>
     </LinearLayout>
 </ScrollView>

@@ -10,7 +10,7 @@
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:context=".views.CourtCaseFormActivity" android:orientation="vertical">
+                tools:context=".views.CourtCaseFormActivity" android:orientation="vertical" android:layout_margin="8dp">
 
 
                 <TextView
@@ -18,15 +18,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tvCaseNum"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginBottom="8dp"/>
+                        android:layout_margin="8dp" android:textSize="18sp"/>
                 <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
                         android:ems="10"
                         android:id="@+id/etCaseNum"
-                        android:hint="@string/case_number" android:layout_marginStart="16dp"/>
+                        android:hint="@string/case_number"
+                        android:layout_margin="8dp"/>
 
 
                 <TextView
@@ -34,122 +34,122 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tvCourtFilingDate"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginBottom="8dp"/>
+                        android:layout_margin="8dp" android:textSize="18sp"/>
                 <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
                         android:ems="10"
                         android:id="@+id/etCourtFilingDate"
-                        android:hint="@string/court_filing_date" android:layout_marginStart="16dp"/>
+                        android:hint="@string/court_filing_date"
+                        android:layout_margin="8dp"/>
 
                 <TextView
                         android:text="@string/court_jurisdiction"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tvCourtJurisdiction"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginBottom="8dp"/>
+                        android:layout_margin="8dp" android:textSize="18sp"/>
                 <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
                         android:ems="10"
                         android:id="@+id/etCourtJurisdiction"
-                        android:hint="@string/court_jurisdiction" android:layout_marginStart="16dp"/>
+                        android:hint="@string/court_jurisdiction"
+                        android:layout_margin="8dp"/>
 
                 <TextView
                         android:text="@string/description"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tvdescription"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginBottom="8dp"/>
+                        android:layout_margin="8dp" android:textSize="18sp"/>
                 <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
                         android:ems="10"
                         android:id="@+id/etDescription"
-                        android:hint="@string/description" android:layout_marginStart="16dp"/>
+                        android:hint="@string/description"
+                        android:layout_margin="8dp"/>
 
                 <TextView
                         android:text="@string/dispute_amount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tvDisputeAmount"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginBottom="8dp"/>
+                        android:layout_margin="8dp" android:textSize="18sp"/>
                 <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
                         android:ems="10"
                         android:id="@+id/etDisputeAmount"
-                        android:hint="@string/dispute_amount" android:layout_marginStart="16dp"/>
+                        android:hint="@string/dispute_amount"
+                        android:layout_margin="8dp"/>
 
                 <TextView
                         android:text="@string/dispute_Category"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tvDisputeCategory"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginBottom="8dp"/>
+                        android:layout_margin="8dp" android:textSize="18sp"/>
                 <Spinner
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/spDisputeCategory"
-                        android:layout_marginStart="16dp"/>
+                        android:layout_margin="8dp"/>
 
                 <TextView
                         android:text="@string/parties_contact_info"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tvPartiesContactInfo"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginBottom="8dp"/>
+                        android:layout_margin="8dp" android:textSize="18sp"/>
                 <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
                         android:ems="10"
                         android:id="@+id/etPartiesContactInfo"
-                        android:hint="@string/parties_contact_info" android:layout_marginStart="16dp"/>
+                        android:hint="@string/parties_contact_info"
+                        android:layout_margin="8dp"/>
 
                 <TextView
                         android:text="@string/parties_involved"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tvPartiesInvolved"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginBottom="8dp"/>
+                        android:layout_margin="8dp" android:textSize="18sp"/>
                 <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
                         android:ems="10"
                         android:id="@+id/etPartiesInvolved"
-                        android:hint="@string/parties_involved" android:layout_marginStart="16dp"/>
+                        android:hint="@string/parties_involved"
+                        android:layout_margin="8dp"/>
 
                 <TextView
                         android:text="@string/case_notes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tvCaseNotes"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginBottom="8dp"/>
+                        android:layout_margin="8dp" android:textSize="18sp"/>
                 <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
                         android:ems="10"
                         android:id="@+id/etCaseNotes"
-                        android:hint="@string/case_notes" android:layout_marginStart="16dp"/>
+                        android:hint="@string/case_notes"
+                        android:layout_margin="8dp"/>
 
                 <Button
                         android:text="Create Case"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/btnCourtCase"/>
+                        android:layout_height="wrap_content" android:id="@+id/btnCourtCase"
+                        android:layout_margin="8dp"/>
         </LinearLayout>
 </ScrollView>
