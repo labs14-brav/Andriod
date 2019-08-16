@@ -62,7 +62,7 @@
     <string-array name="price">
         <item>""</item>
         <item>&lt;25</item>
-        <item>25-75</item>
+        <item>25–75</item>
         <item>&gt;75</item>
     </string-array>
     <string-array name="language">
@@ -73,9 +73,9 @@
     </string-array>
     <string-array name="experience">
         <item>""</item>
-        <item>less than 2 years</item>
-        <item>2 to 5 years</item>
-        <item>greater than 5</item>
+        <item>&lt;2 years</item>
+        <item>2\-5 years</item>
+        <item>&gt;5 years</item>
     </string-array>
     <string-array name="specialization">
         <item>""</item>

@@ -20,7 +20,7 @@ class MediatorAdapter(private val list: ArrayList<Mediator>?) : RecyclerView.Ada
 
     class ViewHolder(private val container: View) : RecyclerView.ViewHolder(container) {
 
-        val tvMediatorId: TextView = container.tvMediatorId
+        val tvMediatorPrice: TextView = container.tvMediatorPrice
         val tvMediatorName: TextView = container.tvMediatorName
         val tvMediatorSpec: TextView = container.tvMediatorSpec
         val tvMediatorExperience: TextView = container.tvMediatorExperience
@@ -60,7 +60,7 @@ class MediatorAdapter(private val list: ArrayList<Mediator>?) : RecyclerView.Ada
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
        val mediator:Mediator? = list?.get(position)
         holder.bindMediator(list?.get(position))
-        holder.tvMediatorId.text = mediator?.id.toString()
+        holder.tvMediatorPrice.text = mediator?.price.toString()
         holder.tvMediatorName.text = mediator?.name.toString()
         holder.tvMediatorSpec.text = mediator?.specialization.toString()
         holder.tvMediatorExperience.text = mediator?.experience.toString()

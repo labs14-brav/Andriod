@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.thadocizn.brav.R
@@ -108,6 +109,7 @@ class MediatorActivity : AppCompatActivity() {
 
                 mediator = response.body() as ArrayList<Mediator>?
 
+                println(mediator.toString())
                 getRecycleView(mediator)
 
             }
@@ -118,7 +120,7 @@ class MediatorActivity : AppCompatActivity() {
     private fun getRecycleView(list: ArrayList<Mediator>?) {
         val adapter = MediatorAdapter(list)
         rvMediator.adapter = adapter
-        rvMediator.layoutManager = LinearLayoutManager(this)
+        rvMediator.layoutManager = GridLayoutManager(this, 2)
     }
 
 }
