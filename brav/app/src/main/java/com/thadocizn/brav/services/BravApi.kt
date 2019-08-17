@@ -16,6 +16,9 @@ interface BravApi {
     @GET("/cases")
     fun getCases(): Call<List<Case>>
 
+    @GET("/cases/{id}/pending-cases")
+    fun getPendingCases(@Path("id") userId:Int):Call<List<Case>>
+
     @GET("/mediators")
     fun getMediators(
         @Query("price") price: String,

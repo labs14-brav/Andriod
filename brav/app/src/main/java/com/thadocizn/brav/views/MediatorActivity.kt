@@ -10,6 +10,7 @@ import com.thadocizn.brav.adapters.MediatorAdapter
 import com.thadocizn.brav.models.Mediator
 import com.thadocizn.brav.services.BravApi
 import com.thadocizn.brav.services.RetroInstance
+import com.thadocizn.brav.utils.SharedPreference
 import kotlinx.android.synthetic.main.activity_mediator.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,26 +25,17 @@ class MediatorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mediator)
+        val sharedPreference = SharedPreference(this)
 
-        val mUser = FirebaseAuth.getInstance().currentUser
-        mUser!!.getIdToken(true)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    idToken = task.result!!.token.toString()
-                    caseId = intent.getIntExtra("caseId", 0)
-                    getMediators(idToken)
+        idToken = sharedPreference.getToken("token").toString()
+        caseId = intent.getIntExtra("caseId", 0)
 
-
-                } else {
-
-                    // Handle error -> task.getException();
-
-                }
-            }
         setupSpinners()
+        getMediators()
+
         btnSearch.setOnClickListener {
 
-           getMediators(idToken)
+           getMediators()
 
         }
 
@@ -89,13 +81,13 @@ class MediatorActivity : AppCompatActivity() {
 
     }
 
-    private fun getMediators(token: String) {
+    private fun getMediators() {
         val price: String = spPrice.selectedItem.toString()
         val language = spLanguage.selectedItem.toString()
         val specialty = spSpecialty.selectedItem.toString()
         val experience = spExperience.selectedItem.toString()
 
-        val service: BravApi = RetroInstance().service(token)
+        val service: BravApi = RetroInstance().service(idToken)
         val call = service.getMediators(price, experience, specialty, language)
 
         call.enqueue(object : Callback<List<Mediator>> {

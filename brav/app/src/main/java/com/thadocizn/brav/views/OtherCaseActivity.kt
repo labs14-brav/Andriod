@@ -7,6 +7,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.thadocizn.brav.R
 import com.thadocizn.brav.models.Case
 import com.thadocizn.brav.services.RetroInstance
+import com.thadocizn.brav.utils.SharedPreference
 import kotlinx.android.synthetic.main.activity_mediator.*
 import kotlinx.android.synthetic.main.activity_other_case.*
 import org.jetbrains.anko.startActivity
@@ -21,16 +22,10 @@ class OtherCaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_other_case)
 
-        val mUser = FirebaseAuth.getInstance().currentUser
-        mUser!!.getIdToken(true)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    idToken = task.result!!.token.toString()
-                    println(idToken.toString())
-                } else {
-                    // Handle error -> task.getException();
-                }
-            }
+        val sharedPreference = SharedPreference(this)
+
+        idToken = sharedPreference.getToken("token").toString()
+
         setupSpinner()
 
         btnSend.setOnClickListener {

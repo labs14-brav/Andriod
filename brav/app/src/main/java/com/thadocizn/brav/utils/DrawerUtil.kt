@@ -1,4 +1,4 @@
-package com.thadocizn.brav
+package com.thadocizn.brav.utils
 
 //import android.support.v4.content.ContextCompat.startActivity
 import android.content.Intent

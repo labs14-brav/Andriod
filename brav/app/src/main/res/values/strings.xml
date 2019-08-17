@@ -58,7 +58,6 @@
     <string name="name">Name:</string>
 
 
-
     <string-array name="price">
         <item>""</item>
         <item>&lt;25</item>

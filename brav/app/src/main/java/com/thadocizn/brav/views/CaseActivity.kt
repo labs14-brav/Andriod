@@ -7,13 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
-import com.thadocizn.brav.DrawerUtil
+import com.thadocizn.brav.utils.DrawerUtil
+import com.thadocizn.brav.PendingCasesActivity
 import com.thadocizn.brav.R
 import com.thadocizn.brav.adapters.CaseAdapter
 import com.thadocizn.brav.models.Case
-import com.thadocizn.brav.models.Mediator
 import com.thadocizn.brav.services.BravApi
 import com.thadocizn.brav.services.RetroInstance
+import com.thadocizn.brav.utils.SharedPreference
 import kotlinx.android.synthetic.main.activity_case.*
 import kotlinx.android.synthetic.main.content_case.*
 import org.jetbrains.anko.alert
@@ -33,23 +34,11 @@ class CaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_case)
         setSupportActionBar(tbCase)
+        val sharedPreference = SharedPreference(this)
 
-        val mUser = FirebaseAuth.getInstance().currentUser
-        mUser!!.getIdToken(true)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    idToken = task.result!!.token.toString()
-                    println(idToken.toString())
-                    getCases(idToken)
+        idToken = sharedPreference.getToken("token").toString()
 
-
-                } else {
-
-                    // Handle error -> task.getException();
-
-                }
-            }
-
+        getCases()
 
         DrawerUtil.getDrawer(this, tbCase)
         fab.setOnClickListener { view ->
@@ -65,7 +54,7 @@ class CaseActivity : AppCompatActivity() {
 
     override fun onRestart() {
         super.onRestart()
-        getCases(idToken)
+        getCases()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -84,8 +73,8 @@ class CaseActivity : AppCompatActivity() {
         }
     }
 
-    private fun getCases(token: String){
-        val service: BravApi = RetroInstance().service(token)
+    private fun getCases(){
+        val service: BravApi = RetroInstance().service(idToken)
         val call = service.getCases()
 
         call.enqueue(object : Callback<List<Case>> {

@@ -7,12 +7,14 @@ import com.thadocizn.brav.R
 import com.thadocizn.brav.models.Case
 import com.thadocizn.brav.models.CaseOut
 import com.thadocizn.brav.services.RetroInstance
+import com.thadocizn.brav.utils.SharedPreference
 import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class UserAccountActivity : AppCompatActivity() {
+    private lateinit var idToken: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,24 +22,15 @@ class UserAccountActivity : AppCompatActivity() {
         val mediator:Int = intent.getIntExtra("mediatorId",0)
         val caseId:Int = intent.getIntExtra("caseId", 0)
 
-        val mUser = FirebaseAuth.getInstance().currentUser
-        mUser!!.getIdToken(true)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                  val  idToken = task.result!!.token.toString()
+        val sharedPreference = SharedPreference(this)
 
-                    connect(idToken, mediator, caseId)
-                } else {
+        idToken = sharedPreference.getToken("token").toString()
 
-                    // Handle error -> task.getException();
-
-                }
-            }
 
     }
 
-    private fun connect(token: String, mediatorId:Int, caseId:Int) {
-        val service = RetroInstance().service(token)
+    private fun connect(mediatorId:Int, caseId:Int) {
+        val service = RetroInstance().service(idToken)
         val call = service.connect(mediatorId, CaseOut(caseId))
         call.enqueue(object : Callback<Case> {
             override fun onFailure(call: Call<Case>, t: Throwable) {
