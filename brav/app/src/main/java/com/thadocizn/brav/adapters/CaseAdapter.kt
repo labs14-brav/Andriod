@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.thadocizn.brav.views.CaseDetailsActivity
 import com.thadocizn.brav.R
 import com.thadocizn.brav.models.Case
+import com.thadocizn.brav.views.MediatorActivity
 import kotlinx.android.synthetic.main.list_item_case.view.*
 import org.jetbrains.anko.startActivity
 
@@ -39,6 +40,10 @@ class CaseAdapter(private val list: ArrayList<Case>?) : RecyclerView.Adapter<Cas
                         CaseDetailsActivity.CASE_PARTIES_INVOLVED to case.parties_involved,
                         CaseDetailsActivity.CASE_NOTES to case.case_notes
                     )
+                }
+                btnFindMediator.setOnClickListener {
+
+                    context.startActivity<MediatorActivity>("caseId" to case.id)
                 }
             }
         }

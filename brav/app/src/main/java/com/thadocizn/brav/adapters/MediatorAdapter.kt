@@ -16,7 +16,7 @@ import org.jetbrains.anko.*
 /**
  * Created by charles on 04,August,2019
  */
-class MediatorAdapter(private val list: ArrayList<Mediator>?) : RecyclerView.Adapter<MediatorAdapter.ViewHolder>() {
+class MediatorAdapter(private val list: ArrayList<Mediator>?, private val caseId: Int?) : RecyclerView.Adapter<MediatorAdapter.ViewHolder>() {
 
     class ViewHolder(private val container: View) : RecyclerView.ViewHolder(container) {
 
@@ -66,25 +66,9 @@ class MediatorAdapter(private val list: ArrayList<Mediator>?) : RecyclerView.Ada
         holder.tvMediatorExperience.text = mediator?.experience.toString()
         holder.tvMediatorLang.text = mediator?.language.toString()
         holder.btnConnect.setOnClickListener {
-            it.context.alert {
-                customView{
-                    verticalLayout{
-                        val label = textView{
-                            text = " Enter case Id"
-                        }
-
-                        val caseID = editText{
-                            hint = "CaseID"
-                        }
-
-                        positiveButton("Connect"){
-
-                            context.startActivity<UserAccountActivity>("mediatorId" to mediator!!.id, "caseId" to caseID.text.toString().toInt())
-                        }
-                    }
-                }
-
-            }.show()
+            it.context.startActivity<UserAccountActivity>(
+                "mediatorId" to mediator!!.id,
+                "caseId" to caseId)
         }
 
     }

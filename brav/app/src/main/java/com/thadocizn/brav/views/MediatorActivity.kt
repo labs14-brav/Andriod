@@ -3,9 +3,7 @@ package com.thadocizn.brav.views
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.thadocizn.brav.R
 import com.thadocizn.brav.adapters.MediatorAdapter
@@ -21,6 +19,7 @@ import retrofit2.Response
 class MediatorActivity : AppCompatActivity() {
     var mediator: ArrayList<Mediator>? = null
     private lateinit var idToken: String
+    var caseId:Int? = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +30,7 @@ class MediatorActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     idToken = task.result!!.token.toString()
+                    caseId = intent.getIntExtra("caseId", 0)
                     getMediators(idToken)
 
 
@@ -118,7 +118,7 @@ class MediatorActivity : AppCompatActivity() {
     }
 
     private fun getRecycleView(list: ArrayList<Mediator>?) {
-        val adapter = MediatorAdapter(list)
+        val adapter = MediatorAdapter(list, caseId)
         rvMediator.adapter = adapter
         rvMediator.layoutManager = GridLayoutManager(this, 2)
     }
