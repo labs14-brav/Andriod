@@ -10,14 +10,20 @@ import retrofit2.http.*
 
 interface BravApi {
 
-    @GET("users/auth")
-    fun getUser(): Call<User>
+   /* @GET("users/auth")
+    fun getUser(): Call<User>*/
 
     @GET("/cases")
     fun getCases(): Deferred<List<Case>>
 
     @GET("/cases/{id}/pending-cases")
     fun getPendingCases(@Path("id") userId:Int):Call<List<Case>>
+
+    @GET("/cases/{id}/active-cases")
+    fun getActiveCases(@Path("id") userId:Int):Deferred<List<Case>>
+
+    @GET("/cases/{id}/completed-cases")
+    fun getCompletedCases(@Path("id") userId:Int):Deferred<List<Case>>
 
     @GET("/mediators")
     fun getMediators(
