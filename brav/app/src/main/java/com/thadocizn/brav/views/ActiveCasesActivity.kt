@@ -1,8 +1,9 @@
-package com.thadocizn.brav
+package com.thadocizn.brav.views
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.thadocizn.brav.R
 import com.thadocizn.brav.models.Case
 import com.thadocizn.brav.services.RetroInstance
 import com.thadocizn.brav.utils.SharedPreference

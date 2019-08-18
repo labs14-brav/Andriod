@@ -11,11 +11,11 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".CompletedCasesActivity">
+        <activity android:name=".views.CompletedCasesActivity">
         </activity>
-        <activity android:name=".ActiveCasesActivity">
+        <activity android:name=".views.ActiveCasesActivity">
         </activity>
-        <activity android:name=".PendingCasesActivity">
+        <activity android:name=".views.PendingCasesActivity">
         </activity>
         <activity android:name=".views.MediatorDetailActivity">
         </activity>

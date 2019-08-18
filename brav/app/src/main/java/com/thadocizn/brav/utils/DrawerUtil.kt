@@ -10,11 +10,10 @@ import com.mikepenz.materialdrawer.DrawerBuilder
 import com.mikepenz.materialdrawer.model.DividerDrawerItem
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem
-import com.thadocizn.brav.ActiveCasesActivity
-import com.thadocizn.brav.CompletedCasesActivity
-import com.thadocizn.brav.PendingCasesActivity
+import com.thadocizn.brav.views.ActiveCasesActivity
+import com.thadocizn.brav.views.CompletedCasesActivity
+import com.thadocizn.brav.views.PendingCasesActivity
 import com.thadocizn.brav.views.CaseActivity
-import com.thadocizn.brav.views.MediatorActivity
 
 
 /**
