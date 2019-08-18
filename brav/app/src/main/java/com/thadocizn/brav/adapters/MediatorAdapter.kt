@@ -16,7 +16,7 @@ import org.jetbrains.anko.*
 /**
  * Created by charles on 04,August,2019
  */
-class MediatorAdapter(private val list: ArrayList<Mediator>?, private val caseId: Int?) : RecyclerView.Adapter<MediatorAdapter.ViewHolder>() {
+class MediatorAdapter(private val list: List<Mediator>?, private val caseId: Int?) : RecyclerView.Adapter<MediatorAdapter.ViewHolder>() {
 
     class ViewHolder(private val container: View) : RecyclerView.ViewHolder(container) {
 
@@ -55,7 +55,7 @@ class MediatorAdapter(private val list: ArrayList<Mediator>?, private val caseId
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int = list?.size!!
+    override fun getItemCount(): Int = list!!.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
        val mediator:Mediator? = list?.get(position)

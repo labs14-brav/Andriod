@@ -25,7 +25,7 @@ interface BravApi {
         @Query("experience") experience: String,
         @Query("specialization") specialization: String,
         @Query("language") language: String
-    ): Call<List<Mediator>>
+    ): Deferred<List<Mediator>>
 
     @POST("/mediators/{id}/cases")
     fun connect(@Path("id") mediatorId: Int, @Body case_id: CaseOut): Call<Case>
