@@ -20,10 +20,10 @@ interface BravApi {
     fun getPendingCases(@Path("id") userId:Int):Call<List<Case>>
 
     @GET("/cases/{id}/active-cases")
-    fun getActiveCases(@Path("id") userId:Int):Deferred<List<Case>>
+    fun getActiveCases(@Path("id") userId:Int):Call<List<Case>>
 
     @GET("/cases/{id}/completed-cases")
-    fun getCompletedCases(@Path("id") userId:Int):Deferred<List<Case>>
+    fun getCompletedCases(@Path("id") userId:Int):Call<List<Case>>
 
     @GET("/mediators")
     fun getMediators(

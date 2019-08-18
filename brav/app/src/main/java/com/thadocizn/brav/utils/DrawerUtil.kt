@@ -10,6 +10,8 @@ import com.mikepenz.materialdrawer.DrawerBuilder
 import com.mikepenz.materialdrawer.model.DividerDrawerItem
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem
+import com.thadocizn.brav.ActiveCasesActivity
+import com.thadocizn.brav.CompletedCasesActivity
 import com.thadocizn.brav.PendingCasesActivity
 import com.thadocizn.brav.views.CaseActivity
 import com.thadocizn.brav.views.MediatorActivity
@@ -75,12 +77,12 @@ object DrawerUtil {
                 }
                 if (drawerItem.identifier == 5L) {
                     // load tournament screen
-                    val intent = Intent(activity, MediatorActivity::class.java)
+                    val intent = Intent(activity, ActiveCasesActivity::class.java)
                     view.getContext().startActivity(intent)
                 }
                 if (drawerItem.identifier == 6L) {
                     // load tournament screen
-                    val intent = Intent(activity, MediatorActivity::class.java)
+                    val intent = Intent(activity, CompletedCasesActivity::class.java)
                     view.getContext().startActivity(intent)
                 }
                 true
