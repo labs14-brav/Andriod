@@ -30,7 +30,8 @@ class RetroInstance {
                 val newRequest = chain.request().newBuilder()
                     .addHeader("Authorization", token.toString())
                     .build()
-                chain.proceed(newRequest) }
+                chain.proceed(newRequest)
+            }
             .build()
 
         val retroInstance = Retrofit.Builder()

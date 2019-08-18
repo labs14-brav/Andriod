@@ -1,13 +1,13 @@
 package com.thadocizn.brav.views
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.thadocizn.brav.R
 import kotlinx.android.synthetic.main.activity_mediator_detail.*
 
 class MediatorDetailActivity : AppCompatActivity() {
 
-    companion object{
+    companion object {
 
         const val TYPE = "type"
         const val LICENSE = "license"
@@ -23,7 +23,7 @@ class MediatorDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_mediator_detail)
 
         val getMediator = intent.extras
-        if (getMediator != null){
+        if (getMediator != null) {
 
             val type = getMediator.getString(TYPE)
             val license = getMediator.getString(LICENSE)

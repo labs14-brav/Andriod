@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.thadocizn.brav.views.CaseDetailsActivity
 import com.thadocizn.brav.R
 import com.thadocizn.brav.models.Case
+import com.thadocizn.brav.views.CaseDetailsActivity
 import com.thadocizn.brav.views.MediatorActivity
 import kotlinx.android.synthetic.main.list_item_case.view.*
 import org.jetbrains.anko.startActivity

@@ -8,12 +8,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.thadocizn.brav.utils.DrawerUtil
 import com.thadocizn.brav.R
 import com.thadocizn.brav.adapters.CaseAdapter
 import com.thadocizn.brav.models.Case
-import com.thadocizn.brav.viewModel.CaseViewModel
+import com.thadocizn.brav.utils.DrawerUtil
 import com.thadocizn.brav.utils.SharedPreference
+import com.thadocizn.brav.viewModel.CaseViewModel
 import kotlinx.android.synthetic.main.activity_case.*
 import kotlinx.android.synthetic.main.content_case.*
 import org.jetbrains.anko.alert
@@ -22,7 +22,7 @@ import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.yesButton
 
 class CaseActivity : AppCompatActivity() {
-    var cases: ArrayList<Case>? = null
+
     private lateinit var idToken: String
     lateinit var viewModel: CaseViewModel
 
@@ -39,12 +39,12 @@ class CaseActivity : AppCompatActivity() {
 
         DrawerUtil.getDrawer(this, tbCase)
         fab.setOnClickListener { view ->
-           alert("Creating a court case. Press ok, otherwise press cancel") {
-               yesButton {
-                   startActivity<CourtCaseFormActivity>(getString(R.string.token) to idToken)
-               }
-               noButton {startActivity<OtherCaseActivity>(getString(R.string.token) to idToken)  }
-           }.show()
+            alert("Creating a court case. Press ok, otherwise press cancel") {
+                yesButton {
+                    startActivity<CourtCaseFormActivity>(getString(R.string.token) to idToken)
+                }
+                noButton { startActivity<OtherCaseActivity>(getString(R.string.token) to idToken) }
+            }.show()
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
@@ -70,31 +70,16 @@ class CaseActivity : AppCompatActivity() {
         }
     }
 
-    private fun getCases(){
+    private fun getCases() {
 
-        viewModel.getCases.observe(this, Observer {caseList ->
+        viewModel.getCases.observe(this, Observer { caseList ->
             getRecycleView(caseList)
         })
-        /* val service: BravApi = RetroInstance().service(idToken)
-        val call = service.getCases()
-
-        call.enqueue(object : Callback<List<Case>> {
-            override fun onFailure(call: Call<List<Case>>, t: Throwable) {
-                // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-            override fun onResponse(call: Call<List<Case>>, response: Response<List<Case>>) {
-                // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                cases = response.body() as ArrayList<Case>?
-                println(cases.toString())
-                getRecycleView(cases)
-            }
-
-        })*/
     }
+
     private fun getRecycleView(list: List<Case>?) {
         val adapter = CaseAdapter(list)
         rvCase.adapter = adapter
-        rvCase.layoutManager = GridLayoutManager(this,4) as RecyclerView.LayoutManager?
+        rvCase.layoutManager = GridLayoutManager(this, 4) as RecyclerView.LayoutManager?
     }
 }

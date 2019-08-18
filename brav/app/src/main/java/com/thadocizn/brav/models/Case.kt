@@ -1,12 +1,11 @@
 package com.thadocizn.brav.models
 
-import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class Case(
 
-    var id:Int? = null,
+    var id: Int? = null,
     var case_completed_at: String? = null,
     var description: String? = null,
     var dispute_category: String? = null,

@@ -1,8 +1,7 @@
 package com.thadocizn.brav.views
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.google.firebase.auth.FirebaseAuth
+import androidx.appcompat.app.AppCompatActivity
 import com.thadocizn.brav.R
 import com.thadocizn.brav.models.Case
 import com.thadocizn.brav.models.CaseOut
@@ -19,8 +18,8 @@ class UserAccountActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_account)
-        val mediator:Int = intent.getIntExtra("mediatorId",0)
-        val caseId:Int = intent.getIntExtra("caseId", 0)
+        val mediator: Int = intent.getIntExtra("mediatorId", 0)
+        val caseId: Int = intent.getIntExtra("caseId", 0)
 
         val sharedPreference = SharedPreference(this)
 
@@ -29,7 +28,7 @@ class UserAccountActivity : AppCompatActivity() {
 
     }
 
-    private fun connect(mediatorId:Int, caseId:Int) {
+    private fun connect(mediatorId: Int, caseId: Int) {
         val service = RetroInstance().service(idToken)
         val call = service.connect(mediatorId, CaseOut(caseId))
         call.enqueue(object : Callback<Case> {

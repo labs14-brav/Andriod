@@ -1,6 +1,5 @@
 package com.thadocizn.brav.views
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -8,13 +7,14 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.thadocizn.brav.utils.DrawerUtil
 import com.thadocizn.brav.R
 import com.thadocizn.brav.models.User
 import com.thadocizn.brav.services.BravApi
 import com.thadocizn.brav.services.RetroInstance
+import com.thadocizn.brav.utils.DrawerUtil
 import com.thadocizn.brav.utils.SharedPreference
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -79,10 +79,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun deactivateUser() {
         //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        val service:BravApi = RetroInstance().service(token)
+        val service: BravApi = RetroInstance().service(token)
         val call = service.deactivate()
 
-        call.enqueue(object :Callback<User>{
+        call.enqueue(object : Callback<User> {
             override fun onFailure(call: Call<User>, t: Throwable) {
             }
 
@@ -259,10 +259,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
-           /* status.text = getString(
-                R.string.email_password_status_fmt,
-                user.email, user.isEmailVerified
-            )*/
+            /* status.text = getString(
+                 R.string.email_password_status_fmt,
+                 user.email, user.isEmailVerified
+             )*/
             //detail.text = getString(R.string.fire_base_status_fmt, user.uid)
             emailPasswordButtons.visibility = View.GONE
             emailPasswordFields.visibility = View.GONE
@@ -273,7 +273,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             verifyEmailButton.isEnabled = !user.isEmailVerified
         } else {
             //status.setText(R.string.signed_out)
-           // detail.text = null
+            // detail.text = null
 
             emailPasswordButtons.visibility = View.VISIBLE
             emailPasswordFields.visibility = View.VISIBLE

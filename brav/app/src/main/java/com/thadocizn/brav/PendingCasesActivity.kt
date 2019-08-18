@@ -1,7 +1,7 @@
 package com.thadocizn.brav
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.thadocizn.brav.models.Case
 import com.thadocizn.brav.services.RetroInstance
@@ -43,7 +43,7 @@ class PendingCasesActivity : AppCompatActivity() {
         val service = RetroInstance().service(token)
         val call = service.getPendingCases(sharedPreference.getUserId("userId"))
 
-        call.enqueue(object : Callback<List<Case>>{
+        call.enqueue(object : Callback<List<Case>> {
             override fun onFailure(call: Call<List<Case>>, t: Throwable) {
                 //
             }

@@ -1,10 +1,9 @@
 package com.thadocizn.brav.views
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.firebase.auth.FirebaseAuth
 import com.thadocizn.brav.R
 import com.thadocizn.brav.adapters.MediatorAdapter
 import com.thadocizn.brav.models.Mediator
@@ -20,7 +19,7 @@ import retrofit2.Response
 class MediatorActivity : AppCompatActivity() {
     var mediator: ArrayList<Mediator>? = null
     private lateinit var idToken: String
-    var caseId:Int? = 0
+    var caseId: Int? = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +34,7 @@ class MediatorActivity : AppCompatActivity() {
 
         btnSearch.setOnClickListener {
 
-           getMediators()
+            getMediators()
 
         }
 

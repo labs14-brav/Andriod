@@ -1,14 +1,12 @@
 package com.thadocizn.brav.views
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import com.google.firebase.auth.FirebaseAuth
+import androidx.appcompat.app.AppCompatActivity
 import com.thadocizn.brav.R
 import com.thadocizn.brav.models.Case
 import com.thadocizn.brav.services.RetroInstance
 import com.thadocizn.brav.utils.SharedPreference
-import kotlinx.android.synthetic.main.activity_mediator.*
 import kotlinx.android.synthetic.main.activity_other_case.*
 import org.jetbrains.anko.startActivity
 import retrofit2.Call
@@ -47,7 +45,7 @@ class OtherCaseActivity : AppCompatActivity() {
     }
 
     private fun case(): Case {
-        var caseId:Int? = null
+        var caseId: Int? = null
         val caseAcceptedAt = ""
         val caseCompletedAt = ""
         val caseDeclinedAt = ""

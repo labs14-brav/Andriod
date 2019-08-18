@@ -19,24 +19,25 @@ class CaseRepo(application: Application) {
     private val coroutineScope = CoroutineScope(Dispatchers.IO + job)
     val token = SharedPreference(application.applicationContext).getToken("token").toString()
 
-    val caseList:MutableLiveData<List<Case>>
-    get() {
-        coroutineScope.launch {
-            val service =RetroInstance().service(token)
-            val call = service.getCaseList()
+    val caseList: MutableLiveData<List<Case>>
+        get() {
+            coroutineScope.launch {
+                val service = RetroInstance().service(token)
+                val call = service.getCases()
 
-            withContext(Dispatchers.Main){
+                withContext(Dispatchers.Main) {
 
-                try {
-                    val response = call.await()
-                    val case = response
-                    cases = case as MutableList<Case>
-                    mutableLiveData.value = cases
-                }catch (e:HttpException){}
+                    try {
+                        val response = call.await()
+                        val case = response
+                        cases = case as MutableList<Case>
+                        mutableLiveData.value = cases
+                    } catch (e: HttpException) {
+                    }
+                }
             }
-        }
 
-        return mutableLiveData
-    }
+            return mutableLiveData
+        }
 
 }
