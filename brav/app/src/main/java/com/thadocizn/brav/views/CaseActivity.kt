@@ -4,16 +4,15 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.auth.FirebaseAuth
 import com.thadocizn.brav.utils.DrawerUtil
-import com.thadocizn.brav.PendingCasesActivity
 import com.thadocizn.brav.R
 import com.thadocizn.brav.adapters.CaseAdapter
 import com.thadocizn.brav.models.Case
-import com.thadocizn.brav.services.BravApi
-import com.thadocizn.brav.services.RetroInstance
+import com.thadocizn.brav.viewModel.CaseViewModel
 import com.thadocizn.brav.utils.SharedPreference
 import kotlinx.android.synthetic.main.activity_case.*
 import kotlinx.android.synthetic.main.content_case.*
@@ -21,14 +20,11 @@ import org.jetbrains.anko.alert
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.yesButton
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class CaseActivity : AppCompatActivity() {
     var cases: ArrayList<Case>? = null
     private lateinit var idToken: String
-
+    lateinit var viewModel: CaseViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +34,7 @@ class CaseActivity : AppCompatActivity() {
 
         idToken = sharedPreference.getToken("token").toString()
 
+        viewModel = ViewModelProviders.of(this).get(CaseViewModel::class.java)
         getCases()
 
         DrawerUtil.getDrawer(this, tbCase)
@@ -74,7 +71,11 @@ class CaseActivity : AppCompatActivity() {
     }
 
     private fun getCases(){
-        val service: BravApi = RetroInstance().service(idToken)
+
+        viewModel.getCases.observe(this, Observer {caseList ->
+            getRecycleView(caseList)
+        })
+        /* val service: BravApi = RetroInstance().service(idToken)
         val call = service.getCases()
 
         call.enqueue(object : Callback<List<Case>> {
@@ -89,9 +90,9 @@ class CaseActivity : AppCompatActivity() {
                 getRecycleView(cases)
             }
 
-        })
+        })*/
     }
-    private fun getRecycleView(list: ArrayList<Case>?) {
+    private fun getRecycleView(list: List<Case>?) {
         val adapter = CaseAdapter(list)
         rvCase.adapter = adapter
         rvCase.layoutManager = GridLayoutManager(this,4) as RecyclerView.LayoutManager?

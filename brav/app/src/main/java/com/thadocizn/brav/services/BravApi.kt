@@ -4,8 +4,8 @@ import com.thadocizn.brav.models.Case
 import com.thadocizn.brav.models.CaseOut
 import com.thadocizn.brav.models.Mediator
 import com.thadocizn.brav.models.User
+import kotlinx.coroutines.Deferred
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.*
 
 interface BravApi {
@@ -15,6 +15,9 @@ interface BravApi {
 
     @GET("/cases")
     fun getCases(): Call<List<Case>>
+
+    @GET("/cases")
+    fun getCaseList(): Deferred<List<Case>>
 
     @GET("/cases/{id}/pending-cases")
     fun getPendingCases(@Path("id") userId:Int):Call<List<Case>>
