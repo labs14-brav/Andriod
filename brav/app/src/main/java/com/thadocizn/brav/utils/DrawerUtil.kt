@@ -14,6 +14,7 @@ import com.thadocizn.brav.views.ActiveCasesActivity
 import com.thadocizn.brav.views.CompletedCasesActivity
 import com.thadocizn.brav.views.PendingCasesActivity
 import com.thadocizn.brav.views.CaseActivity
+import org.jetbrains.anko.startActivity
 
 
 /**
@@ -64,25 +65,13 @@ object DrawerUtil {
                 drawerItemDonate
             )
             .withOnDrawerItemClickListener { view, position, drawerItem ->
-                if (drawerItem.identifier == 3L) {
-                    // load tournament screen
-                    val intent = Intent(activity, CaseActivity::class.java)
-                    view.getContext().startActivity(intent)
-                }
-                if (drawerItem.identifier == 4L) {
-                    // load tournament screen
-                    val intent = Intent(activity, PendingCasesActivity::class.java)
-                    view.getContext().startActivity(intent)
-                }
-                if (drawerItem.identifier == 5L) {
-                    // load tournament screen
-                    val intent = Intent(activity, ActiveCasesActivity::class.java)
-                    view.getContext().startActivity(intent)
-                }
-                if (drawerItem.identifier == 6L) {
-                    // load tournament screen
-                    val intent = Intent(activity, CompletedCasesActivity::class.java)
-                    view.getContext().startActivity(intent)
+
+                when(drawerItem.identifier){
+
+                    3L -> {view.context.startActivity<CaseActivity>()}
+                    4L -> {view.context.startActivity<PendingCasesActivity>()}
+                    5L -> {view.context.startActivity<ActiveCasesActivity>()}
+                    6L -> {view.context.startActivity<CompletedCasesActivity>()}
                 }
                 true
             }
