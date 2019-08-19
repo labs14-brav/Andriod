@@ -14,7 +14,7 @@ import retrofit2.HttpException
 class CaseRepo(application: Application) {
 
     private var cases = mutableListOf<Case>()
-    private val mutableLiveData = MutableLiveData<List<Case>>()
+    private val mutableLiveDataAllCases = MutableLiveData<List<Case>>()
     val job = Job()
     private val coroutineScope = CoroutineScope(Dispatchers.IO + job)
     val token = SharedPreference(application.applicationContext).getToken("token").toString()
@@ -23,21 +23,20 @@ class CaseRepo(application: Application) {
         get() {
             coroutineScope.launch {
                 val service = RetroInstance().service(token)
-                val call = service.getCases()
+                val call = service.getCasesAsync()
 
                 withContext(Dispatchers.Main) {
 
                     try {
                         val response = call.await()
-                        val case = response
-                        cases = case as MutableList<Case>
-                        mutableLiveData.value = cases
+                        cases = response as MutableList<Case>
+                        mutableLiveDataAllCases.value = cases
                     } catch (e: HttpException) {
                     }
                 }
             }
 
-            return mutableLiveData
+            return mutableLiveDataAllCases
         }
 
 }

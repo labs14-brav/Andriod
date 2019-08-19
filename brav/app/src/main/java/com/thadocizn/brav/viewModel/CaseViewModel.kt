@@ -12,7 +12,7 @@ import com.thadocizn.brav.repos.CaseRepo
 class CaseViewModel(application: Application) : AndroidViewModel(application) {
 
 
-    val repo = CaseRepo(application)
+    private val repo = CaseRepo(application)
 
     val getCases: LiveData<List<Case>>
         get() =

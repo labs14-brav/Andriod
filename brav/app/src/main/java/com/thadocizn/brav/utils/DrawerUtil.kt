@@ -4,15 +4,11 @@ package com.thadocizn.brav.utils
 //import android.support.v7.widget.Toolbar
 import android.R
 import android.app.Activity
-import android.content.Intent
 import androidx.appcompat.widget.Toolbar
 import com.mikepenz.materialdrawer.DrawerBuilder
 import com.mikepenz.materialdrawer.model.DividerDrawerItem
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem
-import com.thadocizn.brav.views.ActiveCasesActivity
-import com.thadocizn.brav.views.CompletedCasesActivity
-import com.thadocizn.brav.views.PendingCasesActivity
 import com.thadocizn.brav.views.CaseActivity
 import org.jetbrains.anko.startActivity
 
@@ -38,13 +34,6 @@ object DrawerUtil {
 
         val drawerItemSettings = SecondaryDrawerItem().withIdentifier(3)
             .withName("Cases").withIcon(R.drawable.arrow_down_float)
-        val drawerItemHelp = SecondaryDrawerItem().withIdentifier(4)
-            .withName("Pending").withIcon(R.drawable.btn_dropdown)
-        val drawerItemAbout = SecondaryDrawerItem().withIdentifier(5)
-            .withName("Active").withIcon(R.drawable.btn_dropdown)
-        val drawerItemDonate = SecondaryDrawerItem().withIdentifier(6)
-            .withName("Completed").withIcon(R.drawable.btn_dropdown)
-
 
         //create the drawer and remember the `Drawer` result object
         val result = DrawerBuilder()
@@ -59,19 +48,15 @@ object DrawerUtil {
                 drawerItemManageUser,
                 drawerItemManageUserEmail,
                 DividerDrawerItem(),
-                drawerItemAbout,
-                drawerItemSettings,
-                drawerItemHelp,
-                drawerItemDonate
+                drawerItemSettings
+
             )
             .withOnDrawerItemClickListener { view, position, drawerItem ->
 
                 when(drawerItem.identifier){
 
                     3L -> {view.context.startActivity<CaseActivity>()}
-                    4L -> {view.context.startActivity<PendingCasesActivity>()}
-                    5L -> {view.context.startActivity<ActiveCasesActivity>()}
-                    6L -> {view.context.startActivity<CompletedCasesActivity>()}
+
                 }
                 true
             }

@@ -14,19 +14,10 @@ interface BravApi {
     fun getUser(): Call<User>*/
 
     @GET("/cases")
-    fun getCases(): Deferred<List<Case>>
-
-    @GET("/cases/{id}/pending-cases")
-    fun getPendingCases(@Path("id") userId:Int):Call<List<Case>>
-
-    @GET("/cases/{id}/active-cases")
-    fun getActiveCases(@Path("id") userId:Int):Call<List<Case>>
-
-    @GET("/cases/{id}/completed-cases")
-    fun getCompletedCases(@Path("id") userId:Int):Call<List<Case>>
+    fun getCasesAsync(): Deferred<List<Case>>
 
     @GET("/mediators")
-    fun getMediators(
+    fun getMediatorsAsync(
         @Query("price") price: String,
         @Query("experience") experience: String,
         @Query("specialization") specialization: String,

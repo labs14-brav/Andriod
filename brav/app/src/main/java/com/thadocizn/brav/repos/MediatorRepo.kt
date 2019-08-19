@@ -23,14 +23,13 @@ class MediatorRepo(application: Application, val price:String, val language:Stri
         get() {
             coroutineScope.launch {
                 val service = RetroInstance().service(token)
-                val call = service.getMediators(price,language,specialty, experience)
+                val call = service.getMediatorsAsync(price,language,specialty, experience)
 
                 withContext(Dispatchers.Main) {
 
                     try {
                         val response = call.await()
-                        val mediator = response
-                        mediators = mediator as MutableList<Mediator>
+                        mediators = response as MutableList<Mediator>
                         mutableLiveData.value = mediators
                     } catch (e: HttpException) {
                     }
