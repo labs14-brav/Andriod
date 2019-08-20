@@ -2,12 +2,14 @@ package com.thadocizn.brav.views
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.thadocizn.brav.R
 import com.thadocizn.brav.models.Case
 import com.thadocizn.brav.models.CaseOut
 import com.thadocizn.brav.services.RetroInstance
 import com.thadocizn.brav.utils.SharedPreference
 import kotlinx.android.synthetic.main.activity_user_account.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
@@ -15,13 +17,14 @@ import retrofit2.Response
 
 class UserAccountActivity : AppCompatActivity() {
     private lateinit var idToken: String
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_account)
         val mediator: Int = intent.getIntExtra("mediatorId", 0)
         val caseId: Int = intent.getIntExtra("caseId", 0)
-
+        this.auth = FirebaseAuth.getInstance()
 
         val sharedPreference = SharedPreference(this)
         idToken = sharedPreference.getToken("token").toString()
@@ -33,6 +36,10 @@ class UserAccountActivity : AppCompatActivity() {
             connect(mediator, caseId)
         }
 
+        btnSignOut.setOnClickListener {
+            auth.signOut()
+            startActivity<MainActivity>()
+             }
 
     }
 
