@@ -10,6 +10,7 @@ import com.mikepenz.materialdrawer.model.DividerDrawerItem
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem
 import com.thadocizn.brav.views.CaseActivity
+import com.thadocizn.brav.views.UserAccountActivity
 import org.jetbrains.anko.startActivity
 
 
@@ -25,18 +26,21 @@ object DrawerUtil {
         val id = SharedPreference(activity.baseContext).getUserId("userId").toString()
 
         val drawerItemManageUser = PrimaryDrawerItem().withIdentifier(1)
-            .withName(id).withIcon(
-                R.drawable.sym_def_app_icon
+            .withName("User ID: $id").withIcon(
+                R.drawable.btn_star
             )
         val drawerItemManageUserEmail = PrimaryDrawerItem()
-            .withIdentifier(2).withName(email).withIcon(R.drawable.alert_dark_frame)
+            .withIdentifier(2).withName(email).withIcon(R.drawable.ic_dialog_email)
 
 
-        val drawerItemSettings = SecondaryDrawerItem().withIdentifier(3)
+        val drawerItemCase = SecondaryDrawerItem().withIdentifier(3)
             .withName("Cases").withIcon(R.drawable.arrow_down_float)
 
+        val drawerItemSettings = SecondaryDrawerItem().withIdentifier(4)
+            .withName("Settings").withIcon(R.drawable.dark_header)
+
         //create the drawer and remember the `Drawer` result object
-        val result = DrawerBuilder()
+        DrawerBuilder()
             .withActivity(activity)
             .withToolbar(toolbar)
             .withActionBarDrawerToggle(true)
@@ -48,15 +52,16 @@ object DrawerUtil {
                 drawerItemManageUser,
                 drawerItemManageUserEmail,
                 DividerDrawerItem(),
+                drawerItemCase,
                 drawerItemSettings
 
             )
-            .withOnDrawerItemClickListener { view, position, drawerItem ->
+            .withOnDrawerItemClickListener { view, _, drawerItem ->
 
                 when(drawerItem.identifier){
 
                     3L -> {view.context.startActivity<CaseActivity>()}
-
+                    4L -> {view.context.startActivity<UserAccountActivity>()}
                 }
                 true
             }

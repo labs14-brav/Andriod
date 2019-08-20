@@ -7,6 +7,7 @@ import com.thadocizn.brav.models.Case
 import com.thadocizn.brav.models.CaseOut
 import com.thadocizn.brav.services.RetroInstance
 import com.thadocizn.brav.utils.SharedPreference
+import kotlinx.android.synthetic.main.activity_user_account.*
 import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,9 +22,16 @@ class UserAccountActivity : AppCompatActivity() {
         val mediator: Int = intent.getIntExtra("mediatorId", 0)
         val caseId: Int = intent.getIntExtra("caseId", 0)
 
-        val sharedPreference = SharedPreference(this)
 
+        val sharedPreference = SharedPreference(this)
         idToken = sharedPreference.getToken("token").toString()
+
+        val userEmail = sharedPreference.getUserEmail("userEmail")
+        tvUserEmail.text = userEmail
+
+            if (mediator != 0 && caseId != 0){
+            connect(mediator, caseId)
+        }
 
 
     }

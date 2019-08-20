@@ -52,6 +52,7 @@ class CaseDetailsActivity : AppCompatActivity() {
             tvCaseDetailDesc.text = description
             tvCaseDetailPartiesInvolved.text = involved
             tvCaseDetailPartiesInfo.text = info
+            tvCaseDetailNotes.text = notes
 
             if (caseCourt) {
                 llcourtCase.visibility = View.VISIBLE
