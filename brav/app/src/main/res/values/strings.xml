@@ -56,6 +56,7 @@
     <string name="specialization">Specialization:</string>
     <string name="professional_bio">Professional BIO:</string>
     <string name="name">Name:</string>
+    <string name="settings">Settings</string>
 
 
     <string-array name="price">
