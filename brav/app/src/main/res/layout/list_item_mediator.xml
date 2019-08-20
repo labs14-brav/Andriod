@@ -20,29 +20,31 @@
             <TextView
                     android:text="TextView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/tvMediatorId"/>
+                    android:layout_height="wrap_content" android:id="@+id/tvMediatorPrice" android:layout_margin="8dp"/>
 
             <TextView
                     android:text="TextView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/tvMediatorName"/>
+                    android:layout_height="wrap_content" android:id="@+id/tvMediatorName" android:layout_margin="8dp"/>
 
             <TextView
                     android:text="TextView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/tvMediatorSpec"/>
+                    android:layout_height="wrap_content" android:id="@+id/tvMediatorSpec" android:layout_margin="8dp"/>
             <TextView
                     android:text="TextView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/tvMediatorExperience"/>
+                    android:layout_height="wrap_content" android:id="@+id/tvMediatorExperience"
+                    android:layout_margin="8dp"/>
             <TextView
                     android:text="TextView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/tvMediatorLang"/>
+                    android:layout_height="wrap_content" android:id="@+id/tvMediatorLang" android:layout_margin="8dp"/>
             <Button
                     android:text="Connect"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/btnConnect" android:layout_gravity="center"/>
+                    android:layout_height="wrap_content" android:id="@+id/btnConnect" android:layout_gravity="center"
+                    android:layout_margin="8dp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

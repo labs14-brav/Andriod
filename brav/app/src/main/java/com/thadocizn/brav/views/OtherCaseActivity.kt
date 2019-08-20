@@ -1,14 +1,14 @@
 package com.thadocizn.brav.views
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import com.google.firebase.auth.FirebaseAuth
+import androidx.appcompat.app.AppCompatActivity
 import com.thadocizn.brav.R
 import com.thadocizn.brav.models.Case
 import com.thadocizn.brav.services.RetroInstance
-import kotlinx.android.synthetic.main.activity_mediator.*
+import com.thadocizn.brav.utils.SharedPreference
 import kotlinx.android.synthetic.main.activity_other_case.*
+import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,21 +20,16 @@ class OtherCaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_other_case)
 
-        val mUser = FirebaseAuth.getInstance().currentUser
-        mUser!!.getIdToken(true)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    idToken = task.result!!.token.toString()
-                    println(idToken.toString())
-                } else {
-                    // Handle error -> task.getException();
-                }
-            }
+        val sharedPreference = SharedPreference(this)
+
+        idToken = sharedPreference.getToken("token").toString()
+
         setupSpinner()
 
         btnSend.setOnClickListener {
             val case: Case = case()
             createCase(case)
+            startActivity<CaseActivity>()
         }
     }
 
@@ -50,7 +45,7 @@ class OtherCaseActivity : AppCompatActivity() {
     }
 
     private fun case(): Case {
-        var caseId:Int? = null
+        var caseId: Int? = null
         val caseAcceptedAt = ""
         val caseCompletedAt = ""
         val caseDeclinedAt = ""

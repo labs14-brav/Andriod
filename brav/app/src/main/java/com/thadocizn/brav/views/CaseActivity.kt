@@ -4,68 +4,54 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.auth.FirebaseAuth
-import com.thadocizn.brav.DrawerUtil
 import com.thadocizn.brav.R
 import com.thadocizn.brav.adapters.CaseAdapter
 import com.thadocizn.brav.models.Case
-import com.thadocizn.brav.models.Mediator
-import com.thadocizn.brav.services.BravApi
-import com.thadocizn.brav.services.RetroInstance
+import com.thadocizn.brav.utils.DrawerUtil
+import com.thadocizn.brav.utils.SharedPreference
+import com.thadocizn.brav.viewModel.CaseViewModel
 import kotlinx.android.synthetic.main.activity_case.*
 import kotlinx.android.synthetic.main.content_case.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.yesButton
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class CaseActivity : AppCompatActivity() {
-    var cases: ArrayList<Case>? = null
-    private lateinit var idToken: String
 
+    private lateinit var idToken: String
+    lateinit var viewModel: CaseViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_case)
         setSupportActionBar(tbCase)
+        val sharedPreference = SharedPreference(this)
 
-        val mUser = FirebaseAuth.getInstance().currentUser
-        mUser!!.getIdToken(true)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    idToken = task.result!!.token.toString()
-                    println(idToken.toString())
-                    getCases(idToken)
+        idToken = sharedPreference.getToken("token").toString()
 
-
-                } else {
-
-                    // Handle error -> task.getException();
-
-                }
-            }
-
+        viewModel = ViewModelProviders.of(this).get(CaseViewModel::class.java)
+        getCases()
 
         DrawerUtil.getDrawer(this, tbCase)
         fab.setOnClickListener { view ->
-           alert("Creating a court case. Press ok, otherwise press cancel") {
-               yesButton {
-                   startActivity<CourtCaseFormActivity>(getString(R.string.token) to idToken)
-               }
-               noButton {startActivity<OtherCaseActivity>(getString(R.string.token) to idToken)  }
-           }.show()
+            alert("Creating a court case! Press Court Case, otherwise press Other") {
+                positiveButton("Court Case") {
+                    startActivity<CourtCaseFormActivity>(getString(R.string.token) to idToken)
+                }
+                negativeButton("Other") { startActivity<OtherCaseActivity>(getString(R.string.token) to idToken) }
+            }.show()
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onRestart() {
         super.onRestart()
-        getCases(idToken)
+        getCases()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -84,27 +70,16 @@ class CaseActivity : AppCompatActivity() {
         }
     }
 
-    private fun getCases(token: String){
-        val service: BravApi = RetroInstance().service(token)
-        val call = service.getCases()
+    private fun getCases() {
 
-        call.enqueue(object : Callback<List<Case>> {
-            override fun onFailure(call: Call<List<Case>>, t: Throwable) {
-                // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-            override fun onResponse(call: Call<List<Case>>, response: Response<List<Case>>) {
-                // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                cases = response.body() as ArrayList<Case>?
-                println(cases.toString())
-                getRecycleView(cases)
-            }
-
+        viewModel.getCases.observe(this, Observer { caseList ->
+            getRecycleView(caseList)
         })
     }
-    private fun getRecycleView(list: ArrayList<Case>?) {
+
+    private fun getRecycleView(list: List<Case>?) {
         val adapter = CaseAdapter(list)
         rvCase.adapter = adapter
-        rvCase.layoutManager = GridLayoutManager(this,4) as RecyclerView.LayoutManager?
+        rvCase.layoutManager = GridLayoutManager(this, 4)
     }
 }

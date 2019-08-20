@@ -1,6 +1,5 @@
 package com.thadocizn.brav.views
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -8,15 +7,15 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.thadocizn.brav.DrawerUtil
 import com.thadocizn.brav.R
-import com.thadocizn.brav.models.Case
-import com.thadocizn.brav.models.Mediator
 import com.thadocizn.brav.models.User
 import com.thadocizn.brav.services.BravApi
 import com.thadocizn.brav.services.RetroInstance
+import com.thadocizn.brav.utils.DrawerUtil
+import com.thadocizn.brav.utils.SharedPreference
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import org.jetbrains.anko.alert
@@ -32,12 +31,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var auth: FirebaseAuth
     lateinit var bravUser: User
     lateinit var token: String
+    lateinit var sharedPreference: SharedPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         this.auth = FirebaseAuth.getInstance()
         this.auth.signOut()
+
+        sharedPreference = SharedPreference(this)
 
         setSupportActionBar(tbMain)
 
@@ -77,10 +79,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun deactivateUser() {
         //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        val service:BravApi = RetroInstance().service(token)
+        val service: BravApi = RetroInstance().service(token)
         val call = service.deactivate()
 
-        call.enqueue(object :Callback<User>{
+        call.enqueue(object : Callback<User> {
             override fun onFailure(call: Call<User>, t: Throwable) {
             }
 
@@ -93,7 +95,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun registerUser() {
-        val service: BravApi = RetroInstance().service(token)
+        val service: BravApi = RetroInstance().service(sharedPreference.getToken("token"))
         val call = service.loginUser()
 
         call.enqueue(object : Callback<User> {
@@ -103,6 +105,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 bravUser = response.body()!!
+
+                sharedPreference.saveUserEmail("userEmail", bravUser.email)
+                sharedPreference.saveUserId("userId", bravUser.id)
 
             }
         })
@@ -141,6 +146,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     val user = auth.currentUser
                     user!!.getIdToken(true).addOnSuccessListener { result ->
                         token = result.token.toString()
+                        sharedPreference.saveToken("token", token)
                         registerUser()
                     }
 
@@ -172,6 +178,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     val user = auth.currentUser
                     user!!.getIdToken(true).addOnSuccessListener { result ->
                         token = result.token.toString()
+                        sharedPreference.saveToken("token", token)
                         registerUser()
 
                     }
@@ -252,10 +259,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
-           /* status.text = getString(
-                R.string.email_password_status_fmt,
-                user.email, user.isEmailVerified
-            )*/
+            /* status.text = getString(
+                 R.string.email_password_status_fmt,
+                 user.email, user.isEmailVerified
+             )*/
             //detail.text = getString(R.string.fire_base_status_fmt, user.uid)
             emailPasswordButtons.visibility = View.GONE
             emailPasswordFields.visibility = View.GONE
@@ -266,7 +273,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             verifyEmailButton.isEnabled = !user.isEmailVerified
         } else {
             //status.setText(R.string.signed_out)
-           // detail.text = null
+            // detail.text = null
 
             emailPasswordButtons.visibility = View.VISIBLE
             emailPasswordFields.visibility = View.VISIBLE

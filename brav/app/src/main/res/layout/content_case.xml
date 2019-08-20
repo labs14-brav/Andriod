@@ -7,9 +7,9 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/activity_case"
-        tools:context=".views.CaseActivity">
+        tools:context=".views.CaseActivity" android:layout_margin="8dp">
 
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" android:id="@+id/rvCase"/>
+            android:layout_height="match_parent" android:id="@+id/rvCase" android:layout_margin="8dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

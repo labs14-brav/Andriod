@@ -4,16 +4,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.thadocizn.brav.views.CaseDetailsActivity
 import com.thadocizn.brav.R
 import com.thadocizn.brav.models.Case
+import com.thadocizn.brav.views.CaseDetailsActivity
+import com.thadocizn.brav.views.MediatorActivity
 import kotlinx.android.synthetic.main.list_item_case.view.*
 import org.jetbrains.anko.startActivity
 
 /**
  * Created by charles on 04,August,2019
  */
-class CaseAdapter(private val list: ArrayList<Case>?) : RecyclerView.Adapter<CaseAdapter.ViewHolder>() {
+class CaseAdapter(private val list: List<Case>?) : RecyclerView.Adapter<CaseAdapter.ViewHolder>() {
     class ViewHolder(private val container: View) : RecyclerView.ViewHolder(container) {
 
         fun bindCase(case: Case) {
@@ -40,6 +41,10 @@ class CaseAdapter(private val list: ArrayList<Case>?) : RecyclerView.Adapter<Cas
                         CaseDetailsActivity.CASE_NOTES to case.case_notes
                     )
                 }
+                btnFindMediator.setOnClickListener {
+
+                    context.startActivity<MediatorActivity>("caseId" to case.id)
+                }
             }
         }
     }
@@ -49,7 +54,7 @@ class CaseAdapter(private val list: ArrayList<Case>?) : RecyclerView.Adapter<Cas
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int = list?.size!!
+    override fun getItemCount(): Int = list!!.size
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

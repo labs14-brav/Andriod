@@ -7,43 +7,27 @@
         android:layout_height="wrap_content"
         tools:context=".views.UserAccountActivity" android:orientation="vertical">
 
-    <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <TextView
-                android:text="Contact Info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/textView2" android:textSize="36sp"/>
-        <TextView
-                android:text="Name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/tvLabel" android:textSize="24sp"/>
-        <TextView
-                android:text="TextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/tvUserName" android:textSize="18sp"/>
-        <TextView
-                android:text="Email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/textView3" android:textSize="24sp"/>
-        <TextView
-                android:text="TextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/tvUserEmail" android:textSize="18sp"/>
-        <TextView
-                android:text="Time Zone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/textView4" android:textSize="24sp"/>
-        <TextView
-                android:text="TextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/tvUserTimeZone" android:textSize="18sp"/>
 
+        <TextView
+                android:text="User Account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/tvLabel" android:textSize="18sp"/>
+        <TextView
+                android:text="@string/place_holder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/tvUserEmail" android:textSize="24sp"/>
+
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <Button
+                android:text="Deactivate Account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/btnDeactivateAccount"
+                android:gravity="start"/>
+        <Button
+                android:text="Sign out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/btnSignOut"
+                android:gravity="start"/>
     </LinearLayout>
-    <Button
-            android:text="Become a Mediator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/btnBecomeMediator"
-            android:gravity="start"/>
+
 </LinearLayout>

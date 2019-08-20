@@ -16,22 +16,27 @@
 
                     android:text="TextView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/tvCaseId"/>
+                    android:layout_height="wrap_content" android:id="@+id/tvCaseId" android:layout_margin="8dp"/>
             <TextView
 
                     android:text="TextView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/tvCaseType"/>
+                    android:layout_height="wrap_content" android:id="@+id/tvCaseType" android:layout_margin="8dp"/>
             <TextView
 
                     android:text="TextView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/tvCaseAmount"/>
+                    android:layout_height="wrap_content" android:id="@+id/tvCaseAmount" android:layout_margin="8dp"/>
             <TextView
 
                     android:text="TextView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/tvCaseNote"/>
+                    android:layout_height="wrap_content" android:id="@+id/tvCaseNote" android:layout_margin="8dp"/>
+            <Button
+                    android:text="Find Mediator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/btnFindMediator"
+                    android:layout_gravity="center"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

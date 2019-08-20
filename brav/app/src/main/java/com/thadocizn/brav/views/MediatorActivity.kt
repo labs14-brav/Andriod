@@ -1,16 +1,19 @@
 package com.thadocizn.brav.views
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.Spinner
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.firebase.auth.FirebaseAuth
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import com.thadocizn.brav.R
 import com.thadocizn.brav.adapters.MediatorAdapter
 import com.thadocizn.brav.models.Mediator
+import com.thadocizn.brav.models.MediatorCustomViewModel
 import com.thadocizn.brav.services.BravApi
 import com.thadocizn.brav.services.RetroInstance
+import com.thadocizn.brav.utils.SharedPreference
+import com.thadocizn.brav.viewModel.MediatorViewModel
 import kotlinx.android.synthetic.main.activity_mediator.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,31 +21,24 @@ import retrofit2.Response
 
 
 class MediatorActivity : AppCompatActivity() {
-    var mediator: ArrayList<Mediator>? = null
     private lateinit var idToken: String
+    var caseId: Int? = 0
+    lateinit var viewModel:MediatorViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mediator)
+        val sharedPreference = SharedPreference(this)
 
-        val mUser = FirebaseAuth.getInstance().currentUser
-        mUser!!.getIdToken(true)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    idToken = task.result!!.token.toString()
-                    getMediators(idToken)
+        idToken = sharedPreference.getToken("token").toString()
+        caseId = intent.getIntExtra("caseId", 0)
 
-
-                } else {
-
-                    // Handle error -> task.getException();
-
-                }
-            }
         setupSpinners()
+        getMediators()
+
         btnSearch.setOnClickListener {
 
-           getMediators(idToken)
+            getMediators()
 
         }
 
@@ -88,37 +84,24 @@ class MediatorActivity : AppCompatActivity() {
 
     }
 
-    private fun getMediators(token: String) {
+    private fun getMediators() {
         val price: String = spPrice.selectedItem.toString()
         val language = spLanguage.selectedItem.toString()
         val specialty = spSpecialty.selectedItem.toString()
         val experience = spExperience.selectedItem.toString()
+        viewModel = ViewModelProviders.of(this,MediatorCustomViewModel(application,price,language,specialty,experience)).get(MediatorViewModel::class.java)
 
-        val service: BravApi = RetroInstance().service(token)
-        val call = service.getMediators(price, experience, specialty, language)
+        viewModel.getMediators.observe(this, Observer { mediatorList ->
 
-        call.enqueue(object : Callback<List<Mediator>> {
-            override fun onFailure(call: Call<List<Mediator>>, t: Throwable) {
-                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                println(t.message)
-            }
-
-            override fun onResponse(call: Call<List<Mediator>>, response: Response<List<Mediator>>) {
-                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-
-                mediator = response.body() as ArrayList<Mediator>?
-
-                getRecycleView(mediator)
-
-            }
-
+            getRecycleView(mediatorList)
         })
+
     }
 
-    private fun getRecycleView(list: ArrayList<Mediator>?) {
-        val adapter = MediatorAdapter(list)
+    private fun getRecycleView(list: List<Mediator>?) {
+        val adapter = MediatorAdapter(list, caseId)
         rvMediator.adapter = adapter
-        rvMediator.layoutManager = LinearLayoutManager(this)
+        rvMediator.layoutManager = GridLayoutManager(this, 2)
     }
 
 }

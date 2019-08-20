@@ -1,13 +1,14 @@
 package com.thadocizn.brav.views
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.thadocizn.brav.R
 import kotlinx.android.synthetic.main.activity_case_details.*
 
 class CaseDetailsActivity : AppCompatActivity() {
 
-    companion object{
+    companion object {
         const val CASE_COMPLETE = "complete"
         const val CASE_DESCRIPTION = "description"
         const val CASE_CATEGORY = "category"
@@ -17,18 +18,19 @@ class CaseDetailsActivity : AppCompatActivity() {
         const val CASE_COURT = "courtCase"
         const val CASE_COURT_JURIS = "jurisdiction"
         const val CASE_COURT_NUMBER = "courtNumber"
-        const val CASE_COURT_FILING= "filing"
+        const val CASE_COURT_FILING = "filing"
         const val CASE_NOTES = "notes"
         const val CASE_ACCEPTED = "accepted"
         const val CASE_DECLINED = "declined"
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_case_details)
 
         val getCase = intent.extras
 
-        if (getCase != null){
+        if (getCase != null) {
 
             val completed = getCase.getString(CASE_COMPLETE)
             val description = getCase.getString(CASE_DESCRIPTION)
@@ -36,7 +38,7 @@ class CaseDetailsActivity : AppCompatActivity() {
             val amount = getCase.getString(CASE_AMOUNT)
             val involved = getCase.getString(CASE_PARTIES_INVOLVED)
             val info = getCase.getString(CASE_PARTIES_INFO)
-            val caseCourt = getCase.getString(CASE_COURT)
+            val caseCourt = getCase.getBoolean(CASE_COURT)
             val jurisdiction = getCase.getString(CASE_COURT_JURIS)
             val courtNumber = getCase.getString(CASE_COURT_NUMBER)
             val filing = getCase.getString(CASE_COURT_FILING)
@@ -50,9 +52,18 @@ class CaseDetailsActivity : AppCompatActivity() {
             tvCaseDetailDesc.text = description
             tvCaseDetailPartiesInvolved.text = involved
             tvCaseDetailPartiesInfo.text = info
-            //tvCourtJurisdiction.text = jurisdiction
-            //tvCaseNum.text = courtNumber
-            //tvCourtFilingDate.text = filing
+            tvCaseDetailNotes.text = notes
+
+            if (caseCourt) {
+                llcourtCase.visibility = View.VISIBLE
+                tvCaseDetailCourtJurisdiction.text = jurisdiction
+                tvCaseDetailCourtNumber.text = courtNumber
+                tvCaseDetailCourtFilingDate.text = filing
+                tvCaseDetailCaseAcceptedAt.text = accepted
+                tvCaseDetailCaseDeclinedAt.text = declined
+            } else {
+                llcourtCase.visibility = View.GONE
+            }
 
         }
     }
