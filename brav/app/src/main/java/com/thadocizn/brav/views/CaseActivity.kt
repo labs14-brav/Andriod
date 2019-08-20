@@ -39,11 +39,11 @@ class CaseActivity : AppCompatActivity() {
 
         DrawerUtil.getDrawer(this, tbCase)
         fab.setOnClickListener { view ->
-            alert("Creating a court case. Press ok, otherwise press cancel") {
-                yesButton {
+            alert("Creating a court case! Press Court Case, otherwise press Other") {
+                positiveButton("Court Case") {
                     startActivity<CourtCaseFormActivity>(getString(R.string.token) to idToken)
                 }
-                noButton { startActivity<OtherCaseActivity>(getString(R.string.token) to idToken) }
+                negativeButton("Other") { startActivity<OtherCaseActivity>(getString(R.string.token) to idToken) }
             }.show()
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
