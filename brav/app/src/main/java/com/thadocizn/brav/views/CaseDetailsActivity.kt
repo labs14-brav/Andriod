@@ -32,6 +32,10 @@ class CaseDetailsActivity : AppCompatActivity() {
 
         val getCase = intent.extras
 
+        displayCase(getCase)
+    }
+
+    private fun displayCase(getCase: Bundle?) {
         if (getCase != null) {
 
             val completed = getCase.getString(CASE_COMPLETE)
