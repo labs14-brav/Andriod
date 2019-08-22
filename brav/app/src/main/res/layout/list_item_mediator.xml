@@ -27,35 +27,35 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:text="TextView" />
+                    android:text="@string/place_holder" />
 
             <TextView
                     android:id="@+id/tvMediatorName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:text="TextView" />
+                    android:text="@string/place_holder" />
 
             <TextView
                     android:id="@+id/tvMediatorSpec"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:text="TextView" />
+                    android:text="@string/place_holder" />
 
             <TextView
                     android:id="@+id/tvMediatorExperience"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:text="TextView" />
+                    android:text="@string/place_holder" />
 
             <TextView
                     android:id="@+id/tvMediatorLang"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:text="TextView" />
+                    android:text="@string/place_holder" />
 
             <Button
                     android:id="@+id/btnConnect"
@@ -63,7 +63,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="8dp"
-                    android:text="Connect" />
+                    android:text="@string/connect" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

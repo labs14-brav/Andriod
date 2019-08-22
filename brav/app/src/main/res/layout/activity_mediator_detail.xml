@@ -1,85 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".views.MediatorDetailActivity" android:orientation="vertical" android:layout_margin="8dp">
+        android:layout_margin="8dp"
+        android:orientation="vertical"
+        tools:context=".views.MediatorDetailActivity">
 
     <TextView
-            android:text="@string/type"
+            android:id="@+id/textView12"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView12"
-            android:layout_margin="8dp"/>
-    <TextView
-            android:text="@string/place_holder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/tvMediatorDetType"
-            android:layout_margin="8dp"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/type" />
 
     <TextView
-            android:text="@string/license"
+            android:id="@+id/tvMediatorDetType"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView13"
-            android:layout_margin="8dp"/>
-    <TextView
-            android:text="@string/place_holder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/tvMediatorDetLicense"
-            android:layout_margin="8dp"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/place_holder" />
 
     <TextView
-            android:text="@string/type"
+            android:id="@+id/textView13"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView14"
-            android:layout_margin="8dp"/>
-    <TextView
-            android:text="@string/place_holder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/tvMediatorDetExperience"
-            android:layout_margin="8dp"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/license" />
 
     <TextView
-            android:text="@string/specialization"
+            android:id="@+id/tvMediatorDetLicense"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView15"
-            android:layout_margin="8dp"/>
-    <TextView
-            android:text="@string/place_holder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/tvMediatorDetSpecialization"
-            android:layout_margin="8dp"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/place_holder" />
 
     <TextView
-            android:text="@string/language"
+            android:id="@+id/textView14"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView16"
-            android:layout_margin="8dp"/>
-    <TextView
-            android:text="@string/place_holder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/tvMediatorDetLanguage"
-            android:layout_margin="8dp"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/type" />
 
     <TextView
-            android:text="@string/name"
+            android:id="@+id/tvMediatorDetExperience"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView17"
-            android:layout_margin="8dp"/>
-    <TextView
-            android:text="@string/place_holder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/tvMediatorDetName"
-            android:layout_margin="8dp"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/place_holder" />
 
     <TextView
-            android:text="@string/professional_bio"
+            android:id="@+id/textView15"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView18" android:layout_margin="8dp"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/specialization" />
+
     <TextView
-            android:text="@string/place_holder"
+            android:id="@+id/tvMediatorDetSpecialization"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/place_holder" />
+
+    <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/language" />
+
+    <TextView
+            android:id="@+id/tvMediatorDetLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/place_holder" />
+
+    <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/name" />
+
+    <TextView
+            android:id="@+id/tvMediatorDetName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/place_holder" />
+
+    <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/professional_bio" />
+
+    <TextView
+            android:id="@+id/tvMediatorDetBio"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/tvMediatorDetBio"
-            android:lines="20" android:layout_margin="8dp"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:lines="20"
+            android:text="@string/place_holder" />
 </LinearLayout>
