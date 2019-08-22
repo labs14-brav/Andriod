@@ -38,7 +38,7 @@
                 <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
+                        android:inputType="date"
                         android:ems="10"
                         android:id="@+id/etCourtFilingDate"
                         android:hint="@string/court_filing_date"
