@@ -1,10 +1,12 @@
 package com.thadocizn.brav.views
 
+import android.icu.text.NumberFormat
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.thadocizn.brav.R
 import kotlinx.android.synthetic.main.activity_case_details.*
+import java.util.*
 
 class CaseDetailsActivity : AppCompatActivity() {
 
@@ -30,6 +32,10 @@ class CaseDetailsActivity : AppCompatActivity() {
 
         val getCase = intent.extras
 
+        displayCase(getCase)
+    }
+
+    private fun displayCase(getCase: Bundle?) {
         if (getCase != null) {
 
             val completed = getCase.getString(CASE_COMPLETE)
@@ -46,7 +52,8 @@ class CaseDetailsActivity : AppCompatActivity() {
             val accepted = getCase.getString(CASE_ACCEPTED)
             val declined = getCase.getString(CASE_DECLINED)
 
-            tvCaseDetailAmount.text = amount
+            val format = NumberFormat.getNumberInstance(Locale.US).format(amount.toInt())
+            tvCaseDetailAmount.text = "\$ $format"
             tvCaseDetailCategory.text = category
             tvCaseDetailCompleted.text = completed
             tvCaseDetailDesc.text = description

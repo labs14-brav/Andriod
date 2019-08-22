@@ -18,6 +18,7 @@ import com.thadocizn.brav.utils.DrawerUtil
 import com.thadocizn.brav.utils.SharedPreference
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.coroutines.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.startActivity
@@ -29,9 +30,11 @@ import retrofit2.Response
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var auth: FirebaseAuth
-    lateinit var bravUser: User
     lateinit var token: String
     lateinit var sharedPreference: SharedPreference
+    private val job = Job()
+    private val coroutineScope = CoroutineScope(Dispatchers.IO + job)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,55 +66,30 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.deactivate_account -> {
-                deactivateUser()
-                alert("Deactivate Account?") {
-                    yesButton {
-                        deactivateUser()
-                    }
-                    noButton { }
-                }.show()
+            R.id.settings -> {
+                baseContext.startActivity<UserAccountActivity>()
                 return true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    private fun deactivateUser() {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        val service: BravApi = RetroInstance().service(token)
-        val call = service.deactivate()
-
-        call.enqueue(object : Callback<User> {
-            override fun onFailure(call: Call<User>, t: Throwable) {
-            }
-
-            override fun onResponse(call: Call<User>, response: Response<User>) {
-                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                auth.signOut()
-                startActivity<MainActivity>()
-            }
-        })
-    }
-
     private fun registerUser() {
-        val service: BravApi = RetroInstance().service(sharedPreference.getToken("token"))
-        val call = service.loginUser()
 
-        call.enqueue(object : Callback<User> {
-            override fun onFailure(call: Call<User>, t: Throwable) {
-                println(t.message)
+        coroutineScope.launch {
+            val service: BravApi = RetroInstance().service(sharedPreference.getToken("token"))
+            val call = service.loginUserAsync()
+
+            withContext(Dispatchers.Main){
+                val response = call.await()
+                val userEmail = response.email
+                val userId = response.id
+
+                sharedPreference.saveUserEmail("userEmail", userEmail)
+                sharedPreference.saveUserId("userId", userId)
+
             }
-
-            override fun onResponse(call: Call<User>, response: Response<User>) {
-                bravUser = response.body()!!
-
-                sharedPreference.saveUserEmail("userEmail", bravUser.email)
-                sharedPreference.saveUserId("userId", bravUser.id)
-
-            }
-        })
-
+        }
     }
 
     override fun onClick(v: View) {
@@ -143,6 +121,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         this.auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    
                     val user = auth.currentUser
                     user!!.getIdToken(true).addOnSuccessListener { result ->
                         token = result.token.toString()
@@ -259,11 +238,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
-            /* status.text = getString(
-                 R.string.email_password_status_fmt,
-                 user.email, user.isEmailVerified
-             )*/
-            //detail.text = getString(R.string.fire_base_status_fmt, user.uid)
+
             emailPasswordButtons.visibility = View.GONE
             emailPasswordFields.visibility = View.GONE
             signedInButtons.visibility = View.VISIBLE
@@ -272,8 +247,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             verifyEmailButton.isEnabled = !user.isEmailVerified
         } else {
-            //status.setText(R.string.signed_out)
-            // detail.text = null
+
 
             emailPasswordButtons.visibility = View.VISIBLE
             emailPasswordFields.visibility = View.VISIBLE
@@ -284,8 +258,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun loadIntent() {
-        //val landingIntent = Intent(this@MainActivity, CaseActivity::class.java)
-        //adding any credentials needed to the intent to pass, not sure if the authorization carries through the activities
 
         //startActivity(landingIntent)
         startActivity<CaseActivity>()

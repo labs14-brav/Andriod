@@ -8,6 +8,7 @@ import com.thadocizn.brav.models.Case
 import com.thadocizn.brav.services.RetroInstance
 import com.thadocizn.brav.utils.SharedPreference
 import kotlinx.android.synthetic.main.activity_courtcase_form.*
+import kotlinx.coroutines.*
 import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -15,6 +16,8 @@ import retrofit2.Response
 
 class CourtCaseFormActivity : AppCompatActivity() {
     private lateinit var idToken: String
+    val job = Job()
+    private val coroutineScope = CoroutineScope(Dispatchers.IO + job)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,17 +85,13 @@ class CourtCaseFormActivity : AppCompatActivity() {
     }
 
     private fun createCase(case: Case) {
-        val service = RetroInstance().service(idToken)
-        val call = service.postCase(case)
+        coroutineScope.launch {
+            val service = RetroInstance().service(idToken)
+            val call = service.postCaseAsync(case)
+            withContext(Dispatchers.Main){
 
-        call.enqueue(object : Callback<Case> {
-            override fun onFailure(call: Call<Case>, t: Throwable) {
-
+                call.await()
             }
-
-            override fun onResponse(call: Call<Case>, response: Response<Case>) {
-
-            }
-        })
+        }
     }
 }

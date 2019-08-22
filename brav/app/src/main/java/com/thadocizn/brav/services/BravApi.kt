@@ -10,9 +10,6 @@ import retrofit2.http.*
 
 interface BravApi {
 
-   /* @GET("users/auth")
-    fun getUser(): Call<User>*/
-
     @GET("/cases")
     fun getCasesAsync(): Deferred<List<Case>>
 
@@ -25,14 +22,15 @@ interface BravApi {
     ): Deferred<List<Mediator>>
 
     @POST("/mediators/{id}/cases")
-    fun connect(@Path("id") mediatorId: Int, @Body case_id: CaseOut): Call<Case>
+    fun connectAsync(@Path("id") mediatorId: Int, @Body case_id: CaseOut): Deferred<Case>
+
 
     @POST("users/auth")
-    fun loginUser(): Call<User>
+    fun loginUserAsync(): Deferred<User>
 
     @POST("/cases")
-    fun postCase(@Body case: Case): Call<Case>
+    fun postCaseAsync(@Body case: Case): Deferred<Case>
 
     @PUT("users/deactivate")
-    fun deactivate(): Call<User>
+    fun deactivateAsync(): Deferred<User>
 }

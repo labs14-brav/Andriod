@@ -1,5 +1,6 @@
 package com.thadocizn.brav.adapters
 
+import android.icu.text.NumberFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import com.thadocizn.brav.R
 import com.thadocizn.brav.models.Mediator
 import kotlinx.android.synthetic.main.list_item_mediator.view.*
 import org.jetbrains.anko.*
+import java.util.*
 
 /**
  * Created by charles on 04,August,2019
@@ -60,7 +62,8 @@ class MediatorAdapter(private val list: List<Mediator>?, private val caseId: Int
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
        val mediator:Mediator? = list?.get(position)
         holder.bindMediator(list?.get(position))
-        holder.tvMediatorPrice.text = mediator?.price.toString()
+        val formatPrice = NumberFormat.getNumberInstance(Locale.US).format(mediator?.price)
+        holder.tvMediatorPrice.text = "\$ $formatPrice"
         holder.tvMediatorName.text = mediator?.name.toString()
         holder.tvMediatorSpec.text = mediator?.specialization.toString()
         holder.tvMediatorExperience.text = mediator?.experience.toString()

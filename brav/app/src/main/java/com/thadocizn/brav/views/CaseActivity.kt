@@ -16,10 +16,7 @@ import com.thadocizn.brav.utils.SharedPreference
 import com.thadocizn.brav.viewModel.CaseViewModel
 import kotlinx.android.synthetic.main.activity_case.*
 import kotlinx.android.synthetic.main.content_case.*
-import org.jetbrains.anko.alert
-import org.jetbrains.anko.noButton
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.yesButton
+import org.jetbrains.anko.*
 
 class CaseActivity : AppCompatActivity() {
 
@@ -38,8 +35,8 @@ class CaseActivity : AppCompatActivity() {
         getCases()
 
         DrawerUtil.getDrawer(this, tbCase)
-        fab.setOnClickListener { view ->
-            alert("Creating a court case! Press Court Case, otherwise press Other") {
+        fab.setOnClickListener {
+            alert(getString(R.string.msgChooseTypeOfCase)) {
                 positiveButton("Court Case") {
                     startActivity<CourtCaseFormActivity>(getString(R.string.token) to idToken)
                 }
@@ -49,8 +46,8 @@ class CaseActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    override fun onRestart() {
-        super.onRestart()
+    override fun onPostResume() {
+        super.onPostResume()
         getCases()
     }
 
@@ -65,7 +62,9 @@ class CaseActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.deactivate_account -> true
+            R.id.settings -> {
+                applicationContext.startActivity(intentFor<UserAccountActivity>().newTask())
+                return true}
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -80,6 +79,6 @@ class CaseActivity : AppCompatActivity() {
     private fun getRecycleView(list: List<Case>?) {
         val adapter = CaseAdapter(list)
         rvCase.adapter = adapter
-        rvCase.layoutManager = GridLayoutManager(this, 4)
+        rvCase.layoutManager = GridLayoutManager(this, 3)
     }
 }
