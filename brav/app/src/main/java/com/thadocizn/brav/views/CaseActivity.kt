@@ -48,7 +48,9 @@ class CaseActivity : AppCompatActivity() {
 
     override fun onRestart() {
         super.onRestart()
-        getCases()
+        val caseList = viewModel.getCases.value
+        getRecycleView(caseList)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

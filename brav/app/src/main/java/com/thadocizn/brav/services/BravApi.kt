@@ -30,6 +30,9 @@ interface BravApi {
     @POST("/cases")
     fun postCase(@Body case: Case): Call<Case>
 
+    @POST("/cases")
+    fun postCaseAsync(@Body case: Case): Deferred<Case>
+
     @PUT("users/deactivate")
     fun deactivateAsync(): Deferred<User>
 }
