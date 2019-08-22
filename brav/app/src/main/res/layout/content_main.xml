@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="75sp"
-                android:background="@android:color/white"
+                android:background="@drawable/btn_rounded_white"
                 android:clickable="false"
                 android:text="Enter"
                 android:textColor="@color/primary"
@@ -82,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_weight="1"
-                    android:background="@android:color/white"
+                    android:background="@drawable/btn_rounded_white"
                     android:text="@string/sign_in"
                     android:textColor="@color/colorPrimary" />
 
@@ -93,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_weight="1"
-                    android:background="@android:color/white"
+                    android:background="@drawable/btn_rounded_white"
                     android:text="@string/create_account"
                     android:textColor="@color/colorPrimary" />
         </LinearLayout>
@@ -115,8 +115,9 @@
                     style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
                     android:layout_weight="1.0"
-                    android:background="@android:color/white"
+                    android:background="@drawable/btn_rounded_white"
                     android:text="@string/sign_out"
                     android:textColor="@color/colorPrimary" />
 
@@ -125,7 +126,9 @@
                     style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
                     android:layout_weight="1.0"
+                    android:background="@drawable/btn_rounded_white"
                     android:text="@string/verify_email" />
 
         </LinearLayout>
