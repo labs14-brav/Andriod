@@ -36,7 +36,7 @@ class CaseActivity : AppCompatActivity() {
 
         DrawerUtil.getDrawer(this, tbCase)
         fab.setOnClickListener {
-            alert("Creating a court case! Press Court Case, otherwise press Other") {
+            alert(getString(R.string.msgChooseTypeOfCase)) {
                 positiveButton("Court Case") {
                     startActivity<CourtCaseFormActivity>(getString(R.string.token) to idToken)
                 }
