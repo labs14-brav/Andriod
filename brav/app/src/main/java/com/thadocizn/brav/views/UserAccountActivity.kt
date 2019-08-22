@@ -79,18 +79,16 @@ class UserAccountActivity : AppCompatActivity() {
 
 
     private fun connect(mediatorId: Int, caseId: Int) {
-        val service = RetroInstance().service(idToken)
-        val call = service.connect(mediatorId, CaseOut(caseId))
-        call.enqueue(object : Callback<Case> {
-            override fun onFailure(call: Call<Case>, t: Throwable) {
-                println(t.message)
+
+        coroutineScope.launch {
+
+            val service = RetroInstance().service(idToken)
+            val call = service.connectAsync(mediatorId, CaseOut(caseId))
+
+            withContext(Dispatchers.Main){
+                call.await()
+                toast("email sent")
             }
-
-            override fun onResponse(call: Call<Case>, response: Response<Case>) {
-
-                toast("Email sent")
-            }
-
-        })
+        }
     }
 }

@@ -22,13 +22,11 @@ interface BravApi {
     ): Deferred<List<Mediator>>
 
     @POST("/mediators/{id}/cases")
-    fun connect(@Path("id") mediatorId: Int, @Body case_id: CaseOut): Call<Case>
+    fun connectAsync(@Path("id") mediatorId: Int, @Body case_id: CaseOut): Deferred<Case>
+
 
     @POST("users/auth")
     fun loginUserAsync(): Deferred<User>
-
-    @POST("/cases")
-    fun postCase(@Body case: Case): Call<Case>
 
     @POST("/cases")
     fun postCaseAsync(@Body case: Case): Deferred<Case>
