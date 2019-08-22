@@ -20,10 +20,15 @@ class CaseAdapter(private val list: List<Case>?) : RecyclerView.Adapter<CaseAdap
         fun bindCase(case: Case) {
 
             with(container) {
-                tvCaseId.text = case.id.toString()
+                if (case.court_case!!){
+                    tvCaseId.text = "Court Case"
+                }else{
+                    tvCaseId.text = "Other"
+                }
+                //tvCaseId.text = case.id.toString()
                 tvCaseType.text = case.dispute_category
-                tvCaseAmount.text = case.dispute_amount
-                tvCaseNote.text = case.case_notes
+                tvParticipants.text = case.parties_contact_info
+               // tvCaseNote.text = case.case_notes
                 container.setOnClickListener {
                     context.startActivity<CaseDetailsActivity>(
                         CaseDetailsActivity.CASE_ACCEPTED to case.case_accepted_at,

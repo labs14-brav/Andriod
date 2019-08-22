@@ -19,10 +19,19 @@
             <TextView
 
                     android:id="@+id/tvCaseId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_margin="8dp"
+                    android:text="TextView" />
+
+            <TextView
+
+                    android:id="@+id/tvPlaceHolder"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:text="TextView" />
+                    android:text="Category" />
 
             <TextView
 
@@ -34,19 +43,19 @@
 
             <TextView
 
-                    android:id="@+id/tvCaseAmount"
+                    android:id="@+id/lbl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:text="TextView" />
+                    android:text="Participants:" />
 
             <TextView
 
-                    android:id="@+id/tvCaseNote"
+                    android:id="@+id/tvParticipants"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:text="TextView" />
+                    android:text="Participants" />
 
             <Button
                     android:id="@+id/btnFindMediator"

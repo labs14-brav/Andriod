@@ -79,6 +79,6 @@ class CaseActivity : AppCompatActivity() {
     private fun getRecycleView(list: List<Case>?) {
         val adapter = CaseAdapter(list)
         rvCase.adapter = adapter
-        rvCase.layoutManager = GridLayoutManager(this, 4)
+        rvCase.layoutManager = GridLayoutManager(this, 3)
     }
 }
