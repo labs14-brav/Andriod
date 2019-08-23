@@ -20,6 +20,12 @@ interface BravApi {
     @GET("/invoices/case/{id}")
     fun getInvoicesCaseIdAsync(@Path("id") caseId:Int):Deferred<List<Invoices>>
 
+    @GET("/invoices/{id}/session")
+    fun getSessionId(@Path("id")invoiceId:Int):Deferred<Invoices>
+
+    @POST("/invoices/case/{id}")
+    fun createInvoice(@Path("id") caseId: Int):Deferred<Invoices>
+
     @POST("/mediators/{id}/cases")
     fun connectAsync(@Path("id") mediatorId: Int, @Body case_id: CaseOut): Deferred<Case>
 
@@ -32,4 +38,7 @@ interface BravApi {
 
     @PUT("users/deactivate")
     fun deactivateAsync(): Deferred<User>
+
+    @PUT("/invoices/{id}/")
+    fun invoicePaid(@Path("id")invoiceId: Int):Deferred<Invoices>
 }
