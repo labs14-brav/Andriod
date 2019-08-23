@@ -1,11 +1,7 @@
 package com.thadocizn.brav.services
 
-import com.thadocizn.brav.models.Case
-import com.thadocizn.brav.models.CaseOut
-import com.thadocizn.brav.models.Mediator
-import com.thadocizn.brav.models.User
+import com.thadocizn.brav.models.*
 import kotlinx.coroutines.Deferred
-import retrofit2.Call
 import retrofit2.http.*
 
 interface BravApi {
@@ -20,6 +16,9 @@ interface BravApi {
         @Query("specialization") specialization: String,
         @Query("language") language: String
     ): Deferred<List<Mediator>>
+
+    @GET("/invoices/case/{id}")
+    fun getInvoicesCaseIdAsync(@Path("id") caseId:Int):Deferred<List<Invoices>>
 
     @POST("/mediators/{id}/cases")
     fun connectAsync(@Path("id") mediatorId: Int, @Body case_id: CaseOut): Deferred<Case>
