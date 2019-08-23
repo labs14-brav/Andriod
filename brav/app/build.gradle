@@ -61,7 +61,9 @@ dependencies {
 
     implementation "org.jetbrains.anko:anko-commons:$anko_version"
     // Anko Layouts
-    implementation "org.jetbrains.anko:anko-sdk25:$anko_version" // sdk15, sdk19, sdk21, sdk23 are also available
+    implementation "org.jetbrains.anko:anko-sdk25:$anko_version"
+    // sdk15, sdk19, sdk21, sdk23 are also available
     implementation "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
     annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
+    implementation 'com.stripe:stripe-android:10.3.1'
 }
