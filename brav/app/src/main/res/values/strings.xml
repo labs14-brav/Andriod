@@ -67,6 +67,11 @@
     <string name="view_invoices">View Invoices</string>
     <string name="courtCase">Court Case</string>
     <string name="other">Non-court</string>
+    <string name="amount">Amount:</string>
+    <string name="case_id">Case ID:</string>
+    <string name="hours">Hours:</string>
+    <string name="mediator_id">Mediator ID:</string>
+    <string name="pay">Pay</string>
 
 
     <string-array name="price">

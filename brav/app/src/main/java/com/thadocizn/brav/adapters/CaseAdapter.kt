@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import com.thadocizn.brav.InvoiceActivity
 import com.thadocizn.brav.R
@@ -29,7 +30,7 @@ class CaseAdapter(private val list: List<Case>?) : RecyclerView.Adapter<CaseAdap
 
     class ViewHolder(private val container: View) : RecyclerView.ViewHolder(container) {
 
-        val btnInvoice = container.btnViewInvoices
+        val btnInvoice:Button = container.btnViewInvoices
         fun bindCase(case: Case) {
 
             with(container) {
