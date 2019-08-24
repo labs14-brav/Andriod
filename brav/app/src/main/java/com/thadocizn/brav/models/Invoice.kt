@@ -1,9 +1,12 @@
 package com.thadocizn.brav.models
 
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @JsonClass(generateAdapter = true)
 data class Invoice(
     @Json(name = "amount")
@@ -19,7 +22,7 @@ data class Invoice(
     @Json(name = "mediator_id")
     val mediatorId: Int,
     @Json(name = "paid_at")
-    var paidAt: Any?,
+    var paidAt: String?,
     @Json(name = "updated_at")
     val updatedAt: String
-)
+):Parcelable

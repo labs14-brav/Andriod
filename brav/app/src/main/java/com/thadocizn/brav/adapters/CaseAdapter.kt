@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.thadocizn.brav.InvoiceActivity
 import com.thadocizn.brav.R
 import com.thadocizn.brav.models.Case
+import com.thadocizn.brav.models.Invoice
 import com.thadocizn.brav.services.RetroInstance
 import com.thadocizn.brav.utils.SharedPreference
 import com.thadocizn.brav.views.CaseDetailsActivity
@@ -95,8 +96,9 @@ class CaseAdapter(private val list: List<Case>?) : RecyclerView.Adapter<CaseAdap
 
             withContext(Dispatchers.Main){
                 val response = call.await()
-                //val invoiceList = response as MutableList<Invoices>
-                context.startActivity<InvoiceActivity>()
+                val mediator = response.mediator
+                val list = response.invoice as MutableList<Invoice>
+                context.startActivity<InvoiceActivity>("mediator" to mediator, "invoices" to list)
             }
         }
 
