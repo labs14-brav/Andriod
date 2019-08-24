@@ -83,7 +83,7 @@ class CaseAdapter(private val list: List<Case>?) : RecyclerView.Adapter<CaseAdap
        val case = list?.get(position)
         holder.bindCase(list?.get(position)!!)
         holder.btnInvoice.setOnClickListener {
-            getInvoices(case?.id)
+            getInvoices(3)
         }
 
     }
@@ -93,7 +93,7 @@ class CaseAdapter(private val list: List<Case>?) : RecyclerView.Adapter<CaseAdap
        val token = sharedPreference.getToken("token")
         coroutineScope.launch {
             val service = RetroInstance().service(token)
-            val call = service.getInvoicesCaseIdAsync(1)
+            val call = service.getInvoicesCaseIdAsync(id!!)
 
             withContext(Dispatchers.Main){
                 val response = call.await()
