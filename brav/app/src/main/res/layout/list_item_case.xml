@@ -59,16 +59,36 @@
                     android:layout_margin="8dp"
                     android:text="@string/participants" />
 
-            <Button
-                    android:id="@+id/btnFindMediator"
-                    android:layout_width="wrap_content"
+            <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="8dp"
-                    android:background="@drawable/btn_rounded"
-                    android:padding="8dp"
-                    android:paddingBottom="8dp"
-                    android:text="@string/find_mediator" />
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                <Button
+                        android:id="@+id/btnFindMediator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/btn_rounded"
+                        android:padding="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="@string/find_mediator" />
+
+                <Button
+                        android:id="@+id/btnViewInvoices"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/btn_rounded"
+                        android:padding="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="@string/view_invoices" />
+            </LinearLayout>
+
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

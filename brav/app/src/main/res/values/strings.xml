@@ -64,6 +64,9 @@
     <string name="participants">Participants:</string>
     <string name="find_mediator">Find Mediator</string>
     <string name="connect">Connect</string>
+    <string name="view_invoices">View Invoices</string>
+    <string name="courtCase">Court Case</string>
+    <string name="other">Non-court</string>
 
 
     <string-array name="price">
