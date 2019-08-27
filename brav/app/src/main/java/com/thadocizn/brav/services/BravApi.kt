@@ -1,5 +1,6 @@
 package com.thadocizn.brav.services
 
+
 import com.thadocizn.brav.models.*
 import kotlinx.coroutines.Deferred
 import retrofit2.http.*
@@ -22,6 +23,9 @@ interface BravApi {
 
     @GET("/invoices/{id}/session")
     fun getSessionId(@Path("id")invoiceId:Int):Deferred<Invoice>
+
+    @POST("/invoices/{id}/charge")
+    fun sendToken(@Path("id")invoiceId: Int, @Body stripeToken:StripeToken):Deferred<String>
 
     @POST("/invoices/case/{id}")
     fun createInvoice(@Path("id") caseId: Int):Deferred<Invoice>

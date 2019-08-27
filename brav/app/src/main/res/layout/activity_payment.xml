@@ -6,10 +6,25 @@
         android:orientation="vertical"
         tools:context=".PaymentActivity">
 
+    <TextView
+            android:id="@+id/lblPayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Payment Center"
+            android:textSize="18sp" />
+
     <com.stripe.android.view.CardMultilineWidget
             android:id="@+id/card_input_widget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
     </com.stripe.android.view.CardMultilineWidget>
+    <Button
+            android:id="@+id/btnSubmit"
+            android:text="Pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+    </Button>
 </LinearLayout>
