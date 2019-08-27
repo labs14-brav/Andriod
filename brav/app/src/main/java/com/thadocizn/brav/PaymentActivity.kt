@@ -13,6 +13,8 @@ import com.thadocizn.brav.utils.SharedPreference
 import com.thadocizn.brav.views.CaseActivity
 import kotlinx.android.synthetic.main.activity_payment.*
 import kotlinx.coroutines.*
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.newTask
 import org.jetbrains.anko.startActivity
 
 class PaymentActivity : AppCompatActivity() {
@@ -53,7 +55,7 @@ class PaymentActivity : AppCompatActivity() {
 
         coroutineScope.launch {
             val service = RetroInstance().service(idToken)
-            val call = service.createInvoice(caseId!!)
+            val call = service.createInvoiceAsync(caseId!!)
             withContext(Dispatchers.Main) {
                 call.await()
             }
@@ -81,11 +83,10 @@ class PaymentActivity : AppCompatActivity() {
     private fun sendToken(token: String) {
         coroutineScope.launch {
             val service = RetroInstance().service(idToken)
-            val call = service.sendToken(1, StripeToken(token))
+            val call = service.sendTokenAsync(1, StripeToken(token))
             withContext(Dispatchers.Main) {
                 call.await()
-                baseContext.startActivity<CaseActivity>()
-            }
+                applicationContext.startActivity(intentFor<CaseActivity>().newTask())          }
         }
     }
 }
