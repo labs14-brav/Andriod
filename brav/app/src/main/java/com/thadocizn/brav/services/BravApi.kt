@@ -1,11 +1,9 @@
 package com.thadocizn.brav.services
 
-import com.thadocizn.brav.models.Case
-import com.thadocizn.brav.models.CaseOut
-import com.thadocizn.brav.models.Mediator
-import com.thadocizn.brav.models.User
+
+import com.thadocizn.brav.models.*
 import kotlinx.coroutines.Deferred
-import retrofit2.Call
+import org.json.JSONArray
 import retrofit2.http.*
 
 interface BravApi {
@@ -21,6 +19,15 @@ interface BravApi {
         @Query("language") language: String
     ): Deferred<List<Mediator>>
 
+    @GET("/invoices/case/{id}")
+    fun getInvoicesCaseIdAsync(@Path("id") caseId:Int):Deferred<InvoicesResult>
+
+    @POST("/invoices/{id}/charge")
+    fun sendTokenAsync(@Path("id")invoiceId: Int, @Body stripeToken:StripeToken):Deferred<JSONArray>
+
+    @POST("/invoices/case/{id}")
+    fun createInvoiceAsync(@Path("id") caseId: Int):Deferred<Invoice>
+
     @POST("/mediators/{id}/cases")
     fun connectAsync(@Path("id") mediatorId: Int, @Body case_id: CaseOut): Deferred<Case>
 
@@ -33,4 +40,7 @@ interface BravApi {
 
     @PUT("users/deactivate")
     fun deactivateAsync(): Deferred<User>
+
+    @PUT("/invoices/{id}/")
+    fun invoicePaid(@Path("id")invoiceId: Int):Deferred<Invoice>
 }

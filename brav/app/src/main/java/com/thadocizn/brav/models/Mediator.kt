@@ -1,7 +1,10 @@
 package com.thadocizn.brav.models
 
+import android.os.Parcelable
 import com.squareup.moshi.JsonClass
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @JsonClass(generateAdapter = true)
 data class Mediator(val id:Int,
                     val type:String? = null,
@@ -15,4 +18,4 @@ data class Mediator(val id:Int,
                     val professional_bio:String? = null,
                     val name:String? = null,
                     val mediator_accepted_at:String? = null,
-                    val mediator_declined_at:String? = null)
+                    val mediator_declined_at:String? = null):Parcelable
