@@ -1,8 +1,9 @@
-package com.thadocizn.brav
+package com.thadocizn.brav.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
+import com.thadocizn.brav.R
 import com.thadocizn.brav.adapters.InvoiceAdapter
 import com.thadocizn.brav.models.Invoice
 import com.thadocizn.brav.models.Mediator

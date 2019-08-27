@@ -1,16 +1,18 @@
 package com.thadocizn.brav.adapters
 
+import android.icu.text.NumberFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.thadocizn.brav.PaymentActivity
+import com.thadocizn.brav.views.PaymentActivity
 import com.thadocizn.brav.R
 import com.thadocizn.brav.adapters.InvoiceAdapter.*
 import com.thadocizn.brav.models.Invoice
 import com.thadocizn.brav.models.Mediator
 import kotlinx.android.synthetic.main.list_item_invoices.view.*
 import org.jetbrains.anko.startActivity
+import java.util.*
 
 /**
  * Created by charles on 24,August,2019
@@ -34,8 +36,10 @@ class InvoiceAdapter(val list: List<Invoice>, val mediator: Mediator):RecyclerVi
 
             with(container){
 
+                val formatPrice = NumberFormat.getNumberInstance(Locale.US).format(invoice.amount)
+                //holder.tvMediatorPrice.text = "\$ $formatPrice"
 
-                tvInvoiceAmount.text = invoice.amount.toString()
+                tvInvoiceAmount.text = "\$ $formatPrice"
                 tvInvoiceCaseId.text = invoice.caseId.toString()
                 tvInvoiceHours.text  = invoice.hours.toString()
                 tvInvoiceMediatorId.text = invoice.mediatorId.toString()

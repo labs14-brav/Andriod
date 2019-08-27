@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
-import com.thadocizn.brav.InvoiceActivity
+import com.thadocizn.brav.views.InvoiceActivity
 import com.thadocizn.brav.R
 import com.thadocizn.brav.models.Case
 import com.thadocizn.brav.models.Invoice
