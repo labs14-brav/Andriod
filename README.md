@@ -1,19 +1,17 @@
 # Andriod
-.
 
 #  Brav
 
  You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
 
-## 4️⃣ Contributors
+##  Contributors
 
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add or delete these place-holders as needed
 
 |                                       [Charles Johnson](https://github.com/ThaDocsN)                                       
 | :-----------------------------------------------------------------------------------------------------------: | 
 |                      [<img src="https://avatars3.githubusercontent.com/u/35396909?s=460&v=4" width = "200" />](https://github.com/ThaDocsN)                       |                      [<img src="https://avatars3.githubusercontent.com/u/35396909?s=460&v=4" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ThaDocsN)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ThaDocsN)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kyle-cole-339477176/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/charles-johnson-a9666913/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/charles-johnson-a9666913//) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/charles-johnson-a9666913/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
 
 
 
@@ -25,51 +23,36 @@
 ## Project Overview
 
 
-1️⃣ [Trello Board](https://trello.com/b/5sU9ZybM/labs-14-brav)
+ [Trello Board](https://trello.com/b/5sU9ZybM/labs-14-brav)
 
-1️⃣ [Product Canvas](https://docs.google.com/document/d/1evD5kfgh2AfGDl5og7mRroPEPC2YasSHVa1KpFlBjn4/edit)
+ [Product Vision Document](https://www.notion.so/Brav-c00f84c629f84560be196d93846a22cf)
 
-1️⃣ [UX Design files](https://docs.google.com/document/d/1evD5kfgh2AfGDl5og7mRroPEPC2YasSHVa1KpFlBjn4/edit#heading=h.90qv59d2oi1j) -
+ [UX Design files](https://docs.google.com/document/d/1evD5kfgh2AfGDl5og7mRroPEPC2YasSHVa1KpFlBjn4/edit#heading=h.90qv59d2oi1j) -
 
 Our world is plagued with conflict and devastating violence everywhere you look: bullying in schools, violence in our homes, on the streets, across borders, everywhere. Brāv trains anyone in conflict management who in turn manages the conflicts of others directly on the site.
-## 2️⃣ Features
+## Features
 
--    Feature 1
--    Feature 2
--    Feature 3
--    Feature 4
--    Feature 5
+-    Ability for a customer to register with platform
+-    Ability for a customer to create a case
+-    Ability for a customer to search for and filter mediators based on price, experience, field, and language
+-    Ability for a customer to reach out to mediator via automatic email, and case request
+-    Ability for a customer to view invoices/bills related to case
+-    Ability for a customer to pay outstanding invoices/bills 
 
-## 2️⃣Authentication API here
+## Authentication 
+
+[FireBase](https://firebase.google.com/docs/auth)
+
+## Payment 
+
+[Stripe](https://stripe.com/docs/mobile/android)
+
+## E-mail
+
+[Sendgrid](https://sendgrid.com/docs/)
 
 
-FireBase Authentication API
-
-## 2️⃣Payment API here
-
-Stripe
-
-## 3️⃣Misc API here
-
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
-
-## 3️⃣Misc API here
-
-🚫Replace text below with a description of the API
-
-When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
-
-## 3️⃣Misc API here
-
-🚫Replace text below with a description of the API
-
-Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
-
-## 2️⃣Requirements
-
-🚫 These are examples, make sure this matches your project's requirements
+## Requirements
 
 -   Android APK Version 23
 -   Android Studio
