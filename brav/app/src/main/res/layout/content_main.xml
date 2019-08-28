@@ -127,7 +127,8 @@
                     android:layout_marginLeft="4dp"
                     android:layout_weight="1.0"
                     android:background="@drawable/btn_rounded_white"
-                    android:text="@string/verify_email" />
+                    android:text="@string/verify_email"
+                    android:textColor="@color/colorPrimary" />
 
         </LinearLayout>
 
