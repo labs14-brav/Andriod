@@ -27,7 +27,7 @@
 
  [Product Vision Document](https://www.notion.so/Brav-c00f84c629f84560be196d93846a22cf)
 
- [UX Design files](https://docs.google.com/document/d/1evD5kfgh2AfGDl5og7mRroPEPC2YasSHVa1KpFlBjn4/edit#heading=h.90qv59d2oi1j) -
+ [UX Design files](https://docs.google.com/document/d/1evD5kfgh2AfGDl5og7mRroPEPC2YasSHVa1KpFlBjn4/edit#heading=h.90qv59d2oi1j) 
 
 Our world is plagued with conflict and devastating violence everywhere you look: bullying in schools, violence in our homes, on the streets, across borders, everywhere. Brāv trains anyone in conflict management who in turn manages the conflicts of others directly on the site.
 ## Features
