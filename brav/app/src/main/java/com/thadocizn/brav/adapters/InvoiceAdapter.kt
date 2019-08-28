@@ -46,9 +46,10 @@ class InvoiceAdapter(val list: List<Invoice>, val mediator: Mediator):RecyclerVi
 
                 when(invoice.paidAt){
                     null -> {
-                        btnPay.text = "Pay"
+                        btnPay.isEnabled = true
                         btnPay.setOnClickListener {
-                            context.startActivity<PaymentActivity>("caseId" to invoice.caseId)
+                            context.startActivity<PaymentActivity>(
+                                "caseId" to invoice.caseId, "invoiceId" to invoice.id)
                         }
                     }
                     else -> btnPay.isEnabled = false

@@ -47,8 +47,18 @@ class CaseActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    override fun onPostResume() {
+   /* override fun onPostResume() {
         super.onPostResume()
+        getCases()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+    }*/
+
+    override fun onRestart() {
+        super.onRestart()
         getCases()
     }
 

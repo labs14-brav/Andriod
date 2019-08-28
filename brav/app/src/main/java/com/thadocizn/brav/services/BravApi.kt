@@ -42,5 +42,5 @@ interface BravApi {
     fun deactivateAsync(): Deferred<User>
 
     @PUT("/invoices/{id}/")
-    fun invoicePaid(@Path("id")invoiceId: Int):Deferred<Invoice>
+    fun invoicePaid(@Path("id")invoiceId: Int):Deferred<JSONArray>
 }
