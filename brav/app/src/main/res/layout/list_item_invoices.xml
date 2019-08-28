@@ -70,8 +70,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:background="@drawable/btn_rounded"
                 android:enabled="false"
-                android:text="@string/pay" />
+                android:text="@string/pay"
+                android:textColor="@android:color/white" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

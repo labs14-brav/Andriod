@@ -56,7 +56,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="@string/search" />
+            android:background="@drawable/btn_rounded"
+            android:text="@string/search"
+            android:textColor="@android:color/white" />
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvMediator"
