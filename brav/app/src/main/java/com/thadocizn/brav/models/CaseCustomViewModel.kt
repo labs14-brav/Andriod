@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.thadocizn.brav.viewModel.CaseViewModel
-import com.thadocizn.brav.viewModel.MediatorViewModel
 
 /**
  * Created by charles on 18,August,2019
