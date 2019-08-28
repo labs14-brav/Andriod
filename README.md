@@ -1,5 +1,3 @@
-# Andriod
-
 #  Brav
 
  You can find the deployed project at [Brav](https://www.thisisnotrealitsaplacehoder.com).
