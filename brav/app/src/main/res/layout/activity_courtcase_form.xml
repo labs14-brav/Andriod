@@ -99,7 +99,7 @@
                 android:layout_margin="8dp"
                 android:ems="10"
                 android:hint="@string/dispute_amount"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
         <TextView
                 android:id="@+id/tvDisputeCategory"

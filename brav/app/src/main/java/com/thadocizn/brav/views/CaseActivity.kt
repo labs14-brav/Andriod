@@ -4,24 +4,26 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.thadocizn.brav.R
 import com.thadocizn.brav.adapters.CaseAdapter
 import com.thadocizn.brav.models.Case
+import com.thadocizn.brav.services.RetroInstance
 import com.thadocizn.brav.utils.DrawerUtil
 import com.thadocizn.brav.utils.SharedPreference
-import com.thadocizn.brav.viewModel.CaseViewModel
 import kotlinx.android.synthetic.main.activity_case.*
 import kotlinx.android.synthetic.main.content_case.*
-import org.jetbrains.anko.*
+import kotlinx.coroutines.*
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.newTask
+import org.jetbrains.anko.startActivity
 
 class CaseActivity : AppCompatActivity() {
 
     private lateinit var idToken: String
-    lateinit var viewModel: CaseViewModel
+    val job = Job()
+    private val coroutineScope = CoroutineScope(Dispatchers.IO + job)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +33,6 @@ class CaseActivity : AppCompatActivity() {
 
         idToken = sharedPreference.getToken("token").toString()
 
-        viewModel = ViewModelProviders.of(this).get(CaseViewModel::class.java)
         getCases()
 
         DrawerUtil.getDrawer(this, tbCase)
@@ -46,8 +47,18 @@ class CaseActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    override fun onPostResume() {
+   /* override fun onPostResume() {
         super.onPostResume()
+        getCases()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+    }*/
+
+    override fun onRestart() {
+        super.onRestart()
         getCases()
     }
 
@@ -64,16 +75,26 @@ class CaseActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.settings -> {
                 applicationContext.startActivity(intentFor<UserAccountActivity>().newTask())
-                return true}
+                return true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
     private fun getCases() {
 
-        viewModel.getCases.observe(this, Observer { caseList ->
-            getRecycleView(caseList)
-        })
+        coroutineScope.launch {
+            val service = RetroInstance().service(idToken)
+            val call = service.getCasesAsync()
+
+            withContext(Dispatchers.Main) {
+
+                val response = call.await()
+                val list = response
+
+                getRecycleView(list)
+            }
+        }
     }
 
     private fun getRecycleView(list: List<Case>?) {

@@ -1,6 +1,7 @@
 package com.thadocizn.brav.views
 
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.stripe.android.ApiResultCallback
 import com.stripe.android.Stripe
@@ -12,14 +13,17 @@ import com.thadocizn.brav.models.StripeToken
 import com.thadocizn.brav.services.RetroInstance
 import com.thadocizn.brav.utils.SharedPreference
 import kotlinx.android.synthetic.main.activity_payment.*
+import kotlinx.android.synthetic.main.list_item_invoices.*
 import kotlinx.coroutines.*
 import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.longToast
 import org.jetbrains.anko.newTask
 
 class PaymentActivity : AppCompatActivity() {
     private lateinit var cardInputWidget: CardMultilineWidget
     private lateinit var idToken: String
     var caseId: Int? = 0
+    var invoiceId: Int = 0
 
     val job = Job()
     private val coroutineScope = CoroutineScope(Dispatchers.IO + job)
@@ -28,6 +32,7 @@ class PaymentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
         caseId = intent.getIntExtra("caseId", 0)
+        invoiceId = intent.getIntExtra("invoiceId", 0)
         val sharedPreference = SharedPreference(this)
 
         idToken = sharedPreference.getToken("token").toString()
@@ -85,7 +90,25 @@ class PaymentActivity : AppCompatActivity() {
             val call = service.sendTokenAsync(1, StripeToken(token))
             withContext(Dispatchers.Main) {
                 call.await()
-                applicationContext.startActivity(intentFor<CaseActivity>().newTask())          }
+                if (call.isCompleted) {
+                    getPaymentMade()
+
+                }
+                applicationContext.startActivity(intentFor<CaseActivity>().newTask())
+
+            }
+        }
+    }
+
+    private fun getPaymentMade() {
+        coroutineScope.launch {
+            val service = RetroInstance().service(idToken)
+            val call = service.invoicePaid(1)
+            withContext(Dispatchers.Main) {
+                call.await()
+                applicationContext.longToast("Payment Sent")
+
+            }
         }
     }
 }

@@ -3,27 +3,21 @@ package com.thadocizn.brav.views
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import com.thadocizn.brav.R
 import com.thadocizn.brav.adapters.MediatorAdapter
 import com.thadocizn.brav.models.Mediator
-import com.thadocizn.brav.models.MediatorCustomViewModel
-import com.thadocizn.brav.services.BravApi
 import com.thadocizn.brav.services.RetroInstance
 import com.thadocizn.brav.utils.SharedPreference
-import com.thadocizn.brav.viewModel.MediatorViewModel
 import kotlinx.android.synthetic.main.activity_mediator.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.*
 
 
 class MediatorActivity : AppCompatActivity() {
     private lateinit var idToken: String
     var caseId: Int? = 0
-    lateinit var viewModel:MediatorViewModel
+    val job = Job()
+    private val coroutineScope = CoroutineScope(Dispatchers.IO + job)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,12 +83,18 @@ class MediatorActivity : AppCompatActivity() {
         val language = spLanguage.selectedItem.toString()
         val specialty = spSpecialty.selectedItem.toString()
         val experience = spExperience.selectedItem.toString()
-        viewModel = ViewModelProviders.of(this,MediatorCustomViewModel(application,price,language,specialty,experience)).get(MediatorViewModel::class.java)
 
-        viewModel.getMediators.observe(this, Observer { mediatorList ->
+        coroutineScope.launch {
+            val service = RetroInstance().service(idToken)
+            val  call = service.getMediatorsAsync(price,experience,specialty,language)
 
-            getRecycleView(mediatorList)
-        })
+            withContext(Dispatchers.Main){
+                val response = call.await()
+                val list = response
+                getRecycleView(list)
+
+            }
+        }
 
     }
 

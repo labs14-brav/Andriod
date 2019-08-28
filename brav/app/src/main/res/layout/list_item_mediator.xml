@@ -63,7 +63,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="8dp"
-                    android:text="@string/connect" />
+                    android:background="@drawable/btn_rounded_white"
+                    android:text="@string/connect"
+                    android:textColor="@color/colorPrimary" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>
