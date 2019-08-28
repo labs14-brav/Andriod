@@ -2,7 +2,7 @@
 
 #  Brav
 
- You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
+ You can find the deployed project at [Brav](https://www.thisisnotrealitsaplacehoder.com).
 
 ##  Contributors
 
@@ -41,15 +41,21 @@ Our world is plagued with conflict and devastating violence everywhere you look:
 
 ## Authentication 
 
-[FireBase](https://firebase.google.com/docs/auth)
+[Firebase](https://firebase.google.com/docs/auth)
+
+We are using Firebase Authentication to register and sign in users. This allows us to have the built in functionality of google log in. As well as storing passwords outside of our back-end for extra security. 
 
 ## Payment 
 
 [Stripe](https://stripe.com/docs/mobile/android)
 
+We are using stripe to take payments. We use the built in UI feature to take card details, and then send it to our back-end. A customer is able to make a direct payment to a mediator, with the platform taking a 30% fee. 
+
 ## E-mail
 
 [Sendgrid](https://sendgrid.com/docs/)
+
+We are using Sendgrid to send email templates. When a user Requests a mediator to handle their case a E-mail is sent automatically to the Mediator to let them know they have a request for their services.
 
 
 ## Requirements
@@ -104,7 +110,7 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](_link to your backend readme here_) for details on the backend of our project.
+See [Backend Documentation](https://github.com/labs14-brav/Backend/blob/master/README.md) for details on the backend of our project.
 
 
 [swift-image]: https://img.shields.io/badge/swift-3.0-orange.svg
