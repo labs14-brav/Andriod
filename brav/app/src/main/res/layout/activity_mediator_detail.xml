@@ -4,6 +4,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="8dp"
+        android:background="@color/colorPrimaryLight"
         android:orientation="vertical"
         tools:context=".views.MediatorDetailActivity">
 
@@ -19,7 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="@string/place_holder" />
+            android:text="@string/place_holder"
+            android:textStyle="bold" />
 
     <TextView
             android:id="@+id/textView13"
@@ -33,7 +35,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="@string/place_holder" />
+            android:text="@string/place_holder"
+            android:textStyle="bold" />
 
     <TextView
             android:id="@+id/textView14"
@@ -47,7 +50,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="@string/place_holder" />
+            android:text="@string/place_holder"
+            android:textStyle="bold" />
 
     <TextView
             android:id="@+id/textView15"
@@ -61,7 +65,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="@string/place_holder" />
+            android:text="@string/place_holder"
+            android:textStyle="bold" />
 
     <TextView
             android:id="@+id/textView16"
@@ -75,7 +80,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="@string/place_holder" />
+            android:text="@string/place_holder"
+            android:textStyle="bold" />
 
     <TextView
             android:id="@+id/textView17"
@@ -89,7 +95,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="@string/place_holder" />
+            android:text="@string/place_holder"
+            android:textStyle="bold" />
 
     <TextView
             android:id="@+id/textView18"
@@ -104,5 +111,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:lines="20"
-            android:text="@string/place_holder" />
+            android:text="@string/place_holder"
+            android:textStyle="bold" />
 </LinearLayout>
