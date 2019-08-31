@@ -18,11 +18,9 @@ import retrofit2.Callback
 import retrofit2.HttpException
 import retrofit2.Response
 
-class UserAccountActivity : AppCompatActivity() {
+class UserAccountActivity : CoroutineScopeActivity() {
     private lateinit var idToken: String
     private lateinit var auth: FirebaseAuth
-    private val job = Job()
-    private val coroutineScope = CoroutineScope(Dispatchers.IO + job)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,34 +59,24 @@ class UserAccountActivity : AppCompatActivity() {
 
     }
 
+    private fun deactivate():Job =
+        launch {
+            val service = RetroInstance().service(idToken)
+            val call = service.deactivateAsync()
 
-        private fun deactivate() {
-            coroutineScope.launch {
-                val service = RetroInstance().service(idToken)
-                val call = service.deactivateAsync()
-
-                withContext(Dispatchers.Main){
-                    try {
-                        call.await()
-                    } catch (e: HttpException) {
-                    }
-                }
+            try {
+                call.await()
+            } catch (e: HttpException) {
             }
         }
 
-
-
-    private fun connect(mediatorId: Int, caseId: Int) {
-
-        coroutineScope.launch {
-
+    private fun connect(mediatorId:Int, caseId:Int): Job =
+        launch {
             val service = RetroInstance().service(idToken)
             val call = service.connectAsync(mediatorId, CaseOut(caseId))
 
-            withContext(Dispatchers.Main){
-                call.await()
-                toast("email sent")
-            }
+            call.await()
+            toast("email sent")
         }
-    }
+
 }

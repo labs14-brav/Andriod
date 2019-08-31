@@ -27,14 +27,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : CoroutineScopeActivity(), View.OnClickListener {
 
     private lateinit var auth: FirebaseAuth
     lateinit var token: String
     lateinit var sharedPreference: SharedPreference
-    private val job = Job()
-    private val coroutineScope = CoroutineScope(Dispatchers.IO + job)
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,43 +51,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-
-   /* override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.settings -> {
-                baseContext.startActivity<UserAccountActivity>()
-                return true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }*/
-
-    private fun registerUser() {
-
-        coroutineScope.launch {
+    private fun registerUser(): Job =
+        launch {
             val service: BravApi = RetroInstance().service(sharedPreference.getToken("token"))
             val call = service.loginUserAsync()
 
-            withContext(Dispatchers.Main){
-                val response = call.await()
-                val userEmail = response.email
-                val userId = response.id
+            val response = call.await()
+            val userEmail = response.email
+            val userId = response.id
 
-                sharedPreference.saveUserEmail("userEmail", userEmail)
-                sharedPreference.saveUserId("userId", userId)
+            sharedPreference.saveUserEmail("userEmail", userEmail)
+            sharedPreference.saveUserId("userId", userId)
 
-            }
         }
-    }
 
     override fun onClick(v: View) {
         when (v.id) {

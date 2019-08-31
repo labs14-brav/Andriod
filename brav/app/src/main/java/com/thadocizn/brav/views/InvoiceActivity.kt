@@ -23,8 +23,6 @@ class InvoiceActivity : AppCompatActivity() {
             null -> toast("Nothing to show")
             else -> displayInvoices(list,mediator)
         }
-        //displayInvoices(list, mediator)
-
 
     }
 

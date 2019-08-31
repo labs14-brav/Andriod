@@ -14,10 +14,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class OtherCaseActivity : AppCompatActivity() {
+class OtherCaseActivity : CoroutineScopeActivity() {
     private lateinit var idToken: String
-    val job = Job()
-    private val coroutineScope = CoroutineScope(Dispatchers.IO + job)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,14 +80,11 @@ class OtherCaseActivity : AppCompatActivity() {
         return case
     }
 
-    private fun createCase(case: Case) {
-       coroutineScope.launch {
-           val service = RetroInstance().service(idToken)
-           val call = service.postCaseAsync(case)
-           withContext(Dispatchers.Main){
+    private fun createCase(case: Case):Job =
+        launch {
 
-               call.await()
-           }
-       }
-    }
+            val service = RetroInstance().service(idToken)
+            val call = service.postCaseAsync(case)
+            call.await()
+        }
 }
