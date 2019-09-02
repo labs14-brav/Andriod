@@ -2,7 +2,6 @@ package com.thadocizn.brav.views
 
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.thadocizn.brav.R
 import com.thadocizn.brav.adapters.MediatorAdapter
@@ -13,11 +12,9 @@ import kotlinx.android.synthetic.main.activity_mediator.*
 import kotlinx.coroutines.*
 
 
-class MediatorActivity : AppCompatActivity() {
+class MediatorActivity : CoroutineScopeActivity() {
     private lateinit var idToken: String
     var caseId: Int? = 0
-    val job = Job()
-    private val coroutineScope = CoroutineScope(Dispatchers.IO + job)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,25 +75,20 @@ class MediatorActivity : AppCompatActivity() {
 
     }
 
-    private fun getMediators() {
-        val price: String = spPrice.selectedItem.toString()
-        val language = spLanguage.selectedItem.toString()
-        val specialty = spSpecialty.selectedItem.toString()
-        val experience = spExperience.selectedItem.toString()
+    private fun getMediators(): Job =
+        launch {
 
-        coroutineScope.launch {
+            val price: String = spPrice.selectedItem.toString()
+            val language = spLanguage.selectedItem.toString()
+            val specialty = spSpecialty.selectedItem.toString()
+            val experience = spExperience.selectedItem.toString()
+
             val service = RetroInstance().service(idToken)
             val  call = service.getMediatorsAsync(price,experience,specialty,language)
 
-            withContext(Dispatchers.Main){
-                val response = call.await()
-                val list = response
-                getRecycleView(list)
-
-            }
+            val response = call.await()
+            getRecycleView(response)
         }
-
-    }
 
     private fun getRecycleView(list: List<Mediator>?) {
         val adapter = MediatorAdapter(list, caseId)

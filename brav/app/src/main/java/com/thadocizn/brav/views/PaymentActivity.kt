@@ -1,7 +1,6 @@
 package com.thadocizn.brav.views
 
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.stripe.android.ApiResultCallback
 import com.stripe.android.Stripe
@@ -13,20 +12,16 @@ import com.thadocizn.brav.models.StripeToken
 import com.thadocizn.brav.services.RetroInstance
 import com.thadocizn.brav.utils.SharedPreference
 import kotlinx.android.synthetic.main.activity_payment.*
-import kotlinx.android.synthetic.main.list_item_invoices.*
 import kotlinx.coroutines.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.newTask
 
-class PaymentActivity : AppCompatActivity() {
+class PaymentActivity : CoroutineScopeActivity() {
     private lateinit var cardInputWidget: CardMultilineWidget
     private lateinit var idToken: String
     var caseId: Int? = 0
     var invoiceId: Int = 0
-
-    val job = Job()
-    private val coroutineScope = CoroutineScope(Dispatchers.IO + job)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,19 +46,7 @@ class PaymentActivity : AppCompatActivity() {
 
     private fun getCard(): Card? {
         cardInputWidget = findViewById(R.id.card_input_widget)
-        val card = cardInputWidget.card
-        return card
-    }
-
-    fun createInvoice() {
-
-        coroutineScope.launch {
-            val service = RetroInstance().service(idToken)
-            val call = service.createInvoiceAsync(caseId!!)
-            withContext(Dispatchers.Main) {
-                call.await()
-            }
-        }
+        return cardInputWidget.card
     }
 
     private fun getstripeToken(card: Card): Unit {
@@ -78,37 +61,34 @@ class PaymentActivity : AppCompatActivity() {
             }
 
             override fun onError(e: Exception) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+              //  TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
         })
     }
 
-    private fun sendToken(token: String) {
-        coroutineScope.launch {
+    private fun sendToken(token:String):Job =
+        launch {
             val service = RetroInstance().service(idToken)
             val call = service.sendTokenAsync(1, StripeToken(token))
-            withContext(Dispatchers.Main) {
-                call.await()
-                if (call.isCompleted) {
-                    getPaymentMade()
 
-                }
-                applicationContext.startActivity(intentFor<CaseActivity>().newTask())
+            call.await()
+            if (call.isCompleted) {
+                getPaymentMade()
 
             }
-        }
-    }
+            applicationContext.startActivity(intentFor<CaseActivity>().newTask())
 
-    private fun getPaymentMade() {
-        coroutineScope.launch {
+        }
+
+    private fun getPaymentMade():Job =
+        launch {
+
             val service = RetroInstance().service(idToken)
             val call = service.invoicePaid(1)
-            withContext(Dispatchers.Main) {
-                call.await()
-                applicationContext.longToast("Payment Sent")
 
-            }
+            call.await()
+            applicationContext.longToast("Payment Sent")
+
         }
-    }
 }

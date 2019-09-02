@@ -4,12 +4,14 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorPrimaryLight"
         tools:context=".views.InvoiceActivity">
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvInvoice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryLight"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
